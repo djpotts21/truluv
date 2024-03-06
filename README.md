@@ -71,8 +71,8 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 ## Features:
 - Responsive website design.
 - Secure user authentication and authorization.
-- E-commerce functionality for browsing, shopping, and checkout.
-- Admin dashboard for managing products and orders.
+- E-commerce functionality for added features.
+- Admin dashboard for managing users.
 - Integration with Stripe for payment processing.
 
 ## Getting Started:
