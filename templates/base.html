@@ -27,6 +27,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="{% static 'js/base.js' %}"></script>
     {% endblock %}
 
     {% block extra_js %}
@@ -55,13 +56,13 @@
             <ul class="navbar-nav mb-2 mb-lg-0 me-4">
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-gear circle-green-black-icon-bg"></i><span class="menu-label">Settings</span></a>
+                <a class="nav-link" aria-current="page" href="#" data-toggle="tooltip" title="Settings" ><i class="fa-solid fa-gear circle-green-black-icon-bg" ></i><span class="menu-label">Settings</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#"><i class="fa-solid fa-user circle-green-black-icon-bg"></i><span class="menu-label">Profile</span></a>
+                <a class="nav-link" aria-current="page" href="#" data-toggle="tooltip"  title="Your Profile"><i class="fa-solid fa-user circle-green-black-icon-bg" ></i><span class="menu-label">Profile</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa-solid fa-right-from-bracket circle-green-black-icon-bg"></i><span class="menu-label">Logout</span></a>
+                <a class="nav-link" href="#" data-toggle="tooltip" title="Log Out"><i class="fa-solid fa-right-from-bracket circle-green-black-icon-bg" ></i><span class="menu-label">Logout</span></a>
               </li>
               {% else %}
               <li class="nav-item">
