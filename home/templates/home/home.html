@@ -6,11 +6,23 @@ Home
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Home</h1>
+<div class="container-fluid home-hero-bg">
+    <div class="container-fluid home-hero-bg-overlay">
+        <div class="row h-100 my-auto">
+            <div class="col-12 col-md-8 my-auto hero-container">
+                <h1 class="display-4 text-black">
+                    Find your perfect match<br>Find your <img src="{% static 'images/truluvlogo.png' %}" alt="TruLuv"
+                        width="150" class="d-inline">
+
+                </h1>
+                <div>
+                    <h4>
+                        <a href="#" class="login-button btn btn-lg rounded-0 text-uppercase py-3">Login</a>
+                        <a href="#" class="signup-button btn btn-lg rounded-0 text-uppercase py-3">Signup</a>
+                    </h4>
+                </div>
+            </div>
         </div>
     </div>
+</div>
 {% endblock %}
-
