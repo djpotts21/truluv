@@ -17,7 +17,6 @@
 .home-hero-bg-overlay {
     background-image: url(/static/images/home-bg.png);
     height: 100vh;
-    width: 100vw;
     background-position: right bottom;
     background-size: 50vh;
     background-repeat: no-repeat;
@@ -52,6 +51,21 @@
     cursor: pointer;
 }
 
+/* Navbar  */
+.navbar-nav {
+    right: 0;
+    position: absolute;
+}
+.circle-green-black-icon-bg {
+    border-radius: 50%;
+    color: black;
+    background-color: #34e000;
+    padding: 9px;
+}
+.menu-label {
+    display: none
+}
+
 /* Mobile Breakpoint */
 @media (max-width: 767px) {
     /* Add your mobile-specific styles here */
@@ -67,5 +81,18 @@
         background: #ffffffcc;
         margin: 0;
         padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+    /* Mobile Nav */
+    .navbar-nav {
+        right: unset;
+        position: unset;
+    }
+    .circle-green-black-icon-bg {
+        display: none;
+    }
+    .menu-label {
+        display: unset
     }
 }
