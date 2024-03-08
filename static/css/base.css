@@ -52,6 +52,10 @@
     cursor: pointer;
     border-radius: 0;
 }
+.login-container {
+    background: white;
+    padding: 10px;
+}
 
 /* Navbar  */
 .navbar-nav {
@@ -66,6 +70,20 @@
 }
 .menu-label {
     display: none
+}
+
+/* Sign In */
+.fb-login-button {
+    margin-left: 2px;
+}
+span.helptext a {
+    text-decoration: none !important;
+    color: black;
+    font-size: 13px;
+}
+.helptext {
+    margin-top: 10px;
+    display: block;
 }
 
 /* Mobile Breakpoint */
@@ -97,4 +115,9 @@
     .menu-label {
         display: unset
     }
+    /* Mobile Sign In */
+    span.helptext {
+        display: block;
+    }
+
 }

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% load account socialaccount %}
+{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+
+{% block title %}
+    Sign In
+{% endblock title %}
+{% block content %}
+<div class="container-fluid home-hero-bg">
+    <div class="container-fluid home-hero-bg-overlay">
+        <div class="row h-100 my-auto">
+            <div class="col-12 col-md-7 my-auto hero-container">
+                <div class="login-container">  
+                <h1 class="display-4 text-black">
+                    Sign In
+                </h1>
+                      
+                    <p>
+                            {% blocktrans %}If you have not created an account yet, then please
+                        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+                        </p>
+                        {% url 'account_login' as login_url %}
+                        {% element form form=form method="post" action=login_url tags="entrance,login" %}
+                            {% slot body %}
+                                {% csrf_token %}
+                                {% element fields form=form %}
+                                {% endelement %}
+                                {% if redirect_field_value %}
+                                    <input type="hidden"
+                                           name="{{ redirect_field_name }}"
+                                           value="{{ redirect_field_value }}" />
+                                {% endif %}
+                            {% endslot %}
+                            {% slot actions %}
+                                <button type="submit" class="login-button btn btn-lg">
+                                    {% trans "Sign In" %}
+                                </button>
+                            {% endslot %}
+                        {% endelement %}
+                        <div class="social-login-buttons">
+                            <a class="btn btn-primary rounded-0 fb-login-button" href="{% provider_login_url 'facebook' %}"><i class="fa-brands fa-facebook-f"></i> Login with Facebook</a>
+                            <a class="btn btn-danger rounded-0 go-login-button" href="#"><i class="fa-brands fa-google"></i> Login with Google<a>
+                            <a class="btn btn-info rounded-0 x-login-button" href="#"><i class="fa-brands fa-x-twitter"></i> Login with Twitter<a>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
