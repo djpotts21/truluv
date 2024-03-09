@@ -85,6 +85,23 @@ span.helptext a {
     margin-top: 10px;
     display: block;
 }
+.login-container ul {
+    font-size: 10px;
+    padding-left: 0;
+    list-style: inside;
+    line-height: 1.2;
+}
+.equal-width {
+    display: inline-block;
+    margin: 0;
+    
+}
+.errorlist {
+    font-size: 18px !important;
+    list-style: none !important;
+    background: #ff000070;
+    padding: 5px !important;
+}
 
 /* Mobile Breakpoint */
 @media (max-width: 767px) {
@@ -118,6 +135,12 @@ span.helptext a {
     /* Mobile Sign In */
     span.helptext {
         display: block;
+    }
+    .equal-width {
+        display: block;
+        width: 100%;
+        margin: 0;
+        
     }
 
 }

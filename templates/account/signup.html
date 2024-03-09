@@ -1,34 +1,56 @@
-{% extends "account/base_entrance.html" %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
+{% extends "base.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% load account socialaccount %}
+{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+
+{% block title %}
+Sign Up
+{% endblock title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
-    {% url 'account_signup' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button tags="prominent,signup" type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+<div class="container-fluid home-hero-bg">
+    <div class="container-fluid home-hero-bg-overlay">
+        <div class="row h-100 my-auto">
+            <div class="col-12 col-md-7 my-auto hero-container">
+                <div class="login-container">
+                    <h1 class="display-4 text-black">
+                        Sign Up
+                    </h1>
+
+                    <p>
+                    
+                        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.
+                        {% endblocktrans %}
+                    </p>
+                    {% url 'account_signup' as action_url %}
+                    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
+                    {% slot body %}
+                    {% csrf_token %}
+                    {% element fields form=form unlabeled=True %}
+                    {% endelement %}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    {% endslot %}
+                    {% slot actions %}
+                    <button type="submit" class="login-button btn btn-lg">
+                        {% trans "Sign Up" %}
+                    </button>
+                    {% endslot %}
+                    {% endelement %}
+                    {% if SOCIALACCOUNT_ENABLED %}
+                    <div class="social-login-buttons">
+                        <a class="btn btn-primary rounded-0 fb-login-button equal-width" href="{% provider_login_url 'facebook' %}"><i class="fa-brands fa-facebook-f"></i> Signup with Facebook</a>
+                        <a class="btn btn-danger rounded-0 go-login-button equal-width" href="#"><i class="fa-brands fa-google"></i> Signup with Google<a>
+                        <a class="btn btn-info rounded-0 x-login-button equal-width" href="#"><i class="fa-brands fa-x-twitter"></i> Signup with Twitter<a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
+
+
+```

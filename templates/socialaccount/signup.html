@@ -1,13 +1,21 @@
-{% extends "socialaccount/base_entrance.html" %}
+{% extends "base.html" %}
 {% load i18n %}
-{% load allauth %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
+{% load allauth account %}
+{% load account socialaccount %}
+{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+
+{% block title %}
+Log Out
+{% endblock title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
+<div class="container-fluid home-hero-bg">
+    <div class="container-fluid home-hero-bg-overlay">
+        <div class="row h-100 my-auto">
+            <div class="col-12 col-md-7 my-auto hero-container">
+                <div class="login-container">
+                    <h1 class="display-4 text-black">
+                        Sign Up
+                    </h1>
     <p>
         {% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
 {{site_name}}. As a final step, please complete the following form:{% endblocktrans %}
@@ -25,9 +33,14 @@
             {% endif %}
         {% endslot %}
         {% slot actions %}
-            {% element button type="submit" %}
-                {% trans "Sign Up" %}
-            {% endelement %}
+        <button type="submit" class="login-button btn btn-lg">
+            {% trans "Sign Up" %}
+        </button>
         {% endslot %}
     {% endelement %}
+</div>
+</div>
+</div>
+</div>
+</div>
 {% endblock content %}

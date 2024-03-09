@@ -1,27 +1,40 @@
-{% extends "account/base_manage.html" %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Sign Out" %}
-{% endblock head_title %}
+{% extends "base.html" %}
+{% load i18n %}
+{% load allauth account %}
+{% load account socialaccount %}
+{% include "socialaccount/snippets/provider_list.html" with process="login" %}
+
+{% block title %}
+Log Out
+{% endblock title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    <p>{% trans 'Are you sure you want to sign out?' %}</p>
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {% if redirect_field_value %}
-                <input type="hidden"
-                       name="{{ redirect_field_name }}"
-                       value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
+<div class="container-fluid home-hero-bg">
+    <div class="container-fluid home-hero-bg-overlay">
+        <div class="row h-100 my-auto">
+            <div class="col-12 col-md-7 my-auto hero-container">
+                <div class="login-container">
+                    <h1 class="display-4 text-black">
+                        Sign Out
+                    </h1>
+                    <p>{% trans 'Are you sure you want to sign out?' %}</p>
+                    {% url 'account_logout' as action_url %}
+                    {% element form method="post" action=action_url no_visible_fields=True %}
+                    {% slot body %}
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    {% endslot %}
+                    {% slot actions %}
+                    <button type="submit" class="login-button btn btn-lg">
+                        {% trans "Sign Out" %}
+                    </button>
+                    {% endslot %}
+                    {% endelement %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

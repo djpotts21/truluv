@@ -90,6 +90,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'truluv.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -155,10 +156,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # All Auth Settings
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
-ACCOUNT_FORMS = {'login': 'truluv.forms.TruLuvLoginForm'}
+ACCOUNT_FORMS = {
+    'login': 'truluv.forms.TruLuvLoginForm',
+    'signup': 'truluv.forms.TruLuvSignUpForm',
+    }
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
