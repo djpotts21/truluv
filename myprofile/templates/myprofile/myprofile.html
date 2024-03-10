@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+My Profile
+{% endblock title %}
+{% block content %}
+<div class="container-fluid home-hero-bg">
+    <div class="container-fluid home-hero-bg-overlay">
+        <div class="row h-100 my-auto">
+            <div class="col-12 col-md-7 my-auto hero-container">
+                <div class="login-container">
+                    <h1 class="display-4 text-black">
+                        My Profile
+                    </h1>
+                    <p>
+                        Welcome to your profile page. Here you can view and edit your profile information.
+                    </p>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Profile Information</h2>
+                            <p>
+                                <strong>Username:</strong> {{ user.username }}
+                            </p>
+                            <p>
+                                <strong>Email:</strong> {{ user.email }}
+                            </p>
+                            <p>
+                                <strong>First Name:</strong> {{ user.first_name }}
+                            </p>
+                            <p>
+                                <strong>Last Name:</strong> {{ user.last_name }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Change Password</h2>
+                            <p>
+                                <a href="{% url 'account_change_password' %}">Change Password</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Change Email</h2>
+                            <p>
+                                <a href="{% url 'account_email' %}">Change Email</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2>Delete Account</h2>
+                            <p>
+                                <a href="/">Delete Account</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+```
