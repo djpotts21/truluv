@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    # All Auth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
 
     # Site Apps
     'home',
+    'myprofile',
 ]
 
 MIDDLEWARE = [
@@ -156,6 +158,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # All Auth Settings
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_ADAPTER = 'truluv.allauthadapter.AccountAdapter'
 
 ACCOUNT_FORMS = {
     'login': 'truluv.forms.TruLuvLoginForm',
