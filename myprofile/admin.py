@@ -3,12 +3,12 @@ from .models import Profile
 
 
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('name',
+    list_display = ('user',
                     'email',
                     'phone'
                     )
-    search_fields = ['name', 'email', 'phone']
+    search_fields = ['user', 'email', 'phone']
     list_filter = ['created_at', 'updated_at']
-    ordering = ['name']
+    ordering = ['user']
 
 admin.site.register(Profile, ProfileAdmin)

@@ -21,6 +21,20 @@
     background-size: 50vh;
     background-repeat: no-repeat;
 }
+/* Buttons */
+.inline-tl-button {
+    background-color: #ff7c0a;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0;
+    margin-top: -5px !important;
+    padding: 6px !important;
+}
 
 .login-button{
     background-color: #ff7c0a;
@@ -35,7 +49,7 @@
     cursor: pointer;
     border-radius: 0;
 }
-.login-button:hover, .signup-button:hover {
+.login-button:hover, .signup-button:hover, .inline-tl-button:hover {
     background-color: #000000;
     color: white;
 }
@@ -103,6 +117,31 @@ span.helptext a {
     padding: 5px !important;
 }
 
+/* My Profile */
+.my-profile-photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+.inline-form{
+    display: inline;
+}
+.form-control {
+    border-radius: 0 !important;
+    padding: 5px;
+    width: auto;
+}
+.form-alignment-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
 /* Mobile Breakpoint */
 @media (max-width: 767px) {
     /* Add your mobile-specific styles here */

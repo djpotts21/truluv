@@ -19,4 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.myprofile, name='myprofile'),
+    path('updatename/', views.updatename, name='updatename'),
+    path('updateusername/', views.updateusername, name='updateusername')
 ]

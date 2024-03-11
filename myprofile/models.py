@@ -18,7 +18,6 @@ def get_location(ip):
 class Profile(models.Model):
     user = models.OneToOneField(
         'auth.User', on_delete=models.CASCADE, default=0)
-    name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
     address = models.TextField()
@@ -97,4 +96,4 @@ class Profile(models.Model):
     
 
     def __str__(self):
-        return self.name
+        return self.email
