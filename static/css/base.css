@@ -34,6 +34,7 @@
     border-radius: 0;
     margin-top: -5px !important;
     padding: 6px !important;
+    width: 100%;
 }
 
 .login-button{
@@ -66,10 +67,12 @@
     cursor: pointer;
     border-radius: 0;
 }
-.login-container {
-    background: white;
-    padding: 10px;
+.update-address-button {
+    display: inline-flex;
+    align-items: flex-end;
 }
+
+
 
 /* Navbar  */
 .navbar-nav {
@@ -104,6 +107,10 @@ span.helptext a {
     padding-left: 0;
     list-style: inside;
     line-height: 1.2;
+}
+.login-container {
+    background: white;
+    padding: 10px;
 }
 .equal-width {
     display: inline-block;
@@ -142,6 +149,11 @@ span.helptext a {
     justify-content: space-between;
     align-items: center;
 }
+.address-input{
+    height: 110px;
+}
+
+
 /* Mobile Breakpoint */
 @media (max-width: 767px) {
     /* Add your mobile-specific styles here */

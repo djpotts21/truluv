@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -13,7 +13,7 @@ def updatename(request):
         user.first_name = request.POST['first_name']
         user.last_name = request.POST['last_name']
         user.save()
-        return render(request, 'myprofile/myprofile.html', {})
+        return redirect('myprofile')
     
 
 def updateusername(request):
@@ -22,4 +22,15 @@ def updateusername(request):
         print(request.POST['username'])
         user.username = request.POST['username']
         user.save()
-        return render(request, 'myprofile/myprofile.html', {})
+        return redirect('myprofile')
+
+
+def updateaddress(request):
+    if request.POST:
+        user = request.user
+        print(user.profile.address)
+        user.profile.address = request.POST['address']
+        print("----")
+        print(request.POST['address'])
+        user.profile.save()
+        return redirect('myprofile')
