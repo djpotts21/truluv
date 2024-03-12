@@ -18,6 +18,7 @@ My Profile
             </div>
         </div>
         <div class="row h-100 my-auto">
+            <!-- Col one MD 50% -->
             <div class="col-12 col-md-6 my-auto">
                 <div class="row">
                     <h2>Account Details</h2>
@@ -108,6 +109,90 @@ My Profile
                     </p>
                 </div>
             </div>
+            <!-- Col two MD 50% -->
+            <div class="col-12 col-md-6 my-auto">
+                <div class="row">
+                    <h2>Account Details</h2>
+                    <div class="col-12">
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <form id="age" method="POST" action="{% url 'updateaboutme' %}">
+                                    {% csrf_token %}
+                                    <strong>Age:</strong>
+                            </div>
+                            <div class="col-5 age-container">
+                                <a class="btn inline-tl-button age-button" id="age-miunus">-</a>
+                                <input class="form-control" type="number" value="{% if user.profile.age %}{{ user.profile.age }}{% else %}18{% endif %}" id="age-input"
+                                    name="age" min="18" max="99">
+                                <a class="btn inline-tl-button age-button" id="age-plus">+</a>
+
+                            </div>
+                            <div class="col-4">
+                                <button class="btn inline-tl-button" type="submit">Update Age</button>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <strong>Primary Email:</strong>
+                            </div>
+                            <div class="col-5">
+                                <input type="text" disabled value="{{ user.email }}">
+                            </div>
+                            <div class="col-4">
+                                <a href="{% url 'account_email' %}" class="btn inline-tl-button">Add/Update
+                                    Email</a>
+                            </div>
+                        </div>
+                        </p>
+                        <hr class="my-4">
+                        <h2>Personal Details</h2>
+                        <form action="{% url 'updatename' %}" method="POST">
+                            <div class="row mb-2">
+                                <div class="col-3">
+                                    <strong>First Name:</strong>
+                                </div>
+                                <div class="col-5">
+                                    {% csrf_token %}
+                                    <input class="form-control" type="text" value="{{ user.first_name }}"
+                                        id="first_name" name="first_name">
+                                </div>
+                                <div class="col-4"></div>
+                            </div>  
+                            <div class="row mb-2">
+                                <div class="col-3">
+                                    <strong>Last Name:</strong>
+                                </div>
+                                <div class="col-5">
+                                    <input class="form-control" type="text" value="{{ user.last_name }}" id="last_name"
+                                        name="last_name">
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn inline-tl-button" type="submit">Update Name</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row mb-2">
+                                <div class="col-3">
+                                    <form action="{% url 'updateaddress' %}" method="POST">
+                                    <strong>Address:</strong>
+                                </div> 
+                                <div class="col-5">
+                                    {% csrf_token %}
+                                    <textarea class="form-control address-input" id="address"
+                                        name="address">{{ user.profile.address }}</textarea>
+                                </div>
+                                <div class="col-4 update-address-button">
+                                    <button class="btn inline-tl-button" type="submit">
+                                        Update Address
+                                    </button>
+                                </form>
+                                </div>
+                        </div> 
+                    </div>
+                    </p>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-12">
@@ -130,4 +215,24 @@ My Profile
 </div>
 </div>
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var input = document.getElementById("age-input");
+        plusButton = document.getElementById("age-plus");
+        minusButton = document.getElementById("age-miunus");
+
+        plusButton.addEventListener("click", function() {
+            input.value = parseInt(input.value) + 1;
+        });
+
+        minusButton.addEventListener("click", function() {
+            input.value = parseInt(input.value) - 1;
+        });
+
+        }); 
+</script>
+
+{% endblock extra_js %}
 ```

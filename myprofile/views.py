@@ -34,3 +34,11 @@ def updateaddress(request):
         print(request.POST['address'])
         user.profile.save()
         return redirect('myprofile')
+
+
+def updateaboutme(request):
+    if request.POST:
+        user = request.user
+        user.profile.age = request.POST['age']
+        user.profile.save()
+        return redirect('myprofile')

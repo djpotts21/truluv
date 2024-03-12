@@ -32,7 +32,6 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 0;
-    margin-top: -5px !important;
     padding: 6px !important;
     width: 100%;
 }
@@ -70,6 +69,14 @@
 .update-address-button {
     display: inline-flex;
     align-items: flex-end;
+}
+.age-button {
+    width: 1.5em;
+    background: #ff7c0a;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    height: 100%;
 }
 
 
@@ -152,7 +159,28 @@ span.helptext a {
 .address-input{
     height: 110px;
 }
+input#age-input {
+    display: inline-block;
+    width: 67%;
+}
+.age-container{
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
 
+/* Remove Up Down arrows on Number Input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 /* Mobile Breakpoint */
 @media (max-width: 767px) {
