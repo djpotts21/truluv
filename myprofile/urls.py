@@ -23,4 +23,6 @@ urlpatterns = [
     path('updateusername/', views.updateusername, name='updateusername'),
     path('updateaddress/', views.updateaddress, name='updateaddress'),
     path('updateaboutme/', views.updateaboutme, name='updateaboutme'),
+    path('uploadphotos/', views.uploadphotos, name='uploadphotos'),
+    path('removeimage/', views.removeimage, name='removeimage'),
 ]

@@ -133,12 +133,9 @@ span.helptext a {
 
 /* My Profile */
 .my-profile-photos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 .inline-form{
     display: inline;
@@ -167,6 +164,35 @@ input#age-input {
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+.profile-photo {
+    display: inline-flex;
+    justify-content: flex-end;
+}
+.upload-edit {
+    position: relative;
+    text-align: center;
+    bottom: 25px;
+    background: #ffffffe8;
+    padding: 1px;
+}
+.profile-extra-photos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 50%;
+    object-fit: cover;
+    height: 150px;
+}
+a.del-photo {
+    display: block;
+    position: absolute;
+    background: white;
+    padding: 2px;
+    color:red;
 }
 
 /* Remove Up Down arrows on Number Input */
