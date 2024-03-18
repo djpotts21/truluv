@@ -186,6 +186,7 @@ input#age-input {
     border-radius: 50%;
     object-fit: cover;
     height: 150px;
+    width: 150px;
 }
 a.del-photo {
     display: block;

@@ -96,8 +96,11 @@ My Profile
                             </div>
                             <div class="col-5">
                                 {% csrf_token %}
-                                <textarea class="form-control address-input" id="address" name="address" rows="4">{{
-                                    user.profile.address }}</textarea>
+                                <textarea 
+                                class="form-control address-input" 
+                                id="address" 
+                                name="address" 
+                                rows="5">{{user.profile.address }}</textarea>
                             </div>
                             <div class="col-4 update-address-button">
                                 <button class="btn inline-tl-button" type="submit">
@@ -154,19 +157,21 @@ My Profile
                                 <p><strong>Profile Picture</strong></p>
                                 <form action="uploadphotos/" method="POST" enctype="multipart/form-data">
                                     {% csrf_token %}
-                                    <input type="file" name="image1" id="image1" accept="image/*">
+                                    <input type="file" name="image1" id="image1" accept="image/*" onchange="loadprev1(event)">
                                     <button class="btn inline-tl-button" type="submit">Save Photo</button>
                                 
                             </div>
                             <div class="col-8 profile-photo">
                                 <a onclick="document.getElementById('image1').click()">
                                     {% if user.profile.image1 %}
-                                    <img src="{{ user.profile.image1.url }}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div>
+                                    <img src="{{ user.profile.image1.url }}" class="img-fluid profile-extra-photos" id="preim1"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div>
                                     {% else %}
-                                    <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div>
+                                    <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" id="preim1"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div>
                                     {% endif %}
                                 </a>
-                                <a href="{% url 'removeimage' %}{{ user.profile.image1}}"class="del-photo"><i class="fa-solid fa-trash"></i></a>
+                                {% if user.profile.image1 %}
+                                <a href="{% url 'removeimage' %}?image_id=1" class="del-photo"><i class="fa-solid fa-trash"></i></a>
+                                {% endif %}
                             </div>
                         </form>
                     </div>
@@ -177,59 +182,77 @@ My Profile
                                 {% csrf_token %}
                                 <div class="row photo container">
                                     <div class="col-4">
+                                        {% if user.profile.image2 %}
+                                        <a href="{% url 'removeimage' %}?image_id=2"class="del-photo"><i class="fa-solid fa-trash"></i></a>
+                                        {% endif %}
                                         <a onclick="document.getElementById('image2').click()">
                                             {% if user.profile.image2 %}
-                                            <img src="{{ user.profile.image2.url }}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div>
+                                            <img src="{{ user.profile.image2.url }}" class="img-fluid profile-extra-photos" id="preim2" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div>
                                             {% else %}
-                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div>
+                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" id="preim2"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div>
                                             {% endif %}
-                                            <input type='file' id="image2" name="image2" style="display:none">
+                                            <input type='file' id="image2" name="image2" style="display:none" onchange="loadprev2(event)">
                                         </a>
                                     </div>
                                     <div class="col-4">
+                                        {% if user.profile.image3 %}
+                                        <a href="{% url 'removeimage' %}?image_id=3"class="del-photo"><i class="fa-solid fa-trash"></i></a>
+                                        {% endif %}
                                         <a onclick="document.getElementById('image3').click()">
                                             {% if user.profile.image3 %}
-                                            <img src="{{ user.profile.image3.url }}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{{ user.profile.image3.url }}" class="img-fluid profile-extra-photos" id="preim3" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% else %}
-                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" id="preim3" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% endif %}
-                                            <input type='file' id="image3" name="image3" style="display:none">
+                                            <input type='file' id="image3" name="image3" style="display:none" onchange="loadprev3(event)">
                                     </div>
                                     <div class="col-4">
+                                        {% if user.profile.image4 %}
+                                        <a href="{% url 'removeimage' %}?image_id=4"class="del-photo"><i class="fa-solid fa-trash"></i></a>
+                                        {% endif %}
                                         <a onclick="document.getElementById('image4').click()">
                                             {% if user.profile.image4 %}
-                                            <img src="{{ user.profile.image4.url }}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{{ user.profile.image4.url }}" class="img-fluid profile-extra-photos" id="preim4"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% else %}
-                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" id="preim4" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% endif %}
-                                            <input type='file' id="image4" name="image4" style="display:none">
+                                            <input type='file' id="image4" name="image4" style="display:none" onchange="loadprev4(event)">
                                     </div>
                                     <div class="col-4">
+                                        {% if user.profile.image5 %}
+                                        <a href="{% url 'removeimage' %}?image_id=5"class="del-photo"><i class="fa-solid fa-trash"></i></a>
+                                        {% endif %}
                                         <a onclick="document.getElementById('image5').click()">
                                             {% if user.profile.image5 %}
-                                            <img src="{{ user.profile.image5.url }}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{{ user.profile.image5.url }}" class="img-fluid profile-extra-photos"  id="preim5"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% else %}
-                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos"  id="preim5"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% endif %}
-                                            <input type='file' id="image5" name="image5" style="display:none">
+                                            <input type='file' id="image5" name="image5" style="display:none" onchange="loadprev5(event)">
                                     </div>
                                     <div class="col-4">
+                                        {% if user.profile.image6 %}
+                                        <a href="{% url 'removeimage' %}?image_id=6"class="del-photo"><i class="fa-solid fa-trash"></i></a>
+                                        {% endif %}
                                         <a onclick="document.getElementById('image6').click()">
                                             {% if user.profile.image6 %}
-                                            <img src="{{ user.profile.image6.url }}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{{ user.profile.image6.url }}" class="img-fluid profile-extra-photos"  id="preim6"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% else %}
-                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos"  id="preim6"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% endif %}
-                                            <input type='file' id="image6" name="image6" style="display:none">
+                                            <input type='file' id="image6" name="image6" style="display:none" onchange="loadprev6(event)">
                                     </div>
                                     <div class="col-4">
+                                        {% if user.profile.image7 %}
+                                        <a href="{% url 'removeimage' %}?image_id=7"class="del-photo"><i class="fa-solid fa-trash"></i></a>
+                                        {% endif %}
                                         <a onclick="document.getElementById('image7').click()">
                                             {% if user.profile.image7 %}
-                                            <img src="{{ user.profile.image7.url }}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{{ user.profile.image7.url }}" class="img-fluid profile-extra-photos"  id="preim7" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% else %}
-                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos" ><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
+                                            <img src="{% static 'images/no-image.png' %}" class="img-fluid profile-extra-photos"  id="preim7"><div class="upload-edit"><i class="fa-solid fa-upload"></i> <i class="fa-solid fa-pen-to-square"></i></div></a>
                                             {% endif %}
-                                            <input type='file' id="image7" name="image7" style="display:none">
+                                            <input type='file' id="image7" name="image7" style="display:none" onchange="loadprev7(event)">
                                     </div>
                                     <div class="col-12">
                                         <button class="btn inline-tl-button" type="submit">Save Photos</button>
@@ -246,23 +269,3 @@ My Profile
 
 {% endblock content %}
 
-{% block extra_js %}
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        var input = document.getElementById("age-input");
-        plusButton = document.getElementById("age-plus");
-        minusButton = document.getElementById("age-miunus");
-
-        plusButton.addEventListener("click", function () {
-            input.value = parseInt(input.value) + 1;
-        });
-
-        minusButton.addEventListener("click", function () {
-            input.value = parseInt(input.value) - 1;
-        });
-
-    }); 
-</script>
-
-{% endblock extra_js %}
-```

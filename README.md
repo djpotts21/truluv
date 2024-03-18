@@ -85,5 +85,5 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 
 ## Acknowledgments / Attributes:
 
-
+- [Brian Burns - JS Load Image Preview - Stackoverflow](https://stackoverflow.com/a/27165977)
 
