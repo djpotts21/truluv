@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.gis.geoip2 import GeoIP2
 
 # Create your views here.
 
@@ -88,5 +87,20 @@ def removeimage(request):
     if image_id == 7:
         user.profile.image7 = None
     
+    user.profile.save()
+    return redirect('myprofile')
+
+
+def updatelocation(request):
+    if request.POST:
+        user = request.user
+        user.profile.location = request.POST['location']
+        user.profile.save()
+        return redirect('myprofile')
+
+
+def resetlocation(request):
+    user = request.user
+    user.profile.location = None
     user.profile.save()
     return redirect('myprofile')

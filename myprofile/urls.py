@@ -25,4 +25,6 @@ urlpatterns = [
     path('updateaboutme/', views.updateaboutme, name='updateaboutme'),
     path('uploadphotos/', views.uploadphotos, name='uploadphotos'),
     path('removeimage/', views.removeimage, name='removeimage'),
+    path('updatelocation/', views.updatelocation, name='updatelocation'),
+    path('resetlocation/', views.resetlocation, name='resetlocation'),
 ]

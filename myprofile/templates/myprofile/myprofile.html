@@ -293,21 +293,19 @@ My Profile
                     <div class="col-12">
                         <!-- Location Update -->
                         <div class="row mb-2">
-                            <div class="col-3">
-                                <form id="age" method="POST" action="{% url 'updateaboutme' %}">
+                            <div class="col-12">
+                                <form id="title" method="POST" action="{% url 'updatelocation' %}">
                                     {% csrf_token %}
-                                    <strong>Location:</strong>
+                                    <strong>Location:</strong>{% if user.profile.location %} <span id="locationset" style="display:none;">{{ user.profile.location }}</span><i class="fa-solid fa-arrow-rotate-right"></i> <a
+                                        href="{% url 'resetlocation' %}">Reset Location</a> {% endif %}
                             </div>
-                            <div class="col-5 age-container">
-                                <a class="btn inline-tl-button age-button" id="age-miunus">-</a>
-                                <input class="form-control" type="number"
-                                    value="{% if user.profile.age %}{{ user.profile.age }}{% else %}18{% endif %}"
-                                    id="age-input" name="age" min="18" max="99">
-                                <a class="btn inline-tl-button age-button" id="age-plus">+</a>
+                            <div class="col-12">
+                                <div id="map"></div>
+                            </div>
+                            <input type="hidden" id="location" name="location">
 
-                            </div>
-                            <div class="col-4">
-                                <button class="btn inline-tl-button" type="submit">Update Age</button>
+                            <div class="col-12">
+                                <button class="btn inline-tl-button" type="submit">Update Location</button>
                             </div>
                             </form>
                         </div>
@@ -348,3 +346,9 @@ My Profile
             </div>
 
             {% endblock content %}
+
+            {% block extra_js %}
+            <script 
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLNVE2t3ju161xOSc7eiauzXdSfMgp0S8&callback=initMap" async defer>
+            </script>
+            {% endblock extra_js %}

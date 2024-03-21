@@ -1,17 +1,4 @@
 from django.db import models
-import geoip2.webservice
-
-
-# Get user location from geoip2
-def get_location(ip):
-    reader = geoip2.webservice.Reader('GeoLite2-City.mmdb')
-    response = reader.city(ip)
-    location = (
-        response.city.name + ', ' +
-        response.subdivisions.most_specific.name + ', ' +
-        response.country.name
-    )
-    return location
 
 
 # Create your models here.
@@ -35,7 +22,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=10, null=True, blank=True)
     pronouns = models.CharField(max_length=10, null=True, blank=True)
     location = models.CharField(
-        max_length=100, null=True, blank=True, editable=False)
+        max_length=100, null=True, blank=True)
     job_title = models.CharField(max_length=100, null=True, blank=True)
     company = models.CharField(max_length=100, null=True, blank=True)
     education = models.CharField(max_length=100, null=True, blank=True)
@@ -88,7 +75,6 @@ class Profile(models.Model):
     tiktok = models.CharField(max_length=100, null=True, blank=True)
     linkedin = models.CharField(max_length=100, null=True, blank=True)
     website = models.CharField(max_length=100, null=True, blank=True)
-    
 
     def __str__(self):
         return self.email
