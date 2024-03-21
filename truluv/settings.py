@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+# Google API Key for Maps on Profile
+GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,12 +30,12 @@ SECRET_KEY = 'django-insecure-7&a)xhha$\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-djpotts21-truluv-7hdlvlrd0gl.ws-us110.gitpod.io',
+ALLOWED_HOSTS = ['8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io',
                  'localhost',
                  ]
 
-CSRF_TRUSTED_ORIGINS = ['http://8000-djpotts21-truluv-7hdlvlrd0gl.ws-us110.gitpod.io',
-                        'https://8000-djpotts21-truluv-7hdlvlrd0gl.ws-us110.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['http://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io',
+                        'https://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io']
 
 # Application definition
 
