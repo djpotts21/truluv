@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect
+import os
 
 # Create your views here.
 
 
 def myprofile(request):
-    return render(request, 'myprofile/myprofile.html', {})
+    # Google API Key for Maps on Profile
+    gmapsapikey = os.environ.get('GOOGLE_MAPS_API_KEY')
+    print(gmapsapikey)
+    return render(request, 'myprofile/myprofile.html', {
+        'gmapsapikey': gmapsapikey
+    })
 
 
 def updatename(request):
