@@ -171,8 +171,8 @@ input#age-input {
 }
 .form-control {
     width: 100%;
+    padding-left: 13px;
 }
-
 .profile-photo {
     display: inline-flex;
     justify-content: flex-end;
