@@ -134,3 +134,27 @@ def updategender(request):
         user.profile.gender = request.POST['gender']
         user.profile.save()
         return redirect('myprofile')
+    
+
+def updatepronouns(request):
+    if request.POST:
+        user = request.user
+        user.profile.pronouns = request.POST['pronouns']
+        user.profile.save()
+        return redirect('myprofile')
+
+
+def updatejobtitle(request):
+    if request.POST:
+        user = request.user
+        user.profile.job_title = request.POST['job_title']
+        user.profile.save()
+        return redirect('myprofile')
+    
+
+def updateeducation(request):
+    if request.POST:
+        user = request.user
+        user.profile.education = request.POST['education']
+        user.profile.save()
+        return redirect('myprofile')

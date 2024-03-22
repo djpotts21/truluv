@@ -328,6 +328,25 @@ My Profile
                             </form>
                         </div>
                         <h2>About Me</h2>
+                        <!-- Bio Update -->
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <form action="{% url 'updatebio' %}" method="POST">
+                                    <strong>Your Bio:</strong>
+                            </div>
+                            <div class="col-9">
+                                {% csrf_token %}
+                                <textarea class="form-control bio-input" id="bio" name="bio"
+                                    rows="5">{{user.profile.bio }}</textarea>
+                            </div>
+                            <div class="col-12 mt-1 update-address-button">
+                                <button class="btn inline-tl-button" type="submit">
+                                    Update Bio
+                                </button>
+                                </form>
+                            </div>
+                        </div>
+                        <hr>
                         <!-- Age Update -->
                         <div class="row mb-2">
                             <div class="col-3">
@@ -348,34 +367,16 @@ My Profile
                             </div>
                             </form>
                         </div>
-                        <!-- Bio Update -->
-                        <div class="row mb-2">
-                            <div class="col-3">
-                                <form action="{% url 'updatebio' %}" method="POST">
-                                    <strong>Your Bio:</strong>
-                            </div>
-                            <div class="col-9">
-                                {% csrf_token %}
-                                <textarea class="form-control bio-input" id="bio" name="bio"
-                                    rows="5">{{user.profile.bio }}</textarea>
-                            </div>
-                            <div class="col-12 mt-1 update-address-button">
-                                <button class="btn inline-tl-button" type="submit">
-                                    Update Bio
-                                </button>
-                                </form>
-                            </div>
-                        </div>
                         <!-- Gender Update -->
                         <div class="row mb-2">
                             <div class="col-3">
-                                <form id="age" method="POST" action="{% url 'updategender' %}">
+                                <form id="gender" method="POST" action="{% url 'updategender' %}">
                                     {% csrf_token %}
                                     <strong>Gender:</strong>
                             </div>
                             <div class="col-5">
                                 <select id="gender" name="gender" class="form-select">
-                                    <option {% if user.profile.gender %}{% else %}selected{% endif %} value="">Select a gender</option>
+                                    <option {% if user.profile.gender %}{% else %}selected{% endif %} value="">{% if user.profile.gender %}Remove gender{% else %}Select a gender{% endif %}</option>
                                     <option value="Man" {% if user.profile.gender == "Man" %}selected{% endif %}>Man</option>
                                     <option value="Cis Man" {% if user.profile.gender == "Cis Man" %}selected{% endif %}>Cis Man</option>
                                     <option value="Trans Man" {% if user.profile.gender == "Trans Man" %}selected{% endif %}>Trans Man</option>
@@ -392,6 +393,71 @@ My Profile
                             </div>
                             </form>
                         </div>
+                           <!-- Gender Pronouns -->
+                           <div class="row mb-2">
+                            <div class="col-3">
+                                <form id="pronouns" method="POST" action="{% url 'updatepronouns' %}">
+                                    {% csrf_token %}
+                                    <strong>Pronouns:</strong>
+                            </div>
+                            <div class="col-5">
+                                <select id="pronouns" name="pronouns" class="form-select">
+                                    <option {% if user.profile.pronouns %}{% else %}selected{% endif %} value="">{% if user.profile.pronouns %}Remove pronouns{% else %}Select a pronoun{% endif %}</option>
+                                    <option value="He / Him / His" {% if user.profile.pronouns == "He / Him / His" %}selected{% endif %}>He / Him / His</option>
+                                    <option value="She / Her/ Hers" {% if user.profile.pronouns == "She / Her/ Hers" %}selected{% endif %}>She / Her/ Hers</option>
+                                    <option value="They / Them / Theirs" {% if user.profile.pronouns == "They / Them / Theirs" %}selected{% endif %}>They / Them / Theirs</option>
+                                    <option value="Call me by my name" {% if user.profile.pronouns == "Call me by my name" %}selected{% endif %}>Call me by my name</option>
+                                    <option value="Ze / Hir / Hirs" {% if user.profile.pronouns == "Ze / Hir / Hirs" %}selected{% endif %}>Ze / Hir / Hirs</option>
+                                    <option value="Ze / Zir / Zirs" {% if user.profile.pronouns == "Ze / Zir / Zirs" %}selected{% endif %}>Ze / Zir / Zirs</option>
+                                  </select>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn inline-tl-button" type="submit">Update pronoun</button>
+                            </div>
+                            </form>
+                        </div>
+                         <!-- Job Title Update -->
+                         <div class="row mb-2">
+                            <div class="col-3">
+                                <form action="{% url 'updatejobtitle' %}" method="POST">
+                                    <strong>Job Title:</strong>
+                            </div>
+                            <div class="col-5">
+                                {% csrf_token %}
+                                <input class="form-control" type="text" value="{{ user.profile.job_title }}" id="job_title"
+                                        name="job_title" placeholder="Optional">
+                            </div>
+                            <div class="col-4 update-address-button">
+                                <button class="btn inline-tl-button" type="submit">
+                                    Update Job Title
+                                </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Gender Education Level -->
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <form id="education" method="POST" action="{% url 'updateeducation' %}">
+                                    {% csrf_token %}
+                                    <strong>Education:</strong>
+                            </div>
+                            <div class="col-5">
+                                <select id="education" name="education" class="form-select">
+                                    <option {% if user.profile.proneducationouns %}{% else %}selected{% endif %} value="">{% if user.profile.education %}Remove education{% else %}Select education{% endif %}</option>
+                                    <option value="High School / College" {% if user.profile.education == "High School / College" %}selected{% endif %}>High School / College</option>
+                                    <option value="Undergraduate Student" {% if user.profile.education == "Undergraduate Student" %}selected{% endif %}>Undergraduate Student</option>
+                                    <option value="Undergraduate" {% if user.profile.education == "Undergraduate" %}selected{% endif %}>Undergraduate</option>
+                                    <option value="Postgraduate Student" {% if user.profile.education == "Postgraduate Student" %}selected{% endif %}>Postgraduate Student</option>
+                                    <option value="Postgraduate" {% if user.profile.education == "Postgraduate" %}selected{% endif %}>Postgraduate </option>
+                                    <option value="Doctorate / PhD" {% if user.profile.education == "Doctorate / PhD" %}selected{% endif %}>Doctorate / PhD</option>
+                                  </select>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn inline-tl-button" type="submit">Update education</button>
+                            </div>
+                            </form>
+                        </div>
+                        <!-- End of Inside Form -->
                     </div>
                 </div>
             </div>

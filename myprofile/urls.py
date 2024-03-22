@@ -30,4 +30,7 @@ urlpatterns = [
     path('resetlocation/', views.resetlocation, name='resetlocation'),
     path('updatebio/', views.updatebio, name='updatebio'),
     path('updategender/', views.updategender, name='updategender'),
+    path('updatepronouns/', views.updatepronouns, name='updatepronouns'),
+    path('updatejobtitle/', views.updatejobtitle, name='updatejobtitle'),
+    path('updateeducation/', views.updateeducation, name='updateeducation'),
 ]

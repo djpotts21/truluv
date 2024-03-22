@@ -162,12 +162,15 @@ span.helptext a {
 }
 input#age-input {
     display: inline-block;
-    width: 67%;
+    width: 78%;
 }
 .age-container{
     display: inline-flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+.form-control {
+    width: 100%;
 }
 
 .profile-photo {
