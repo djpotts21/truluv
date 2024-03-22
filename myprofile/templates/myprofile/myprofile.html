@@ -111,6 +111,24 @@ My Profile
                                 </form>
                             </div>
                         </div>
+                         <!-- Phone Update -->
+                         <div class="row mb-2">
+                            <div class="col-3">
+                                <form action="{% url 'updatephone' %}" method="POST">
+                                    <strong>Phone Number:</strong>
+                            </div>
+                            <div class="col-5">
+                                {% csrf_token %}
+                                <input class="form-control" type="text" value="{{ user.profile.phone }}" id="phone"
+                                        name="phone">
+                            </div>
+                            <div class="col-4 update-address-button">
+                                <button class="btn inline-tl-button" type="submit">
+                                    Update Phone
+                                </button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <hr class="my-4">
                     <!-- Photos Update -->
@@ -289,14 +307,14 @@ My Profile
             <!-- Col two MD 50% -->
             <div class="col-12 col-md-6 ">
                 <div class="row">
-                    <h2>About You</h2>
+                    <h2>Location</h2>
                     <div class="col-12">
                         <!-- Location Update -->
                         <div class="row mb-2">
                             <div class="col-12">
                                 <form id="title" method="POST" action="{% url 'updatelocation' %}">
                                     {% csrf_token %}
-                                    <strong>Location:</strong>{% if user.profile.location %} <span id="locationset" style="display:none;">{{ user.profile.location }}</span><i class="fa-solid fa-arrow-rotate-right"></i> <a
+                                    {% if user.profile.location %} <span id="locationset" style="display:none;">{{ user.profile.location }}</span><i class="fa-solid fa-arrow-rotate-right"></i> <a
                                         href="{% url 'resetlocation' %}">Reset Location</a> {% endif %}
                             </div>
                             <div class="col-12">
@@ -309,10 +327,11 @@ My Profile
                             </div>
                             </form>
                         </div>
+                        <h2>About Me</h2>
                         <!-- Age Update -->
                         <div class="row mb-2">
                             <div class="col-3">
-                                <form id="age" method="POST" action="{% url 'updateaboutme' %}">
+                                <form id="age" method="POST" action="{% url 'updateage' %}">
                                     {% csrf_token %}
                                     <strong>Age:</strong>
                             </div>
@@ -329,17 +348,49 @@ My Profile
                             </div>
                             </form>
                         </div>
+                        <!-- Bio Update -->
                         <div class="row mb-2">
                             <div class="col-3">
-                                <strong>Awaiting Update</strong>
+                                <form action="{% url 'updatebio' %}" method="POST">
+                                    <strong>Your Bio:</strong>
+                            </div>
+                            <div class="col-9">
+                                {% csrf_token %}
+                                <textarea class="form-control bio-input" id="bio" name="bio"
+                                    rows="5">{{user.profile.bio }}</textarea>
+                            </div>
+                            <div class="col-12 mt-1 update-address-button">
+                                <button class="btn inline-tl-button" type="submit">
+                                    Update Bio
+                                </button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Gender Update -->
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <form id="age" method="POST" action="{% url 'updategender' %}">
+                                    {% csrf_token %}
+                                    <strong>Gender:</strong>
                             </div>
                             <div class="col-5">
-                                <input type="text" disabled value="{{ user.email }}">
+                                <select id="gender" name="gender" class="form-select">
+                                    <option {% if user.profile.gender %}{% else %}selected{% endif %} value="">Select a gender</option>
+                                    <option value="Man" {% if user.profile.gender == "Man" %}selected{% endif %}>Man</option>
+                                    <option value="Cis Man" {% if user.profile.gender == "Cis Man" %}selected{% endif %}>Cis Man</option>
+                                    <option value="Trans Man" {% if user.profile.gender == "Trans Man" %}selected{% endif %}>Trans Man</option>
+                                    <hr>
+                                    <option value="Woman" {% if user.profile.gender == "Woman" %}selected{% endif %}>Woman</option>
+                                    <option value="Cis Woman" {% if user.profile.gender == "Cis Woman" %}selected{% endif %}>Cis Woman</option>
+                                    <option value="Trans Woman" {% if user.profile.gender == "Trans Woman" %}selected{% endif %}>Trans Woman</option>
+                                    <hr>
+                                    <option value="Non-Binary" {% if user.profile.gender == "Non-Binary" %}selected{% endif %}>Non-Binary</option>
+                                  </select>
                             </div>
                             <div class="col-4">
-                                <a href="{% url 'account_email' %}" class="btn inline-tl-button">Add/Update
-                                    Email</a>
+                                <button class="btn inline-tl-button" type="submit">Update Gender</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

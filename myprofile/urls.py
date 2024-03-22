@@ -22,9 +22,12 @@ urlpatterns = [
     path('updatename/', views.updatename, name='updatename'),
     path('updateusername/', views.updateusername, name='updateusername'),
     path('updateaddress/', views.updateaddress, name='updateaddress'),
-    path('updateaboutme/', views.updateaboutme, name='updateaboutme'),
+    path('updatephone/', views.updatephone, name='updatephone'),
+    path('updateage/', views.updateage, name='updateage'),
     path('uploadphotos/', views.uploadphotos, name='uploadphotos'),
     path('removeimage/', views.removeimage, name='removeimage'),
     path('updatelocation/', views.updatelocation, name='updatelocation'),
     path('resetlocation/', views.resetlocation, name='resetlocation'),
+    path('updatebio/', views.updatebio, name='updatebio'),
+    path('updategender/', views.updategender, name='updategender'),
 ]

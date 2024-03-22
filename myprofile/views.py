@@ -39,7 +39,15 @@ def updateaddress(request):
         return redirect('myprofile')
 
 
-def updateaboutme(request):
+def updatephone(request):
+    if request.POST:
+        user = request.user
+        user.profile.phone = request.POST['phone']
+        user.profile.save()
+        return redirect('myprofile')
+
+
+def updateage(request):
     if request.POST:
         user = request.user
         user.profile.age = request.POST['age']
@@ -110,3 +118,19 @@ def resetlocation(request):
     user.profile.location = None
     user.profile.save()
     return redirect('myprofile')
+
+
+def updatebio(request):
+    if request.POST:
+        user = request.user
+        user.profile.bio = request.POST['bio']
+        user.profile.save()
+        return redirect('myprofile')
+    
+
+def updategender(request):
+    if request.POST:
+        user = request.user
+        user.profile.gender = request.POST['gender']
+        user.profile.save()
+        return redirect('myprofile')

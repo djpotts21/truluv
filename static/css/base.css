@@ -155,6 +155,10 @@ span.helptext a {
 }
 .address-input{
     height: 110px;
+    width: 94%;
+}
+.bio-input {
+    width: 100%;
 }
 input#age-input {
     display: inline-block;
