@@ -36,4 +36,6 @@ urlpatterns = [
     path('updaterelationshipstatus/',
          views.updaterelationshipstatus, name='updaterelationshipstatus'),
     path('updatelookingfor/', views.updatelookingfor, name='updatelookingfor'),
+    path('updatesexuality/', views.updatesexuality, name='updatesexuality'),
+    path('updateheight/', views.updateheight, name='updateheight'),
 ]

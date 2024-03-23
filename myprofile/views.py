@@ -174,3 +174,19 @@ def updatelookingfor(request):
         user.profile.looking_for = request.POST['looking_for']
         user.profile.save()
         return redirect('myprofile')
+
+
+def updatesexuality(request):
+    if request.POST:
+        user = request.user
+        user.profile.sexuality = request.POST['sexuality']
+        user.profile.save()
+        return redirect('myprofile')
+    
+
+def updateheight(request):
+    if request.POST:
+        user = request.user
+        user.profile.height = request.POST['height']
+        user.profile.save()
+        return redirect('myprofile')

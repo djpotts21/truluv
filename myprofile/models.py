@@ -29,7 +29,7 @@ class Profile(models.Model):
         max_length=100, null=True, blank=True)
     looking_for = models.CharField(
         max_length=100, null=True, blank=True)
-    sexual_orientation = models.CharField(
+    sexuality = models.CharField(
         max_length=20, null=True, blank=True)
     height = models.CharField(max_length=10, null=True, blank=True)
     body_type = models.CharField(max_length=20, null=True, blank=True)

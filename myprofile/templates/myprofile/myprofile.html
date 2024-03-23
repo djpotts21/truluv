@@ -509,7 +509,53 @@ My Profile
                                 <button class="btn inline-tl-button" type="submit">Update looking for</button>
                             </div>
                             </form>
-                        </div>                        
+                        </div>     
+                         <!-- Sexual Orientation -->
+                         <div class="row mb-2">
+                            <div class="col-3">
+                                <form id="sexuality" method="POST" action="{% url 'updatesexuality' %}">
+                                    {% csrf_token %}
+                                    <strong>Sexuality:</strong>
+                            </div>
+                            <div class="col-5">
+                                <select id="sexuality" name="sexuality" class="form-select">
+                                    <option {% if user.profile.sexuality %}{% else %}selected{% endif %} value="">{% if user.profile.sexuality %}Remove sexuality{% else %}Select sexuality{% endif %}</option>
+                                    <option value="Heterosexual / Straight" {% if user.profile.sexuality == "Heterosexual / Straight" %}selected{% endif %}>Heterosexual / Straight</option>
+                                    <option value="Gay" {% if user.profile.sexuality == "Gay" %}selected{% endif %}>Gay</option>
+                                    <option value="Lesbian" {% if user.profile.sexuality == "Lesbian" %}selected{% endif %}>Lesbian</option>
+                                    <option value="Bisexual" {% if user.profile.sexuality == "Bisexual" %}selected{% endif %}>Bisexual</option>
+                                    <option value="ASexual" {% if user.profile.sexuality == "ASexual" %}selected{% endif %}>ASexual </option>
+                                    <option value="Questioning" {% if user.profile.sexuality == "Questioning" %}selected{% endif %}>Questioning</option>
+                                    <option value="Pansexual" {% if user.profile.sexuality == "Pansexual" %}selected{% endif %}>Pansexual</option>
+                                    <option value="Abrosexual " {% if user.profile.sexuality == "Abrosexual " %}selected{% endif %}>Abrosexual </option>
+                                    <option value="Queer" {% if user.profile.sexuality == "Queer" %}selected{% endif %}>Queer</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn inline-tl-button" type="submit">Update sexuality</button>
+                            </div>
+                            </form>
+                        </div>     
+ <!-- Height -->
+ <div class="row mb-2">
+    <div class="col-3">
+        <form id="height" method="POST" action="{% url 'updateheight' %}">
+            {% csrf_token %}
+            <strong>Height:</strong>
+    </div>
+    <div class="col-5">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Height in cm" aria-label="height" aria-describedby="basic-addon2" name="height" id="height" value="{{ user.profile.height }}">
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">cm</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <button class="btn inline-tl-button" type="submit">Update height</button>
+    </div>
+    </form>
+</div>                                                      
                         <!-- End of Inside Form -->
                     </div>
                 </div>
