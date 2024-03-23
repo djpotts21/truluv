@@ -20,7 +20,7 @@ def updatename(request):
         user.last_name = request.POST['last_name']
         user.save()
         return redirect('myprofile')
-    
+
 
 def updateusername(request):
     if request.POST:
@@ -88,19 +88,19 @@ def removeimage(request):
 
     if image_id == 3:
         user.profile.image3 = None
-    
+
     if image_id == 4:
         user.profile.image4 = None
-    
+
     if image_id == 5:
         user.profile.image5 = None
-    
+
     if image_id == 6:
         user.profile.image6 = None
-    
+
     if image_id == 7:
         user.profile.image7 = None
-    
+
     user.profile.save()
     return redirect('myprofile')
 
@@ -126,67 +126,17 @@ def updatebio(request):
         user.profile.bio = request.POST['bio']
         user.profile.save()
         return redirect('myprofile')
-    
 
-def updategender(request):
+
+# Attributes to update
+def updateattributes(request):
     if request.POST:
         user = request.user
-        user.profile.gender = request.POST['gender']
-        user.profile.save()
-        return redirect('myprofile')
-    
+        print(request.POST)
+        
+        for att in request.POST:
+            user.profile.__dict__[att] = request.POST[att]
+            user.profile.save()
 
-def updatepronouns(request):
-    if request.POST:
-        user = request.user
-        user.profile.pronouns = request.POST['pronouns']
-        user.profile.save()
-        return redirect('myprofile')
-
-
-def updatejobtitle(request):
-    if request.POST:
-        user = request.user
-        user.profile.job_title = request.POST['job_title']
-        user.profile.save()
-        return redirect('myprofile')
-    
-
-def updateeducation(request):
-    if request.POST:
-        user = request.user
-        user.profile.education = request.POST['education']
-        user.profile.save()
-        return redirect('myprofile')
-
-
-def updaterelationshipstatus(request):
-    if request.POST:
-        user = request.user
-        user.profile.relationship_status = request.POST['relationship_status']
-        user.profile.save()
-        return redirect('myprofile')
-
-
-def updatelookingfor(request):
-    if request.POST:
-        user = request.user
-        user.profile.looking_for = request.POST['looking_for']
-        user.profile.save()
-        return redirect('myprofile')
-
-
-def updatesexuality(request):
-    if request.POST:
-        user = request.user
-        user.profile.sexuality = request.POST['sexuality']
-        user.profile.save()
-        return redirect('myprofile')
-    
-
-def updateheight(request):
-    if request.POST:
-        user = request.user
-        user.profile.height = request.POST['height']
         user.profile.save()
         return redirect('myprofile')

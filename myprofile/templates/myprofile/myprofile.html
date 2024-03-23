@@ -347,11 +347,12 @@ My Profile
                             </div>
                         </div>
                         <hr>
+                        <!-- Start of Attributes Form -->
+                        <form id="age" method="POST" action="{% url 'updateattributes' %}">
+                            {% csrf_token %}
                         <!-- Age Update -->
                         <div class="row mb-2">
                             <div class="col-3">
-                                <form id="age" method="POST" action="{% url 'updateage' %}">
-                                    {% csrf_token %}
                                     <strong>Age:</strong>
                             </div>
                             <div class="col-5 age-container">
@@ -360,18 +361,11 @@ My Profile
                                     value="{% if user.profile.age %}{{ user.profile.age }}{% else %}18{% endif %}"
                                     id="age-input" name="age" min="18" max="99">
                                 <a class="btn inline-tl-button age-button" id="age-plus">+</a>
-
                             </div>
-                            <div class="col-4">
-                                <button class="btn inline-tl-button" type="submit">Update Age</button>
-                            </div>
-                            </form>
                         </div>
                         <!-- Gender Update -->
                         <div class="row mb-2">
                             <div class="col-3">
-                                <form id="gender" method="POST" action="{% url 'updategender' %}">
-                                    {% csrf_token %}
                                     <strong>Gender:</strong>
                             </div>
                             <div class="col-5">
@@ -388,16 +382,10 @@ My Profile
                                     <option value="Non-Binary" {% if user.profile.gender == "Non-Binary" %}selected{% endif %}>Non-Binary</option>
                                   </select>
                             </div>
-                            <div class="col-4">
-                                <button class="btn inline-tl-button" type="submit">Update Gender</button>
-                            </div>
-                            </form>
                         </div>
                            <!-- Gender Pronouns -->
                            <div class="row mb-2">
                             <div class="col-3">
-                                <form id="pronouns" method="POST" action="{% url 'updatepronouns' %}">
-                                    {% csrf_token %}
                                     <strong>Pronouns:</strong>
                             </div>
                             <div class="col-5">
@@ -411,34 +399,20 @@ My Profile
                                     <option value="Ze / Zir / Zirs" {% if user.profile.pronouns == "Ze / Zir / Zirs" %}selected{% endif %}>Ze / Zir / Zirs</option>
                                   </select>
                             </div>
-                            <div class="col-4">
-                                <button class="btn inline-tl-button" type="submit">Update pronoun</button>
-                            </div>
-                            </form>
                         </div>
                          <!-- Job Title Update -->
                          <div class="row mb-2">
                             <div class="col-3">
-                                <form action="{% url 'updatejobtitle' %}" method="POST">
                                     <strong>Job Title:</strong>
                             </div>
                             <div class="col-5">
-                                {% csrf_token %}
                                 <input class="form-control" type="text" value="{{ user.profile.job_title }}" id="job_title"
                                         name="job_title" placeholder="Optional">
-                            </div>
-                            <div class="col-4 update-address-button">
-                                <button class="btn inline-tl-button" type="submit">
-                                    Update Job Title
-                                </button>
-                                </form>
                             </div>
                         </div>
                         <!-- Education Level -->
                         <div class="row mb-2">
                             <div class="col-3">
-                                <form id="education" method="POST" action="{% url 'updateeducation' %}">
-                                    {% csrf_token %}
                                     <strong>Education:</strong>
                             </div>
                             <div class="col-5">
@@ -452,16 +426,10 @@ My Profile
                                     <option value="Doctorate / PhD" {% if user.profile.education == "Doctorate / PhD" %}selected{% endif %}>Doctorate / PhD</option>
                                   </select>
                             </div>
-                            <div class="col-4">
-                                <button class="btn inline-tl-button" type="submit">Update education</button>
-                            </div>
-                            </form>
                         </div>
                         <!-- Relationship Status -->
                         <div class="row mb-2">
                             <div class="col-3">
-                                <form id="relationship_status" method="POST" action="{% url 'updaterelationshipstatus' %}">
-                                    {% csrf_token %}
                                     <strong>Relationship:</strong>
                             </div>
                             <div class="col-5">
@@ -480,16 +448,10 @@ My Profile
                                     <option value="Open relationship" {% if user.profile.relationship_status == "Open relationship" %}selected{% endif %}>Open relationship</option>
                                     </select>
                             </div>
-                            <div class="col-4">
-                                <button class="btn inline-tl-button" type="submit">Update relationship</button>
-                            </div>
-                            </form>
                         </div>
                         <!-- Looking for -->
                         <div class="row mb-2">
                             <div class="col-3">
-                                <form id="looking_for" method="POST" action="{% url 'updatelookingfor' %}">
-                                    {% csrf_token %}
                                     <strong>Looking for:</strong>
                             </div>
                             <div class="col-5">
@@ -505,17 +467,11 @@ My Profile
                                     <option value="Chats" {% if user.profile.looking_for == "Chats" %}selected{% endif %}>Chats</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <button class="btn inline-tl-button" type="submit">Update looking for</button>
-                            </div>
-                            </form>
                         </div>     
                          <!-- Sexual Orientation -->
                          <div class="row mb-2">
                             <div class="col-3">
-                                <form id="sexuality" method="POST" action="{% url 'updatesexuality' %}">
-                                    {% csrf_token %}
-                                    <strong>Sexuality:</strong>
+                                <strong>Sexuality:</strong>
                             </div>
                             <div class="col-5">
                                 <select id="sexuality" name="sexuality" class="form-select">
@@ -531,31 +487,27 @@ My Profile
                                     <option value="Queer" {% if user.profile.sexuality == "Queer" %}selected{% endif %}>Queer</option>
                                 </select>
                             </div>
-                            <div class="col-4">
-                                <button class="btn inline-tl-button" type="submit">Update sexuality</button>
-                            </div>
-                            </form>
                         </div>     
- <!-- Height -->
- <div class="row mb-2">
-    <div class="col-3">
-        <form id="height" method="POST" action="{% url 'updateheight' %}">
-            {% csrf_token %}
-            <strong>Height:</strong>
-    </div>
-    <div class="col-5">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Height in cm" aria-label="height" aria-describedby="basic-addon2" name="height" id="height" value="{{ user.profile.height }}">
-            <div class="input-group-append">
-                <span class="input-group-text" id="basic-addon2">cm</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-4">
-        <button class="btn inline-tl-button" type="submit">Update height</button>
-    </div>
-    </form>
-</div>                                                      
+                        <!-- Height -->
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <strong>Height:</strong>
+                            </div>
+                            <div class="col-5">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Height in cm" aria-label="height" aria-describedby="basic-addon2" name="height" id="height" value="{{ user.profile.height }}">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="basic-addon2">cm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-12 mt-1 update-address-button">
+                            <button class="btn inline-tl-button" type="submit">
+                                Save Attributes
+                            </button>
+                        </div> 
+                        </form>                                                  
                         <!-- End of Inside Form -->
                     </div>
                 </div>
