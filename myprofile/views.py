@@ -7,10 +7,12 @@ import os
 def myprofile(request):
     # Google API Key for Maps on Profile
     gmapsapikey = os.environ.get('GOOGLE_MAPS_API_KEY')
-    print(gmapsapikey)
-    return render(request, 'myprofile/myprofile.html', {
-        'gmapsapikey': gmapsapikey
-    })
+    if request.user.is_authenticated:
+        return render(request, 'myprofile/myprofile.html', {
+            'gmapsapikey': gmapsapikey
+        })
+    else:
+        return redirect('account_login')
 
 
 def updatename(request):
