@@ -33,4 +33,7 @@ urlpatterns = [
     path('updatepronouns/', views.updatepronouns, name='updatepronouns'),
     path('updatejobtitle/', views.updatejobtitle, name='updatejobtitle'),
     path('updateeducation/', views.updateeducation, name='updateeducation'),
+    path('updaterelationshipstatus/',
+         views.updaterelationshipstatus, name='updaterelationshipstatus'),
+    path('updatelookingfor/', views.updatelookingfor, name='updatelookingfor'),
 ]

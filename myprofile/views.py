@@ -158,3 +158,19 @@ def updateeducation(request):
         user.profile.education = request.POST['education']
         user.profile.save()
         return redirect('myprofile')
+
+
+def updaterelationshipstatus(request):
+    if request.POST:
+        user = request.user
+        user.profile.relationship_status = request.POST['relationship_status']
+        user.profile.save()
+        return redirect('myprofile')
+
+
+def updatelookingfor(request):
+    if request.POST:
+        user = request.user
+        user.profile.looking_for = request.POST['looking_for']
+        user.profile.save()
+        return redirect('myprofile')

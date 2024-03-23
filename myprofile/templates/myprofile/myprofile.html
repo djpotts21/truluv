@@ -434,7 +434,7 @@ My Profile
                                 </form>
                             </div>
                         </div>
-                        <!-- Gender Education Level -->
+                        <!-- Education Level -->
                         <div class="row mb-2">
                             <div class="col-3">
                                 <form id="education" method="POST" action="{% url 'updateeducation' %}">
@@ -457,6 +457,59 @@ My Profile
                             </div>
                             </form>
                         </div>
+                        <!-- Relationship Status -->
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <form id="relationship_status" method="POST" action="{% url 'updaterelationshipstatus' %}">
+                                    {% csrf_token %}
+                                    <strong>Relationship:</strong>
+                            </div>
+                            <div class="col-5">
+                                <select id="relationship_status" name="relationship_status" class="form-select">
+                                    <option {% if user.profile.relationship_status %}{% else %}selected{% endif %} value="">{% if user.profile.relationship_status %}Remove relationship{% else %}Select relationship{% endif %}</option>
+                                    <option value="We’re hanging out" {% if user.profile.relationship_status == "We’re hanging out" %}selected{% endif %}>We’re hanging out</option>
+                                    <option value="We’re seeing each other" {% if user.profile.relationship_status == "We’re seeing each other" %}selected{% endif %}>We’re seeing each other</option>
+                                    <option value="We’re dating" {% if user.profile.relationship_status == "We’re dating" %}selected{% endif %}>We’re dating</option>
+                                    <option value="We’re in a relationship" {% if user.profile.relationship_status == "We’re in a relationship" %}selected{% endif %}>We’re in a relationship</option>
+                                    <option value="Put a ring on it" {% if user.profile.relationship_status == "Put a ring on it" %}selected{% endif %}>Put a ring on it </option>
+                                    <option value="It’s complicated" {% if user.profile.relationship_status == "It’s complicated" %}selected{% endif %}>It’s complicated</option>
+                                    <option value="On a break" {% if user.profile.relationship_status == "On a break" %}selected{% endif %}>On a break</option>
+                                    <option value="Actively single" {% if user.profile.relationship_status == "Actively single" %}selected{% endif %}>Actively single</option>
+                                    <option value="Single and ready to mingle" {% if user.profile.relationship_status == "Single and ready to mingle" %}selected{% endif %}>Single and ready to mingle</option>
+                                    <option value="Friends with benefits" {% if user.profile.relationship_status == "Friends with benefits" %}selected{% endif %}>Friends with benefits</option>
+                                    <option value="Open relationship" {% if user.profile.relationship_status == "Open relationship" %}selected{% endif %}>Open relationship</option>
+                                    </select>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn inline-tl-button" type="submit">Update relationship</button>
+                            </div>
+                            </form>
+                        </div>
+                        <!-- Looking for -->
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <form id="looking_for" method="POST" action="{% url 'updatelookingfor' %}">
+                                    {% csrf_token %}
+                                    <strong>Looking for:</strong>
+                            </div>
+                            <div class="col-5">
+                                <select id="looking_for" name="looking_for" class="form-select">
+                                    <option {% if user.profile.looking_for %}{% else %}selected{% endif %} value="">{% if user.profile.looking_for %}Remove looking for{% else %}Select looking for{% endif %}</option>
+                                    <option value="Dating" {% if user.profile.looking_for == "Dating" %}selected{% endif %}>Dating</option>
+                                    <option value="Friendship" {% if user.profile.looking_for == "Friendship" %}selected{% endif %}>Friendship</option>
+                                    <option value="Long Term Commitment" {% if user.profile.looking_for == "Long Term Commitment" %}selected{% endif %}>Long Term Commitment</option>
+                                    <option value="Short Term Relationship" {% if user.profile.looking_for == "Short Term Relationship" %}selected{% endif %}>Short Term Relationship</option>
+                                    <option value="Hookups" {% if user.profile.looking_for == "Hookups" %}selected{% endif %}>Hookups </option>
+                                    <option value="No agenda" {% if user.profile.looking_for == "No agenda" %}selected{% endif %}>No agenda</option>
+                                    <option value="Ask me" {% if user.profile.looking_for == "Ask me" %}selected{% endif %}>Ask me</option>
+                                    <option value="Chats" {% if user.profile.looking_for == "Chats" %}selected{% endif %}>Chats</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <button class="btn inline-tl-button" type="submit">Update looking for</button>
+                            </div>
+                            </form>
+                        </div>                        
                         <!-- End of Inside Form -->
                     </div>
                 </div>
