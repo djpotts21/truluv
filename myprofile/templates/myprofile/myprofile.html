@@ -131,6 +131,85 @@ My Profile
                         </div>
                     </div>
                     <hr class="my-4">
+                    <!-- Socials -->
+                    <h2>Socials</h2>
+                    <div class="row mb-1">
+                        <div class="col-3">
+                            <form action="{% url 'updatesocials' %}" method="POST">
+                                {% csrf_token %}
+                                <strong>Instagram:</strong>
+                            </div>
+                            <div class="col-9 mb-2">
+                                <input class="form-control" type="text" value="{% if user.profile.instagram %}{{ user.profile.instagram }}{% endif %}" id="instagram"
+                                    name="instagram" placeholder="Add your Instagram Username">
+                            </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <strong>X:</strong>
+                                </div>
+                                <div class="col-9 mb-2">
+                                    <input class="form-control" type="text" value="{% if user.profile.twitter %}{{ user.profile.twitter }}{% endif %}" id="twitter"
+                                        name="twitter" placeholder="Add your X Username">
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <strong>Facebook:</strong>
+                                </div>
+                                <div class="col-9 mb-2">
+                                    <input class="form-control" type="text" value="{% if user.profile.facebook %}{{ user.profile.facebook }}{% endif %}" id="facebook"
+                                        name="facebook" placeholder="Add your Facebook Username or Page URL">
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <strong>OnlyFans:</strong>
+                                </div>
+                                <div class="col-9 mb-2">
+                                    <input class="form-control" type="text" value="{% if user.profile.onlyfans %}{{ user.profile.onlyfans }}{% endif %}" id="onlyfans"
+                                        name="onlyfans" placeholder="Add your OnlyFans URL">
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <strong>Snapchat:</strong>
+                                </div>
+                                <div class="col-9 mb-2">
+                                    <input class="form-control" type="text" value="{% if user.profile.snapchat %}{{ user.profile.snapchat }}{% endif %}" id="snapchat"
+                                        name="snapchat" placeholder="Add your Snapchat ID">
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <strong>TikTok:</strong>
+                                </div>
+                                <div class="col-9 mb-2">
+                                    <input class="form-control" type="text" value="{% if user.profile.tiktok %}{{ user.profile.tiktok }}{% endif %}" id="tiktok"
+                                        name="tiktok" placeholder="Add your TikTok Username">
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <strong>LinkedIn:</strong>
+                                </div>
+                                <div class="col-9 mb-2">
+                                    <input class="form-control" type="text" value="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}" id="linkedin"
+                                        name="linkedin" placeholder="Add your LinkedIn URL">
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <div class="col-3">
+                                    <strong>Website:</strong>
+                                </div>
+                                <div class="col-9 mb-2">
+                                    <input class="form-control" type="text" value="{% if user.profile.website %}{{ user.profile.website }}{% endif %}" id="website"
+                                        name="website" placeholder="Add your Website URL">
+                                </div>
+                            </div>
+                            <button class="btn inline-tl-button" type="submit">Update Socials</button>
+                            </form>
+                    <hr class="my-4">
                     <!-- Photos Update -->
                     <h2>Photos</h2>
                     <div class="row mb-1">
@@ -722,6 +801,226 @@ My Profile
                                 </select>
                             </div>
                         </div>
+                        <!-- Hair Colour -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>Hair Colour:</strong>
+                            </div>
+                            <div class="col-9">
+                                <select id="hair_color" name="hair_color" class="form-select">
+                                    <option {% if user.profile.hair_color %}{% else %}selected{% endif %} value="">{% if user.profile.hair_color %}Remove hair colour{% else %}Select hair colour{% endif %}</option>
+                                    <option value="Black" {% if user.profile.hair_color == "Black" %}selected{% endif %}>Black</option>
+                                    <option value="Brown" {% if user.profile.hair_color == "Brown" %}selected{% endif %}>Brown</option>
+                                    <option value="Blonde" {% if user.profile.hair_color == "Blonde" %}selected{% endif %}>Blonde</option>
+                                    <option value="Red" {% if user.profile.hair_color == "Red" %}selected{% endif %}>Red </option>
+                                    <option value="Grey" {% if user.profile.hair_color == "Grey" %}selected{% endif %}>Grey</option>
+                                    <option value="Bald" {% if user.profile.hair_color == "Bald" %}selected{% endif %}>Bald</option>
+                                    <option value="Other - Ask me" {% if user.profile.hair_color == "Other - Ask me" %}selected{% endif %}>Other - Ask me</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Eye Colour -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>Eye Colour:</strong>
+                            </div>
+                            <div class="col-9">
+                                <select id="eye_color" name="eye_color" class="form-select">
+                                    <option {% if user.profile.eye_color %}{% else %}selected{% endif %} value="">{% if user.profile.eye_color %}Remove eye colour{% else %}Select eye colour{% endif %}</option>
+                                    <option value="Black" {% if user.profile.eye_color == "Black" %}selected{% endif %}>Black</option>
+                                    <option value="Brown" {% if user.profile.eye_color == "Brown" %}selected{% endif %}>Brown</option>
+                                    <option value="Blue" {% if user.profile.eye_color == "Blue" %}selected{% endif %}>Blue</option>
+                                    <option value="Green" {% if user.profile.eye_color == "Green" %}selected{% endif %}>Green </option>
+                                    <option value="Grey" {% if user.profile.eye_color == "Grey" %}selected{% endif %}>Grey</option>
+                                    <option value="Hazel" {% if user.profile.eye_color == "Hazel" %}selected{% endif %}>Hazel</option>
+                                    <option value="Other - Ask me" {% if user.profile.eye_color == "Other - Ask me" %}selected{% endif %}>Other - Ask me</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Sexual Position Active, Passive, Versitile -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>Sex Position:</strong>
+                            </div>
+                            <div class="col-9">
+                                <select id="position" name="position" class="form-select">
+                                    <option {% if user.profile.position %}{% else %}selected{% endif %} value="">{% if user.profile.position %}Remove sexual position{% else %}Select sexual position{% endif %}</option>
+                                    <option value="Active" {% if user.profile.position == "Active" %}selected{% endif %}>Active</option>
+                                    <option value="Passive" {% if user.profile.position == "Passive" %}selected{% endif %}>Passive</option>
+                                    <option value="Versatile" {% if user.profile.position == "Versatile" %}selected{% endif %}>Versatile</option>
+                                    <option value="Ask me" {% if user.profile.position == "Ask me" %}selected{% endif %}>Ask me</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- meet_at location of first date -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>Meet at:</strong>
+                            </div>
+                            <div class="col-9">
+                                <select id="meet_at" name="meet_at" class="form-select">
+                                    <option {% if user.profile.meet_at %}{% else %}selected{% endif %} value="">{% if user.profile.meet_at %}Remove meet at{% else %}Select meet at{% endif %}</option>
+                                    <option value="Coffee Shop" {% if user.profile.meet_at == "Coffee Shop" %}selected{% endif %}>Coffee Shop</option>
+                                    <option value="Restaurant" {% if user.profile.meet_at == "Restaurant" %}selected{% endif %}>Restaurant</option>
+                                    <option value="Bar" {% if user.profile.meet_at == "Bar" %}selected{% endif %}>Bar</option>
+                                    <option value="Park" {% if user.profile.meet_at == "Park" %}selected{% endif %}>Park</option>
+                                    <option value="Movie Theater" {% if user.profile.meet_at == "Movie Theater" %}selected{% endif %}>Movie Theater</option>
+                                    <option value="Museum" {% if user.profile.meet_at == "Museum" %}selected{% endif %}>Museum</option>
+                                    <option value="Beach" {% if user.profile.meet_at == "Beach" %}selected{% endif %}>Beach</option>
+                                    <option value="Shopping Mall" {% if user.profile.meet_at == "Shopping Mall" %}selected{% endif %}>Shopping Mall</option>
+                                    <option value="Bowling Alley" {% if user.profile.meet_at == "Bowling Alley" %}selected{% endif %}>Bowling Alley</option>
+                                    <option value="Concert Venue" {% if user.profile.meet_at == "Concert Venue" %}selected{% endif %}>Concert Venue</option>
+                                    <option value="Ask Me" {% if user.profile.meet_at == "Ask Me" %}selected{% endif %}>Ask Me</option>
+                                    <option value="You choose" {% if user.profile.meet_at == "You choose" %}selected{% endif %}>You choose</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- booleen for accepts not safe for work photos acceptnsfw -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>Accept NSFW:</strong>
+                            </div>
+                            <div class="col-9">
+                                <select id="acceptnsfw" name="acceptnsfw" class="form-select">
+                                    {% if user.profile.acceptnsfw == False %}
+                                    <option value=False {% if user.profile.acceptnsfw == False %}selected{% endif %}>Don't accept NSFW Photos</option>
+                                    <option value=True {% if user.profile.acceptnsfw == True %}{% endif %}>Accept NSFW Photos</option>
+                                    {% endif %}
+                                    {% if user.profile.acceptnsfw == True %}
+                                    <option value=True {% if user.profile.acceptnsfw == True %}selected{% endif %}>Accept NSFW Photos</option>
+                                    <option value=False {% if user.profile.acceptnsfw == False %}{% endif %}>Don't accept NSFW Photos</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- HIV Status -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>HIV Status:</strong>
+                            </div>
+                            <div class="col-9">
+                                <select id="hiv_status" name="hiv_status" class="form-select">
+                                    <option {% if user.profile.hiv_status %}{% else %}selected{% endif %} value="">{% if user.profile.hiv_status %}Remove HIV status{% else %}Select HIV status{% endif %}</option>
+                                    <option value="Negative" {% if user.profile.hiv_status == "Negative" %}selected{% endif %}>Negative</option>
+                                    <option value="Positive" {% if user.profile.hiv_status == "Positive" %}selected{% endif %}>Positive</option>
+                                    <option value="Undetectable" {% if user.profile.hiv_status == "Undetectable" %}selected{% endif %}>Undetectable</option>
+                                    <option value="Ask me" {% if user.profile.hiv_status == "Ask me" %}selected{% endif %}>Ask me</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- PrEP Status -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>PrEP:</strong>
+                            </div>
+                            <div class="col-9">
+                                <select id="prep" name="prep" class="form-select">
+                                    {% if user.profile.prep == False %}
+                                    <option value=False {% if user.profile.prep == False %}selected{% endif %}>Not using PrEP</option>
+                                    <option value=True {% if user.profile.prep == True %}{% endif %}>Using PrEP</option>
+                                    {% endif %}
+                                    {% if user.profile.prep == True %}
+                                    <option value=True {% if user.profile.prep == True %}selected{% endif %}>Using PrEP</option>
+                                    <option value=False {% if user.profile.prep == False %}{% endif %}>Not using PrEP</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- HIV Last Test Date -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>Last HIV Test:</strong>
+                            </div>
+                            <div class="col-9">
+                                <input type="date" class="form-control" id="last_tested" name="last_tested" value="{{ user.profile.last_tested|date:"Y-m-d" }}">
+                            </div>                            
+                        </div>
+                        <!-- Vacinations Multupul yes/no select boxes for MonkeyPox, Hepititus B, Covid-19, Flu -->
+                        <div class="row mb-1">
+                            <div class="col-3">
+                                <strong>Vaccinations:</strong>
+                            </div>
+                            <div class="col-9">
+                                <!-- covid_vaccination yes no -->
+                                <select id="covid_vaccination" name="covid_vaccination" class="form-select">
+                                    {% if user.profile.covid_vaccination == False %}
+                                    <option value=False {% if user.profile.covid_vaccination == False %}selected{% endif %}>NO - Not vaccinated for Covid-19</option>
+                                    <option value=True {% if user.profile.covid_vaccination == True %}{% endif %}>YES - Vaccinated for Covid-19</option>
+                                    {% endif %}
+                                    {% if user.profile.covid_vaccination == True %}
+                                    <option value=True {% if user.profile.covid_vaccination == True %}selected{% endif %}>YES - Vaccinated for Covid-19</option>
+                                    <option value=False {% if user.profile.covid_vaccination == False %}{% endif %}>NO - Not vaccinated for Covid-19</option>
+                                    {% endif %}
+                                </select>
+                                <!-- covid_booster yes no -->
+                                <select id="covid_booster" name="covid_booster" class="form-select">
+                                    {% if user.profile.covid_booster == False %}
+                                    <option value=False {% if user.profile.covid_booster == False %}selected{% endif %}>NO - Not had Covid-19 Booster</option>
+                                    <option value=True {% if user.profile.covid_booster == True %}{% endif %}>YES - Had Covid-19 Booster</option>
+                                    {% endif %}
+                                    {% if user.profile.covid_booster == True %}
+                                    <option value=True {% if user.profile.covid_booster == True %}selected{% endif %}>YES - Had Covid-19 Booster</option>
+                                    <option value=False {% if user.profile.covid_booster == False %}{% endif %}>NO - Not had Covid-19 Booster</option>
+                                    {% endif %}
+                                </select>
+                                <!-- monkeypox_vaccination yes no -->
+                                <select id="monkeypox_vaccination" name="monkeypox_vaccination" class="form-select">
+                                    {% if user.profile.monkeypox_vaccination == False %}
+                                    <option value=False {% if user.profile.monkeypox_vaccination == False %}selected{% endif %}>NO - Not vaccinated for Monkeypox</option>
+                                    <option value=True {% if user.profile.monkeypox_vaccination == True %}{% endif %}>YES - Vaccinated for Monkeypox</option>
+                                    {% endif %}
+                                    {% if user.profile.monkeypox_vaccination == True %}
+                                    <option value=True {% if user.profile.monkeypox_vaccination == True %}selected{% endif %}>YES - Vaccinated for Monkeypox</option>
+                                    <option value=False {% if user.profile.monkeypox_vaccination == False %}{% endif %}>NO - Not vaccinated for Monkeypox</option>
+                                    {% endif %}
+                                </select>
+                                <!-- monkeypox_booster yes no -->
+                                <select id="monkeypox_booster" name="monkeypox_booster" class="form-select">
+                                    {% if user.profile.monkeypox_booster == False %}
+                                    <option value=False {% if user.profile.monkeypox_booster == False %}selected{% endif %}>NO - Not had Monkeypox Booster</option>
+                                    <option value=True {% if user.profile.monkeypox_booster == True %}{% endif %}>YES - Had Monkeypox Booster</option>
+                                    {% endif %}
+                                    {% if user.profile.monkeypox_booster == True %}
+                                    <option value=True {% if user.profile.monkeypox_booster == True %}selected{% endif %}>YES - Had Monkeypox Booster</option>
+                                    <option value=False {% if user.profile.monkeypox_booster == False %}{% endif %}>NO - Not had Monkeypox Booster</option>
+                                    {% endif %}
+                                </select>
+                                <!-- flu_vaccination yes no -->
+                                <select id="flu_vaccination" name="flu_vaccination" class="form-select">
+                                    {% if user.profile.flu_vaccination == False %}
+                                    <option value=False {% if user.profile.flu_vaccination == False %}selected{% endif %}>NO - Not vaccinated for Flu</option>
+                                    <option value=True {% if user.profile.flu_vaccination == True %}{% endif %}>YES - Vaccinated for Flu</option>
+                                    {% endif %}
+                                    {% if user.profile.flu_vaccination == True %}
+                                    <option value=True {% if user.profile.flu_vaccination == True %}selected{% endif %}>YES - Vaccinated for Flu</option>
+                                    <option value=False {% if user.profile.flu_vaccination == False %}{% endif %}>NO - Not vaccinated for Flu</option>
+                                    {% endif %}
+                                </select>
+                                <!-- hpv_vaccinations yes no -->
+                                <select id="hpv_vaccinations" name="hpv_vaccinations" class="form-select">
+                                    {% if user.profile.hpv_vaccinations == False %}
+                                    <option value=False {% if user.profile.hpv_vaccinations == False %}selected{% endif %}>NO - Not vaccinated for HPV</option>
+                                    <option value=True {% if user.profile.hpv_vaccinations == True %}{% endif %}>YES - Vaccinated for HPV</option>
+                                    {% endif %}
+                                    {% if user.profile.hpv_vaccinations == True %}
+                                    <option value=True {% if user.profile.hpv_vaccinations == True %}selected{% endif %}>YES - Vaccinated for HPV</option>
+                                    <option value=False {% if user.profile.hpv_vaccinations == False %}{% endif %}>NO - Not vaccinated for HPV</option>
+                                    {% endif %}
+                                </select>
+                                <!-- hepatitis_vaccinations yes no -->
+                                <select id="hepatitis_vaccinations" name="hepatitis_vaccinations" class="form-select">
+                                    {% if user.profile.hepatitis_vaccinations == False %}
+                                    <option value=False {% if user.profile.hepatitis_vaccinations == False %}selected{% endif %}>NO - Not vaccinated for Hepatitis</option>
+                                    <option value=True {% if user.profile.hepatitis_vaccinations == True %}{% endif %}>YES - Vaccinated for Hepatitis</option>
+                                    {% endif %}
+                                    {% if user.profile.hepatitis_vaccinations == True %}
+                                    <option value=True {% if user.profile.hepatitis_vaccinations == True %}selected{% endif %}>YES - Vaccinated for Hepatitis</option>
+                                    <option value=False {% if user.profile.hepatitis_vaccinations == False %}{% endif %}>NO - Not vaccinated for Hepatitis</option>
+                                    {% endif %}
+                                </select>
+                             </div>   
+                        </div>
+                        
                         <!-- End Form Button Below -->
                         <div class="col-12 mt-1 update-address-button">
                             <button class="btn inline-tl-button" type="submit">

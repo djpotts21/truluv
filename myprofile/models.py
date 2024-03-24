@@ -56,8 +56,15 @@ class Profile(models.Model):
     hiv_status = models.CharField(max_length=50, null=True, blank=True)
     prep = models.BooleanField(default=False)
     last_tested = models.DateField(null=True, blank=True)
-    vaccinations = models.TextField(null=True, blank=True)
 
+    covid_vaccination = models.BooleanField(default=False)
+    monkeypox_vaccination = models.BooleanField(default=False)
+    covid_booster = models.BooleanField(default=False)
+    monkeypox_booster = models.BooleanField(default=False)
+    flu_vaccination = models.BooleanField(default=False)
+    hpv_vaccinations = models.BooleanField(default=False)
+    hepatitis_vaccinations = models.BooleanField(default=False)
+    
     instagram = models.CharField(max_length=100, null=True, blank=True)
     twitter = models.CharField(max_length=100, null=True, blank=True)
     facebook = models.CharField(max_length=100, null=True, blank=True)

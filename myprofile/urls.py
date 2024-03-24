@@ -30,4 +30,5 @@ urlpatterns = [
     path('resetlocation/', views.resetlocation, name='resetlocation'),
     path('updatebio/', views.updatebio, name='updatebio'),
     path('updateattributes/', views.updateattributes, name='updateattributes'),
+    path('updatesocials/', views.updatesocials, name='updatesocials'),
 ]

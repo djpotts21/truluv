@@ -130,6 +130,29 @@ def updatebio(request):
         return redirect('myprofile')
 
 
+def updatesocials(request):
+    if request.POST:
+        user = request.user
+        if 'facebook' in request.POST:
+            user.profile.facebook = request.POST['facebook']
+        if 'twitter' in request.POST:
+            user.profile.twitter = request.POST['twitter']
+        if 'instagram' in request.POST:
+            user.profile.instagram = request.POST['instagram']
+        if 'onlyfans' in request.POST:
+            user.profile.onlyfans = request.POST['onlyfans']
+        if 'snapchat' in request.POST:
+            user.profile.snapchat = request.POST['snapchat']
+        if 'tiktok' in request.POST:
+            user.profile.tiktok = request.POST['tiktok']
+        if 'linkedin' in request.POST:
+            user.profile.linkedin = request.POST['linkedin']
+        if 'website' in request.POST:
+            user.profile.website = request.POST['website']
+        
+        user.profile.save()
+        return redirect('myprofile')
+
 # Attributes to update
 def updateattributes(request):
     if request.POST:
