@@ -190,10 +190,8 @@ input#age-input {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    border-radius: 50%;
     object-fit: cover;
-    max-height: 150px;
-    max-width: 150px;
+    height: 100%;
 }
 a.del-photo {
     display: block;
