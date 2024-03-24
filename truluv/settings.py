@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     # Site Apps
     'home',
     'myprofile',
+    'viewuser',
 ]
 
 MIDDLEWARE = [

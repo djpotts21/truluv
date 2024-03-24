@@ -39,24 +39,18 @@ class Profile(models.Model):
     drugs = models.CharField(max_length=50, null=True, blank=True)
     alcohol = models.CharField(max_length=50, null=True, blank=True)
     zodiac_sign = models.CharField(max_length=50, null=True, blank=True)
-
     pets = models.CharField(max_length=50, null=True, blank=True)
-
     political_views = models.CharField(max_length=50, null=True, blank=True)
     personality = models.CharField(max_length=50, null=True, blank=True)
-
     ethnicity = models.CharField(max_length=50, null=True, blank=True)
     hair_color = models.CharField(max_length=50, null=True, blank=True)
     eye_color = models.CharField(max_length=50, null=True, blank=True)
-
     position = models.CharField(max_length=50, null=True, blank=True)
     meet_at = models.CharField(max_length=50, null=True, blank=True)
     acceptnsfw = models.BooleanField(default=False)
-
     hiv_status = models.CharField(max_length=50, null=True, blank=True)
     prep = models.BooleanField(default=False)
     last_tested = models.DateField(null=True, blank=True)
-
     covid_vaccination = models.BooleanField(default=False)
     monkeypox_vaccination = models.BooleanField(default=False)
     covid_booster = models.BooleanField(default=False)
@@ -64,7 +58,6 @@ class Profile(models.Model):
     flu_vaccination = models.BooleanField(default=False)
     hpv_vaccinations = models.BooleanField(default=False)
     hepatitis_vaccinations = models.BooleanField(default=False)
-    
     instagram = models.CharField(max_length=100, null=True, blank=True)
     twitter = models.CharField(max_length=100, null=True, blank=True)
     facebook = models.CharField(max_length=100, null=True, blank=True)
