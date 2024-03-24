@@ -40,6 +40,9 @@ CSRF_TRUSTED_ORIGINS = ['https://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitp
 # Trailing Slash
 APPEND_SLASH = True
 
+# Login Redirect
+LOGIN_REDIRECT_URL = '/myprofile/'
+
 # Application definition
 
 INSTALLED_APPS = [
