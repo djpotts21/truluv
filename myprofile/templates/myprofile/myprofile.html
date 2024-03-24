@@ -26,16 +26,16 @@ My Profile
                     <div class="col-12">
                         <!-- Username Update -->
                         <div class="row mb-1">
-                            <div class="col-3">
+                            <div class="col-4 col-sm-3">
                                 <form method="POST" action="{% url 'updateusername' %}">
                                     {% csrf_token %}
                                     <strong>Username:</strong>
                             </div>
-                            <div class="col-5">
+                            <div class="col-8 col-sm-5">
                                 <input class="form-control" type="text" value="{{ user.username }}" id="username"
                                     name="username">
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4">
                                 <button class="btn inline-tl-button" type="submit">Change
                                     Username</button>
                             </div>
@@ -43,23 +43,23 @@ My Profile
                         </div>
                         <!-- Email Update -->
                         <div class="row mb-1">
-                            <div class="col-3">
-                                <strong>Primary Email:</strong>
+                            <div class="col-4 col-sm-3">
+                                <strong>Email:</strong>
                             </div>
-                            <div class="col-5">
-                                <input type="text" disabled value="{{ user.email }}">
+                            <div class="col-8 col-sm-5">
+                                <input type="text" class="form-control" disabled value="{{ user.email }}">
                             </div>
-                            <div class="col-4">
+                            <div class="col-12 col-sm-4">
                                 <a href="{% url 'account_email' %}" class="btn inline-tl-button">Add/Update
                                     Email</a>
                             </div>
                         </div>
                         <!-- Password Update -->
                         <div class="row mb-1">
-                            <div class="col-3">
+                            <div class="col-3 pw-container">
                                 <strong>Password:</strong>
                             </div>
-                            <div class="col-9">
+                            <div class="col">
                                 <a href="{% url 'account_change_password' %}" class="btn inline-tl-button">Change
                                     Password</a>
                             </div>
@@ -70,10 +70,10 @@ My Profile
                         <!-- Name Update -->
                         <form action="{% url 'updatename' %}" method="POST">
                             <div class="row mb-1">
-                                <div class="col-3">
+                                <div class="col-4 col-sm-3">
                                     <strong>First Name:</strong>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-8 col-sm-5">
                                     {% csrf_token %}
                                     <input class="form-control" type="text" value="{{ user.first_name }}"
                                         id="first_name" name="first_name">
@@ -81,30 +81,30 @@ My Profile
                                 <div class="col-4"></div>
                             </div>
                             <div class="row mb-1">
-                                <div class="col-3">
+                                <div class="col-4 col-sm-3">
                                     <strong>Last Name:</strong>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-8 col-sm-5">
                                     <input class="form-control" type="text" value="{{ user.last_name }}" id="last_name"
                                         name="last_name">
                                 </div>
-                                <div class="col-4">
+                                <div class="col-12 col-sm-4">
                                     <button class="btn inline-tl-button" type="submit">Update Name</button>
                                 </div>
                             </div>
                         </form>
                         <!-- Address Update -->
                         <div class="row mb-1">
-                            <div class="col-3">
+                            <div class="col-4 col-sm-3">
                                 <form action="{% url 'updateaddress' %}" method="POST">
                                     <strong>Address:</strong>
                             </div>
-                            <div class="col-5">
+                            <div class="col-8 col-sm-5">
                                 {% csrf_token %}
                                 <textarea class="form-control address-input" id="address" name="address"
                                     rows="5">{{user.profile.address }}</textarea>
                             </div>
-                            <div class="col-4 update-address-button">
+                            <div class="col-12 col-sm-4 update-address-button">
                                 <button class="btn inline-tl-button" type="submit">
                                     Update Address
                                 </button>
@@ -113,16 +113,16 @@ My Profile
                         </div>
                          <!-- Phone Update -->
                          <div class="row mb-1">
-                            <div class="col-3">
+                            <div class="col-4 col-sm-3">
                                 <form action="{% url 'updatephone' %}" method="POST">
                                     <strong>Phone Number:</strong>
                             </div>
-                            <div class="col-5">
+                            <div class="col-8 col-sm-5">
                                 {% csrf_token %}
                                 <input class="form-control" type="text" value="{{ user.profile.phone }}" id="phone"
                                         name="phone">
                             </div>
-                            <div class="col-4 update-address-button">
+                            <div class="col-12 col-sm-4 update-address-button">
                                 <button class="btn inline-tl-button" type="submit">
                                     Update Phone
                                 </button>
@@ -130,90 +130,93 @@ My Profile
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <hr class="my-4">
                     <!-- Socials -->
                     <h2>Socials</h2>
-                    <div class="row mb-1">
-                        <div class="col-3">
-                            <form action="{% url 'updatesocials' %}" method="POST">
-                                {% csrf_token %}
+                    <form action="{% url 'updatesocials' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row mb-1">
+                            <div class="col-4 col-sm-3">
                                 <strong>Instagram:</strong>
                             </div>
-                            <div class="col-9 mb-2">
+                            <div class="col-8 col-sm-5 mb-2">
                                 <input class="form-control" type="text" value="{% if user.profile.instagram %}{{ user.profile.instagram }}{% endif %}" id="instagram"
                                     name="instagram" placeholder="Add your Instagram Username">
                             </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4 col-sm-3">
+                                <strong>X:</strong>
                             </div>
-                            <div class="row mb-1">
-                                <div class="col-3">
-                                    <strong>X:</strong>
-                                </div>
-                                <div class="col-9 mb-2">
-                                    <input class="form-control" type="text" value="{% if user.profile.twitter %}{{ user.profile.twitter }}{% endif %}" id="twitter"
-                                        name="twitter" placeholder="Add your X Username">
-                                </div>
+                            <div class="col-8 col-sm-5 mb-2">
+                                <input class="form-control" type="text" value="{% if user.profile.twitter %}{{ user.profile.twitter }}{% endif %}" id="twitter"
+                                    name="twitter" placeholder="Add your X Username">
                             </div>
-                            <div class="row mb-1">
-                                <div class="col-3">
-                                    <strong>Facebook:</strong>
-                                </div>
-                                <div class="col-9 mb-2">
-                                    <input class="form-control" type="text" value="{% if user.profile.facebook %}{{ user.profile.facebook }}{% endif %}" id="facebook"
-                                        name="facebook" placeholder="Add your Facebook Username or Page URL">
-                                </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4 col-sm-3">
+                                <strong>Facebook:</strong>
                             </div>
-                            <div class="row mb-1">
-                                <div class="col-3">
-                                    <strong>OnlyFans:</strong>
-                                </div>
-                                <div class="col-9 mb-2">
-                                    <input class="form-control" type="text" value="{% if user.profile.onlyfans %}{{ user.profile.onlyfans }}{% endif %}" id="onlyfans"
-                                        name="onlyfans" placeholder="Add your OnlyFans URL">
-                                </div>
+                            <div class="col-8 col-sm-5 mb-2">
+                                <input class="form-control" type="text" value="{% if user.profile.facebook %}{{ user.profile.facebook }}{% endif %}" id="facebook"
+                                    name="facebook" placeholder="Add your Facebook Username or Page URL">
                             </div>
-                            <div class="row mb-1">
-                                <div class="col-3">
-                                    <strong>Snapchat:</strong>
-                                </div>
-                                <div class="col-9 mb-2">
-                                    <input class="form-control" type="text" value="{% if user.profile.snapchat %}{{ user.profile.snapchat }}{% endif %}" id="snapchat"
-                                        name="snapchat" placeholder="Add your Snapchat ID">
-                                </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4 col-sm-3">
+                                <strong>OnlyFans:</strong>
                             </div>
-                            <div class="row mb-1">
-                                <div class="col-3">
-                                    <strong>TikTok:</strong>
-                                </div>
-                                <div class="col-9 mb-2">
-                                    <input class="form-control" type="text" value="{% if user.profile.tiktok %}{{ user.profile.tiktok }}{% endif %}" id="tiktok"
-                                        name="tiktok" placeholder="Add your TikTok Username">
-                                </div>
+                            <div class="col-8 col-sm-5 mb-2">
+                                <input class="form-control" type="text" value="{% if user.profile.onlyfans %}{{ user.profile.onlyfans }}{% endif %}" id="onlyfans"
+                                    name="onlyfans" placeholder="Add your OnlyFans URL">
                             </div>
-                            <div class="row mb-1">
-                                <div class="col-3">
-                                    <strong>LinkedIn:</strong>
-                                </div>
-                                <div class="col-9 mb-2">
-                                    <input class="form-control" type="text" value="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}" id="linkedin"
-                                        name="linkedin" placeholder="Add your LinkedIn URL">
-                                </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4 col-sm-3">
+                                <strong>Snapchat:</strong>
                             </div>
-                            <div class="row mb-1">
-                                <div class="col-3">
-                                    <strong>Website:</strong>
-                                </div>
-                                <div class="col-9 mb-2">
-                                    <input class="form-control" type="text" value="{% if user.profile.website %}{{ user.profile.website }}{% endif %}" id="website"
-                                        name="website" placeholder="Add your Website URL">
-                                </div>
+                            <div class="col-8 col-sm-5 mb-2">
+                                <input class="form-control" type="text" value="{% if user.profile.snapchat %}{{ user.profile.snapchat }}{% endif %}" id="snapchat"
+                                    name="snapchat" placeholder="Add your Snapchat ID">
                             </div>
-                            <button class="btn inline-tl-button" type="submit">Update Socials</button>
-                            </form>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4 col-sm-3">
+                                <strong>TikTok:</strong>
+                            </div>
+                            <div class="col-8 col-sm-5 mb-2">
+                                <input class="form-control" type="text" value="{% if user.profile.tiktok %}{{ user.profile.tiktok }}{% endif %}" id="tiktok"
+                                    name="tiktok" placeholder="Add your TikTok Username">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4 col-sm-3">
+                                <strong>LinkedIn:</strong>
+                            </div>
+                            <div class="col-8 col-sm-5 mb-2">
+                                <input class="form-control" type="text" value="{% if user.profile.linkedin %}{{ user.profile.linkedin }}{% endif %}" id="linkedin"
+                                    name="linkedin" placeholder="Add your LinkedIn URL">
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-4 col-sm-3">
+                                <strong>Website:</strong>
+                            </div>
+                            <div class="col-8 col-sm-5 mb-2">
+                                <input class="form-control" type="text" value="{% if user.profile.website %}{{ user.profile.website }}{% endif %}" id="website"
+                                    name="website" placeholder="Add your Website URL">
+                            </div>
+                        </div>
+                        <button class="btn inline-tl-button" type="submit">Update Socials</button>
+                    </form>
+                </div>
                     <hr class="my-4">
                     <!-- Photos Update -->
                     <h2>Photos</h2>
                     <div class="row mb-1">
-                        <div class="col-4">
+                        <div class="col-8 col-sm-4">
                             <p><strong>Profile Picture</strong></p>
                             <form action="uploadphotos/" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
@@ -222,7 +225,7 @@ My Profile
                                 <button class="btn inline-tl-button" type="submit">Save Photo</button>
                             </form>
                         </div>
-                        <div class="col-8 profile-photo">
+                        <div class="col-4 col-sm-8 profile-photo">
                             <a onclick="document.getElementById('image1').click()">
                                 {% if user.profile.image1 %}
                                 <img src="{{ user.profile.image1.url }}" class="img-fluid profile-extra-photos"
@@ -400,7 +403,6 @@ My Profile
                         </div>
                         </form>
                     </div>
-                </div>
             </div>
             <!-- Col two MD 50% -->
             <div class="col-12 col-md-6 ">

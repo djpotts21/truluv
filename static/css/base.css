@@ -192,8 +192,8 @@ input#age-input {
     flex-wrap: wrap;
     border-radius: 50%;
     object-fit: cover;
-    height: 150px;
-    width: 150px;
+    max-height: 150px;
+    max-width: 150px;
 }
 a.del-photo {
     display: block;
@@ -269,5 +269,8 @@ input[type=number] {
         margin: 0;
         
     }
-
+    /* Mobile Profile */
+    .pw-container{
+        display: none
+    }
 }
