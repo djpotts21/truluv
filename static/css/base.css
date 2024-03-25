@@ -6,6 +6,19 @@
     color: #ff7c0a; 
 }
 
+/* Generic Helper Classes */
+
+.sentance-case {
+    text-transform: capitalize;
+}
+.upper-case {
+    text-transform: uppercase;
+}
+.lower-case {
+    text-transform: lowercase;
+}
+
+
 /* Home Hero */
 
 .home-hero-bg {
@@ -215,6 +228,30 @@ option.title {
     font-weight: bold;
 }
 
+/* View User */
+.view-prof-photos {
+    height: 100%;
+    object-fit: cover;
+}
+
+.social-icons {
+    font-size: 30px;
+    color: #ff7c0a;
+    padding: 5%;
+    border-radius: 20%;
+    transition: ease-in-out 0.5s;
+}
+.social-icons:hover {
+    font-size: 30px;
+    background: #000000;
+    padding: 5%;
+    border-radius: 20%;
+}
+.of-svg{
+    width: 34px;
+    height: 34px;
+
+}
 /* Remove Up Down arrows on Number Input */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

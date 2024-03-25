@@ -2,82 +2,167 @@
 {% load i18n %}
 {% load static %}
 
+
 {% block title %}
 Profile for user {{ userid.user.username }}
 {% endblock title %}
 {% block content %}
 <div class="container-fluid">
-        <!-- Title and Intro -->
-        <div class="row h-100 mt-5 ">
-            <div class="col-12">
-                <h2 class="display-4 text-black">
-                    {{ user.first_name }} {{ user.last_name }}
-                </h2>
+    <div class="row h-100 mt-5">
+        <!-- Column One 50% Width of MD+. 100% Width on Small -->
+        <div class="col-12 col-sm-6">
+            <!-- Title and Intro -->
+            <div class="">
+                <div class="col-12">
+                    <h2 class="display-4 text-black sentance-case">
+                        {{ user.first_name }} {{ user.last_name }}
+                    </h2>
+                </div>
+            </div>
+            <!-- Profile Photo and Additional Photos -->
+            <div class="row">
+                {% if user.image1 %}
+                <div class="col-2">
+                    <a href="{% get_media_prefix %}/{{ user.image1 }}" target="_blank">
+                        <img src="{% get_media_prefix %}/{{ user.image1 }}" class="img-fluid rounded-circle view-prof-photos" alt="Profile Photo">
+                    </a>
+                </div>
+                {% endif %}
+                {% if user.image2 %}
+                <div class="col-2">
+                    <a href="{% get_media_prefix %}/{{ user.image2 }}" target="_blank">
+                        <img src="{% get_media_prefix %}/{{ user.image2 }}" class="img-fluid rounded-circle view-prof-photos" alt="Additional Photo 1">
+                    </a>
+                </div>
+                {% endif %}
+                {% if user.image3 %}
+                <div class="col-2">
+                    <a href="{% get_media_prefix %}/{{ user.image3 }}" target="_blank">
+                        <img src="{% get_media_prefix %}/{{ user.image3 }}" class="img-fluid rounded-circle view-prof-photos" alt="Additional Photo 2">
+                    </a>
+                </div>
+                {% endif %}
+                {% if user.image4 %}
+                <div class="col-2">
+                    <a href="{% get_media_prefix %}/{{ user.image4 }}" target="_blank">
+                        <img src="{% get_media_prefix %}/{{ user.image4 }}" class="img-fluid rounded-circle view-prof-photos" alt="Additional Photo 3">
+                    </a>
+                </div>
+                {% endif %}
+                {% if user.image5 %}
+                <div class="col-2">
+                    <a href="{% get_media_prefix %}/{{ user.image5 }}" target="_blank">
+                        <img src="{% get_media_prefix %}/{{ user.image5 }}" class="img-fluid rounded-circle view-prof-photos" alt="Additional Photo 4">
+                    </a>
+                </div>
+                {% endif %}
+                {% if user.image6 %}
+                <div class="col-2">
+                    <a href="{% get_media_prefix %}/{{ user.image6 }}" target="_blank">
+                        <img src="{% get_media_prefix %}/{{ user.image6 }}" class="img-fluid rounded-circle view-prof-photos" alt="Additional Photo 5">
+                    </a>
+                </div>
+                {% endif %}
+                {% if user.image7 %}
+                <div class="col-2">
+                    <a href="{% get_media_prefix %}/{{ user.image7 }}" target="_blank">
+                        <img src="{% get_media_prefix %}/{{ user.image7 }}" class="img-fluid rounded-circle view-prof-photos" alt="Additional Photo 6">
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            <!-- Socials -->
+            <div class="row mt-2">
+                <!-- Instagram -->
+                <div class="col-1">
+                    <a href="https://instagram.com/{{ user.instagram }}">
+                        <i class="fa-brands fa-instagram social-icons"></i>
+                    </a>
+                </div>
+                <!-- Facebook -->
+                <div class="col-1">
+                    <a href="https://facebook.com/{{ user.facebook }}">
+                        <i class="fa-brands fa-facebook social-icons"></i>
+                    </a>
+                </div>
+                <!-- Twitter -->
+                <div class="col-1">
+                    <a href="https://twitter.com/{{ user.twitter }}">
+                        <i class="fa-brands fa-twitter social-icons"></i>
+                    </a>
+                </div>
+                <!-- LinkedIn -->
+                <div class="col-1">
+                    <a href="https://linkedin.com/in/{{ user.linkedin }}">
+                        <i class="fa-brands fa-linkedin social-icons"></i>
+                    </a>
+                </div>
+                <!-- Snapchat -->
+                <div class="col-1">
+                    <a href="https://snapchat.com/add/{{ user.snapchat }}">
+                        <i class="fa-brands fa-snapchat social-icons"></i>
+                    </a>
+                </div> 
+                <!-- Onlyfans -->
+                <div class="col-1">
+                    <a href="https://onlyfans.com/{{ user.onlyfans }}">
+                        <img class="social-icons of-svg"src="{% static 'images/oflogo.svg' %}" alt="">
+                    </a>
+                </div>
+                <!-- Website -->
+                <div class="col-1">
+                    <a href="{{ user.website }}">
+                        <i class="fa-solid fa-globe social-icons"></i>
+                    </a>
+                </div>
+            </div>
+        </div> 
+        <!-- Column Two 50% Width of MD+. 100% Width on Small -->
+        <div class="col-12 col-sm-6">
+            <div class="">
+                <div class="col-12">
+                    <p class="lead">
+                        {{ user.website }}
+                    </p>
+                </div>
+            </div>
+            <div class="">
+                <div class="col-12">
+                    <p class="lead">
+                        {{ user.facebook }}
+                    </p>
+                </div>
+            </div>
+            <div class="">
+                <div class="col-12">
+                    <p class="lead">
+                        {{ user.twitter }}
+                    </p>
+                </div>
+            </div>
+            <div class="">
+                <div class="col-12">
+                    <p class="lead">
+                        {{ user.instagram }}
+                    </p>
+                </div>
+            </div>
+            <div class="">
+                <div class="col-12">
+                    <p class="lead">
+                        {{ user.linkedin }}
+                    </p>
+                </div>
+            </div>
+            <div class="">
+                <div class="col-12">
+                    <p class="lead">
+                        {{ user.youtube }}
+                    </p>
+                </div>
             </div>
         </div>
-        <!-- Profile Photo and Additional Photos -->
-        <div class="row h-100">
-            {% if user.profile.image1 %}
-            <div class="col-2">
-                <a href="{{ user.profile.image1.url }}" target="_blank">
-                    <img src="{{ user.profile.image1.url }}" class="img-fluid rounded-circle profile-extra-photos" alt="Profile Photo">
-                </a>
-            </div>
-            {% endif %}
-            {% if user.profile.image2 %}
-            <div class="col-2">
-                <a href="{{ user.profile.image2.url }}" target="_blank">
-                    <img src="{{ user.profile.image2.url }}" class="img-fluid rounded-circle profile-extra-photos" alt="Additional Photo 1">
-                </a>
-            </div>
-            {% endif %}
-            {% if user.profile.image3 %}
-            <div class="col-2">
-                <a href="{{ user.profile.image3.url }}" target="_blank">
-                    <img src="{{ user.profile.image3.url }}" class="img-fluid rounded-circle profile-extra-photos" alt="Additional Photo 2">
-                </a>
-            </div>
-            {% endif %}
-            {% if user.profile.image4 %}
-            <div class="col-2">
-                <a href="{{ user.profile.image4.url }}" target="_blank">
-                    <img src="{{ user.profile.image4.url }}" class="img-fluid rounded-circle profile-extra-photos" alt="Additional Photo 3">
-                </a>
-            </div>
-            {% endif %}
-            {% if user.profile.image5 %}
-            <div class="col-2">
-                <a href="{{ user.profile.image5.url }}" target="_blank">
-                    <img src="{{ user.profile.image5.url }}" class="img-fluid rounded-circle profile-extra-photos" alt="Additional Photo 4">
-                </a>
-            </div>
-            {% endif %}
-            {% if user.profile.image6 %}
-            <div class="col-2">
-                <a href="{{ user.profile.image6.url }}" target="_blank">
-                    <img src="{{ user.profile.image6.url }}" class="img-fluid rounded-circle profile-extra-photos" alt="Additional Photo 5">
-                </a>
-            </div>
-            {% endif %}
-            {% if user.profile.image7 %}
-            <div class="col-2">
-                <a href="{{ user.profile.image7.url }}" target="_blank">
-                    <img src="{{ user.profile.image7.url }}" class="img-fluid rounded-circle profile-extra-photos" alt="Additional Photo 6">
-                </a>
-            </div>
-            {% endif %}
-        </div>
-        <!-- Profile Details -->
-        <div class="row h-100 mt-5">
-            <div class="col-12">
-                <h2 class="profile-title">
-                    {{ user.first_name }}'s Bio
-                </h2>
-                <p class="lead text-black">
-                    {{ user.bio }}
-                </p>
-            </div>
-
+    </div>
 </div>
 
             {% endblock content %}
