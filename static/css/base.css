@@ -230,10 +230,29 @@ option.title {
 
 /* View User */
 .view-prof-photos {
-    height: 100%;
     object-fit: cover;
+    height: 80px;
+    width: 100%;
+    padding: 2px;
+}
+.profile-photo {
+    height: 100%;
 }
 
+.extra-photo-tiles {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.social-icon-row {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.social-icon-container {
+    width: 14%;
+    text-align: center;
+}
 .social-icons {
     font-size: 30px;
     color: #ff7c0a;
