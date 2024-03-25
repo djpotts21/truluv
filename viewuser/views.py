@@ -23,6 +23,7 @@ def viewuser(request, user_id):
     url = f'https://maps.googleapis.com/maps/api/geocode/json?latlng={location}&key={gmapsapikey}'
     response = requests.get(url)
     data = response.json()
+    # print(data)
     # Extract the town from the response
     for component in data['results'][0]['address_components']:
         if 'postal_town' in component['types']:

@@ -34,8 +34,7 @@ ALLOWED_HOSTS = ['8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io',
                  'localhost',
                  ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io/',
-                        'http://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io/']
+CSRF_TRUSTED_ORIGINS = ['https://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io']
 
 # Trailing Slash
 APPEND_SLASH = True

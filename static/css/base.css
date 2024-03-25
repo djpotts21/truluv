@@ -229,14 +229,20 @@ option.title {
 }
 
 /* View User */
+.col-vert-align-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .view-prof-photos {
     object-fit: cover;
-    height: 80px;
+    height: 100%;
     width: 100%;
     padding: 2px;
 }
 .profile-photo {
     height: 100%;
+    min-height: 300px;
 }
 
 .extra-photo-tiles {

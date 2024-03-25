@@ -18,7 +18,7 @@ Profile for user {{ userid.user.username }}
             <p class="small">Joined: {{ user.created_at }} | Last Update: {{ user.updated_at }}</p>
         </div>
         <!-- Column One 50% Width of MD+. 100% Width on Small -->
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-6 col-vert-align-cont">
             <!-- Profile Photo and Additional Photos -->
             <div class="row">
                 {% if user.image1 %}
@@ -82,7 +82,7 @@ Profile for user {{ userid.user.username }}
                 <!-- Instagram -->
                 {% if user.instagram %}
                 <div class="social-icon-container">
-                    <a href="https://instagram.com/{{ user.instagram }}">
+                    <a href="https://instagram.com/{{ user.instagram }}" target="_blank">
                         <i class="fa-brands fa-instagram social-icons"></i>
                     </a>
                 </div>
@@ -90,7 +90,7 @@ Profile for user {{ userid.user.username }}
                 <!-- Facebook -->
                 {% if user.facebook %}
                 <div class="social-icon-container">
-                    <a href="https://facebook.com/{{ user.facebook }}">
+                    <a href="https://facebook.com/{{ user.facebook }}" target="_blank">
                         <i class="fa-brands fa-facebook social-icons"></i>
                     </a>
                 </div>
@@ -98,7 +98,7 @@ Profile for user {{ userid.user.username }}
                 <!-- Twitter -->
                 {% if user.twitter %}
                 <div class="social-icon-container">
-                    <a href="https://twitter.com/{{ user.twitter }}">
+                    <a href="https://twitter.com/{{ user.twitter }}" target="_blank">
                         <i class="fa-brands fa-twitter social-icons"></i>
                     </a>
                 </div>
@@ -106,7 +106,7 @@ Profile for user {{ userid.user.username }}
                 <!-- LinkedIn -->
                 {% if user.linkedin %}
                 <div class="social-icon-container">
-                    <a href="https://linkedin.com/in/{{ user.linkedin }}">
+                    <a href="https://linkedin.com/in/{{ user.linkedin }}" target="_blank">
                         <i class="fa-brands fa-linkedin social-icons"></i>
                     </a>
                 </div>
@@ -114,7 +114,7 @@ Profile for user {{ userid.user.username }}
                 <!-- Snapchat -->
                 {% if user.snapchat %}
                 <div class="social-icon-container">
-                    <a href="https://snapchat.com/add/{{ user.snapchat }}">
+                    <a href="https://snapchat.com/add/{{ user.snapchat }}" target="_blank">
                         <i class="fa-brands fa-snapchat social-icons"></i>
                     </a>
                 </div> 
@@ -122,27 +122,175 @@ Profile for user {{ userid.user.username }}
                 <!-- Onlyfans -->
                 {% if user.onlyfans %}
                 <div class="social-icon-container">
-                    <a href="https://onlyfans.com/{{ user.onlyfans }}">
-                        <img class="social-icons of-svg"src="{% static 'images/oflogo.svg' %}" alt="">
+                    <a href="https://onlyfans.com/{{ user.onlyfans }}" target="_blank">
+                        <img class="social-icons of-svg" src="{% static 'images/oflogo.svg' %}" alt="">
                     </a>
                 </div>
                 {% endif %}
                 <!-- Website -->
                 {% if user.website %}
                 <div class="social-icon-container">
-                    <a href="{{ user.website }}">
+                    <a href="{{ user.website }}" target="_blank"></a>
                         <i class="fa-solid fa-globe social-icons"></i>
                     </a>
                 </div>
                 {% endif %}
             </div>
-        </div> 
-        <!-- Column Two 50% Width of MD+. 100% Width on Small -->
-        <div class="col-12 col-sm-6">
             <!-- Biography -->
-            <div class="col-12">
+            {% if user.bio %}
+            <div class="row">
                 <h3 class="text-black mt-0">Bio</h3>
                 <p>{{ user.bio }}</p>
+            </div>
+            {% endif %}
+        </div> 
+        <!-- Column Two 50% Width of MD+. 100% Width on Small -->
+        <div class="col-12 col-sm-6 col-vert-align-cont">
+ 
+            <!-- Key Attributes -->
+            <div class="row">
+                <h3 class="text-black mt-0">Key Facts</h3>
+                <!-- Gender -->
+                <div class="col-6">
+                    <p><strong>Gender:</strong> {% if user.gender %}{{user.gender}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Age -->
+                <div class="col-6">
+                    <p><strong>Age:</strong> {% if user.age %}{{user.age}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Pronouns -->
+                <div class="col-6">
+                    <p><strong>Pronouns:</strong> {% if user.pronouns %}{{user.pronouns}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Relationship Status -->
+                <div class="col-6">
+                    <p><strong>Relationship:</strong> {% if user.relationship_status %}{{user.relationship_status}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Sexuality -->
+                <div class="col-6">
+                    <p><strong>Sexuality:</strong> {% if user.sexuality %}{{user.sexuality}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Looking For -->
+                <div class="col-6">
+                    <p><strong>Looking For:</strong> {% if user.looking_for %}{{user.looking_for}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Job Title -->
+                <div class="col-6">
+                    <p><strong>Job Title:</strong> {% if user.job_title %}{{user.job_title}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Education -->
+                <div class="col-6">
+                    <p><strong>Education:</strong> {% if user.education %}{{user.education}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Personality -->
+                <div class="col-6">
+                    <p><strong>Personality:</strong> {% if user.personality %}{{user.personality}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Height -->
+                <div class="col-6">
+                    <p><strong>Height:</strong> {% if user.height %}{{user.height}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Body Type -->
+                <div class="col-6">
+                    <p><strong>Body Type:</strong> {% if user.body_type %}{{user.body_type}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Children -->
+                <div class="col-6">
+                    <p><strong>Children:</strong> {% if user.children %}{{user.children}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Smoking -->
+                <div class="col-6">
+                    <p><strong>Smoking:</strong> {% if user.smoking %}{{user.smoking}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Drinking -->
+                <div class="col-6">
+                    <p><strong>Drinking:</strong> {% if user.drinking %}{{user.drinking}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Drugs -->
+                <div class="col-6">
+                    <p><strong>Drugs:</strong> {% if user.drugs %}{{user.drugs}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Zodiac -->
+                <div class="col-6">
+                    <p><strong>Zodiac:</strong> {% if user.zodiac %}{{user.zodiac}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Religion -->
+                <div class="col-6">
+                    <p><strong>Religion:</strong> {% if user.religion %}{{user.religion}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Politics -->
+                <div class="col-6">
+                    <p><strong>Politics:</strong> {% if user.politics %}{{user.politics}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Pets -->
+                <div class="col-6">
+                    <p><strong>Pets:</strong> {% if user.pets %}{{user.pets}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Ethnicity  -->
+                <div class="col-6">
+                    <p><strong>Ethnicity</strong> {% if user.ethnicity %}{{user.ethnicity}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Hair Color -->
+                <div class="col-6">
+                    <p><strong>Hair Color:</strong> {% if user.hair_color %}{{user.hair_color}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Eye Color -->
+                <div class="col-6">
+                    <p><strong>Eye Color:</strong> {% if user.eye_color %}{{user.eye_color}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Position -->
+                <div class="col-6">
+                    <p><strong>Position:</strong> {% if user.position %}{{user.position}}{% else %}Not Set{% endif %}</p>
+                </div> 
+                <!-- Meet at -->
+                <div class="col-6">
+                    <p><strong>Meet at:</strong> {% if user.meet_at %}{{user.meet_at}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- AcceptNSFW -->
+                <div class="col-6">
+                    <p><strong>Accept NSFW:</strong> {% if user.acceptnsfw %}Yes{% else %}No{% endif %}</p>
+                </div>
+                <!-- HIV Status -->
+                <div class="col-6">
+                    <p><strong>HIV Status</strong> {% if user.hiv_status %}{{user.hiv_status}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- Last Tested -->
+                <div class="col-6">
+                    <p><strong>Last Tested:</strong> {% if user.last_tested %}{{user.last_tested}}{% else %}Not Set{% endif %}</p>
+                </div>
+                <!-- PrEP -->
+                <div class="col-6">
+                    <p><strong>PrEP:</strong> {% if user.prep %}Yes{% else %}No{% endif %}</p>
+                </div>
+                <!-- COVID-19 Vaccine -->
+                <div class="col-6">
+                    <p><strong>COVID-19 Vaccine:</strong> {% if user.covid_vaccine %}Yes{% else %}No{% endif %}</p>
+                </div> 
+                <!-- COVID-19 BOOSTER -->
+                <div class="col-6">
+                    <p><strong>COVID-19 Booster:</strong> {% if user.covid_booster %}Yes{% else %}No{% endif %}</p>
+                </div>
+                <!-- MonkeyPox Vaccine -->
+                <div class="col-6">
+                    <p><strong>MonkeyPox Vaccine:</strong> {% if user.monkeypox_vaccine %}Yes{% else %}No{% endif %}</p>
+                </div>
+                <!-- MonkeyPox Booster -->
+                <div class="col-6">
+                    <p><strong>MonkeyPox Booster:</strong> {% if user.monkeypox_booster %}Yes{% else %}No{% endif %}</p>
+                </div>
+                <!-- Flu Vaccine -->
+                <div class="col-6">
+                    <p><strong>Flu Vaccine:</strong> {% if user.flu_vaccine %}Yes{% else %}No{% endif %}</p>
+                </div> 
+                <!-- HPV Vaccine -->
+                <div class="col-6">
+                    <p><strong>HPV Vaccine</strong> {% if user.hpv_vaccine %}Yes{% else %}No{% endif %}</p>
+                </div>
+                <!-- Hepatitis Vaccine -->
+                <div class="col-6">
+                    <p><strong>Hepatitis Vaccine:</strong> {% if user.hepatitis_b_vaccine %}Yes{% else %}No{% endif %}</p>
+                </div>
+
             </div>
         </div>
     </div>

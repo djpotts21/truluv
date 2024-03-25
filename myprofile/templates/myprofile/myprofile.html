@@ -411,9 +411,10 @@ My Profile
             <!-- Col two MD 50% -->
             <div class="col-12 col-md-6">
                 <div class="row">
+                    <form action="{% url 'updatebio' %}" method="POST">
                     <h2>About Me</h2>
                     <!-- Bio Update -->
-                    <form action="{% url 'updatebio' %}" method="POST"></form>
+                    <div class="row mb-1">
                         <div class="col-3">
                             <strong>Your Bio:</strong>
                         </div>
@@ -427,6 +428,7 @@ My Profile
                                 Update Bio
                             </button>
                         </div>
+                    </div>
                     </form>
                 </div>                        
                 <hr>
