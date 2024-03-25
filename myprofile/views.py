@@ -83,25 +83,25 @@ def removeimage(request):
     print(image_id)
     user = request.user
     if image_id == 1:
-        user.profile.image1 = None
+        user.profile.image1.delete()
 
     if image_id == 2:
-        user.profile.image2 = None
+        user.profile.image2.delete()
 
     if image_id == 3:
-        user.profile.image3 = None
+        user.profile.image3.delete()
 
     if image_id == 4:
-        user.profile.image4 = None
+        user.profile.image4.delete()
 
     if image_id == 5:
-        user.profile.image5 = None
+        user.profile.image5.delete()
 
     if image_id == 6:
-        user.profile.image6 = None
+        user.profile.image6.delete()
 
     if image_id == 7:
-        user.profile.image7 = None
+        user.profile.image7.delete()
 
     user.profile.save()
     return redirect('myprofile')
