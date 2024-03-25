@@ -3,8 +3,15 @@ from myprofile.models import Profile
 from django.contrib.auth.models import User
 import os
 import requests
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from myprofile.models import Profile
+from django.contrib.auth.models import User
+import os
+import requests
 
 
+@login_required
 def viewuser(request, user_id):
     user = get_object_or_404(Profile, pk=user_id)
     user_data = user.__dict__
@@ -38,7 +45,6 @@ def viewuser(request, user_id):
     context = {
         'user': user_data,
     }
-    print(user_data)
     return render(request,
                   'viewuser/viewuser.html',
                   context)
