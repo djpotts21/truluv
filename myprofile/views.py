@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 import os
+from . models import Profile
 
 # Create your views here.
 
@@ -7,6 +8,13 @@ import os
 def myprofile(request):
     # Google API Key for Maps on Profile
     gmapsapikey = os.environ.get('GOOGLE_MAPS_API_KEY')
+
+    # check if user has a profile created in profile table. if not create one
+    if not hasattr(request.user, 'profile'):
+        profile = Profile(user=request.user)
+        profile.save()
+
+
     if request.user.is_authenticated:
         return render(request, 'myprofile/myprofile.html', {
             'gmapsapikey': gmapsapikey
@@ -158,10 +166,12 @@ def updateattributes(request):
     if request.POST:
         user = request.user
         print(request.POST)
-        
+
         for att in request.POST:
-            user.profile.__dict__[att] = request.POST[att]
-            user.profile.save()
+            # if att has a value
+            if request.POST[att] != '':
+                user.profile.__dict__[att] = request.POST[att]
+                user.profile.save()
 
         user.profile.save()
         return redirect('myprofile')

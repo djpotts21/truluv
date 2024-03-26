@@ -8,38 +8,22 @@ User Grid
 {% endblock title %}
 {% block content %}
 <div class="container-fluid">
+    {{ user_prof }}
     <div class="row">
-        {{ user_prof }}
-
-        {% for user in user_prof %}
+        {% for i in user_prof.values %}
         <div class="col-lg-2 col-md-6">
             <div class="card">
                 <a href="#">
-                    <img src="{{ user.image }}" class="card-img-top" alt="User Image">
+                    <img src="{{ i.image1 }}" class="card-img-top" alt="User Image">
                     <div class="card-body">
-                        <h5 class="card-title">{{ user.first_name }}</h5>
-                        {{ user.location }}
+                        <h5 class="card-title">{{ i.first_name }}</h5>
+                        {{ i.location }}
                     </div>
                 </a>
             </div>
         </div>
         {% endfor %}
-<div class="col-lg-2 col-md-6">
-    <div class="card">
-        
-        <a href="#">
-            <img src="{{ image_1 }}" class="card-img-top" alt="User Image">
-            <div class="card-body">
-                <h5 class="card-title">{{ i.first_name }}</h5>
-                {{ i.location}}
-            </div>
-        </a>
     </div>
-</div>
-
-
-
-
 </div>
 
             {% endblock content %}
