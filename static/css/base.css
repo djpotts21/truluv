@@ -275,8 +275,31 @@ option.title {
 .of-svg{
     width: 34px;
     height: 34px;
-
 }
+/* User Grid */
+
+.user-tile {
+    background-position: center !important;
+    background-size: cover !important;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+.user-tile-body {
+    color: black;
+    background: #ff7c0a;
+    padding: 5px;
+}
+.user-tile a {
+    text-decoration: none;
+}
+.user-tile-container{
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+
 /* Remove Up Down arrows on Number Input */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

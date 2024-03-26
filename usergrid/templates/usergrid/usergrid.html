@@ -8,16 +8,14 @@ User Grid
 {% endblock title %}
 {% block content %}
 <div class="container-fluid">
-    {{ user_prof }}
     <div class="row">
         {% for i in user_prof.values %}
-        <div class="col-lg-2 col-md-6">
-            <div class="card">
-                <a href="#">
-                    <img src="{{ i.image1 }}" class="card-img-top" alt="User Image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ i.first_name }}</h5>
-                        {{ i.location }}
+        <div class="col-lg-2 col-md-6 d-flex align-items-stretch user-tile-container">
+            <div class="user-tile" style="background: url({{ i.image1 }});">
+                <a href="{% url 'viewuser' i.profileid %}">
+                    <div class="user-tile-body">
+                        <h5 class="mb-0">{{ i.first_name }}</h5>
+                        <p class="mb-0"><i class="fa-solid fa-location-arrow"></i> {{ i.distance }} Miles</p>
                     </div>
                 </a>
             </div>
