@@ -18,5 +18,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('<int:user_id>/', views.viewuser, name='viewuser'),
+    path('<int:user_id>', views.viewuser, name='viewuser'),
 ]

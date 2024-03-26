@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block title %}
+User Grid
+{% endblock title %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        {{ user_prof }}
+
+        {% for user in user_prof %}
+        <div class="col-lg-2 col-md-6">
+            <div class="card">
+                <a href="#">
+                    <img src="{{ user.image }}" class="card-img-top" alt="User Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.first_name }}</h5>
+                        {{ user.location }}
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+<div class="col-lg-2 col-md-6">
+    <div class="card">
+        
+        <a href="#">
+            <img src="{{ image_1 }}" class="card-img-top" alt="User Image">
+            <div class="card-body">
+                <h5 class="card-title">{{ i.first_name }}</h5>
+                {{ i.location}}
+            </div>
+        </a>
+    </div>
+</div>
+
+
+
+
+</div>
+
+            {% endblock content %}
+
+            {% block extra_js %}
+            <script 
+            src="https://maps.googleapis.com/maps/api/js?key={{ gmapsapikey }}&callback=initMap" async defer>
+            </script>
+            {% endblock extra_js %}
