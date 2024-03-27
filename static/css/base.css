@@ -300,7 +300,10 @@ option.title {
     background: black;
     color: #ff7c0a;
 }
-
+.accordion-button:not(.collapsed){
+    color: black;
+    background: #ff7c0a;
+}
 /* Remove Up Down arrows on Number Input */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

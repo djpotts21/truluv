@@ -9,6 +9,22 @@ User Grid
 {% block content %}
 <div class="container-fluid">
     <div class="row">
+        <h1>User Grid</h1>
+        <p>Search through other users to find your TruLuv</p>
+        <div class="accordion mb-2" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Need help? Click here
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    Click anywhere on the user tile to access the users profile. Send them a like by clicking the face with heart eyes emoji. Send a message by clicking the message button
+                </div>
+              </div>
+            </div>
+        </div>  
         {% for i in user_prof.values %}
         <div class="col-lg-3 col-md-6">
             <a href="{% url 'viewuser' i.profileid  %}" class="rem-hyp">
