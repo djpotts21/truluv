@@ -10,16 +10,19 @@ User Grid
 <div class="container-fluid">
     <div class="row">
         {% for i in user_prof.values %}
-        <div class="col-lg-2 col-md-6 d-flex align-items-stretch user-tile-container">
-            <a href="{% url 'viewuser' i.profileid %}">
-                <div class="user-tile" style="background: url({{ i.image1 }});">
-                    <div class="user-tile-body">
-                        <h5 class="mb-0">{{ i.first_name }}</h5>
-                        <p class="mb-0"><i class="fa-solid fa-location-arrow"></i> {{ i.distance }} Miles</p>
-                    </div>                    
+        <div class="col-lg-3 col-md-6">
+            <a href="{% url 'viewuser' i.profileid  %}" class="rem-hyp">
+                <div class="card" >
+                    <img class="card-img-top" src="{{ i.image1 }}" width="100px" height="180px" alt="Card image cap" style="object-fit:cover;">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ i.first_name }}</h5>
+                    <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{ i.distance }} miles</p>
+                    <a href="#1" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
+                    <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                    </div>
                 </div>
             </a>
-        </div>
+        </div>                    
         {% endfor %}
     </div>
 </div>
