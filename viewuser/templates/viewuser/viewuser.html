@@ -27,6 +27,10 @@ Profile for user {{ userid.user.username }}
                         <img src="{% get_media_prefix %}/{{ user.image1 }}" class="img-fluid view-prof-photos profile-photo" alt="Profile Photo">
                     </a>
                 </div>
+                {% else %}
+                <div class="col-6">
+                    <img src="{% static 'images/no-image.png' %}" class="img-fluid no-image" alt="Profile Photo">
+                </div>
                 {% endif %}
                 <!-- Extra Photos Col 1 -->
                 <div class="col-3 extra-photo-tiles">
@@ -36,19 +40,31 @@ Profile for user {{ userid.user.username }}
                                     <img src="{% get_media_prefix %}/{{ user.image2 }}" class="img-fluid view-prof-photos" alt="Additional Photo 1">
                                 </a>
                         </div>
+                    {% else %}
+                        <div class="col-6">
+                            <img src="{% static 'images/no-image.png' %}" class="img-fluid no-image" alt="Profile Photo">
+                        </div>
                     {% endif %}
                     {% if user.image3 %}
-                    <div class="row">
-                        <a href="{% get_media_prefix %}/{{ user.image3 }}" target="_blank">
-                            <img src="{% get_media_prefix %}/{{ user.image3 }}" class="img-fluid view-prof-photos" alt="Additional Photo 2">
-                        </a>
-                    </div>
+                        <div class="row">
+                            <a href="{% get_media_prefix %}/{{ user.image3 }}" target="_blank">
+                                <img src="{% get_media_prefix %}/{{ user.image3 }}" class="img-fluid view-prof-photos" alt="Additional Photo 2">
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="col-6">
+                            <img src="{% static 'images/no-image.png' %}" class="img-fluid no-image" alt="Profile Photo">
+                        </div>
                     {% endif %}
                     {% if user.image4 %}
                         <div class="row">
                             <a href="{% get_media_prefix %}/{{ user.image4 }}" target="_blank">
                                 <img src="{% get_media_prefix %}/{{ user.image4 }}" class="img-fluid view-prof-photos" alt="Additional Photo 3">
                             </a>
+                        </div>
+                    {% else %}
+                        <div class="col-6">
+                            <img src="{% static 'images/no-image.png' %}" class="img-fluid no-image" alt="Profile Photo">
                         </div>
                     {% endif %}
                 </div> 
@@ -60,19 +76,30 @@ Profile for user {{ userid.user.username }}
                                 <img src="{% get_media_prefix %}/{{ user.image5 }}" class="img-fluid view-prof-photos" alt="Additional Photo 4">
                             </a>
                         </div>
+                    {% else %}
+                        <div class="col-6">
+                            <img src="{% static 'images/no-image.png' %}" class="img-fluid no-image" alt="Profile Photo">
+                        </div>
                     {% endif %}
-                    {% if user.image6 %}
+                        {% if user.image6 %}
                         <div class="row">
                             <a href="{% get_media_prefix %}/{{ user.image6 }}" target="_blank">
                                 <img src="{% get_media_prefix %}/{{ user.image6 }}" class="img-fluid view-prof-photos" alt="Additional Photo 5">
                             </a>
                         </div>
-                    {% endif %}
-                    {% if user.image7 %}
+                    {% else %}
+                        <div class="col-6">
+                            <img src="{% static 'images/no-image.png' %}" class="img-fluid no-image" alt="Profile Photo">
+                        </div>
+                    {% endif %}                    {% if user.image7 %}
                         <div class="row">
                             <a href="{% get_media_prefix %}/{{ user.image7 }}" target="_blank">
                                 <img src="{% get_media_prefix %}/{{ user.image7 }}" class="img-fluid view-prof-photos" alt="Additional Photo 6">
                             </a>
+                        </div>
+                    {% else %}
+                        <div class="col-6">
+                            <img src="{% static 'images/no-image.png' %}" class="img-fluid no-image" alt="Profile Photo">
                         </div>
                     {% endif %}
                 </div>

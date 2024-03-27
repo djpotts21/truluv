@@ -103,15 +103,6 @@
     right: 0;
     position: absolute;
 }
-.circle-green-black-icon-bg {
-    border-radius: 50%;
-    color: black;
-    background-color: #34e000;
-    padding: 9px;
-}
-.menu-label {
-    display: none
-}
 
 /* Sign In */
 .fb-login-button {
@@ -339,13 +330,11 @@ input[type=number] {
     .navbar-nav {
         right: unset;
         position: unset;
+        margin: 0 !important;
     }
-    .circle-green-black-icon-bg {
-        display: none;
-    }
-    .menu-label {
-        display: unset
-    }
+   .nav-link{
+        width: 100%;
+   }
     /* Mobile Sign In */
     span.helptext {
         display: block;

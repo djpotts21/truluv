@@ -11,31 +11,34 @@ def usergrid(request):
     request_user_profile = Profile.objects.get(user=request.user)
     requestor_location = request_user_profile.location
 
-
     # Get all users from the database
     users = User.objects.all()
-        # Create a dictionary to store the users and their location
+
+    # Create a dictionary to store the users and their location
     user_prof = {}
     for user in users:
         profile_data = get_object_or_404(Profile, user=user)
-
-        image1 = profile_data.image1.url
+        if profile_data.image1:
+            image1 = profile_data.image1.url
+        else:
+            image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
         location = profile_data.location
         id = profile_data.id
 
         distance = geopy.distance.distance(requestor_location, location).miles
         distance = round(distance, 2)
-        
+    
         user_prof[user] = {
             'first_name': user.first_name,
             'profileid': id,
             'image1': image1,
             'distance': distance,
         }
-        print(user_prof)
+        user_prof_sorted = sorted(user_prof.items(),
+                                  key=lambda x: x[1]['distance'])
+        user_prof = dict(user_prof_sorted)
 
-    # Pass user location, image1 and first name and 
-    # userid to the template as context
+    # Create a context dictionary to pass to the template
     context = {
         'user_prof': user_prof,
     }

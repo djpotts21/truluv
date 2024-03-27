@@ -54,12 +54,24 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mb-2 mb-lg-0 me-4">
-              {% if user.is_authenticated %}
+              {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{% url 'myprofile' %}" data-toggle="tooltip"  title="Your Profile"><i class="fa-solid fa-user circle-green-black-icon-bg" ></i><span class="menu-label">Profile</span></a>
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="#"><i class="fa-solid fa-grip"></i> User Grid</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'account_logout' %}" data-toggle="tooltip" title="Log Out"><i class="fa-solid fa-right-from-bracket circle-green-black-icon-bg" ></i><span class="menu-label">Logout</span></a>
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="#"><i class="fa-solid fa-thumbs-up"></i> <i class="fa-solid fa-thumbs-down"></i> Like Match</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="#"><i class="fa-solid fa-user" ></i> Messages</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="#"><i class="fa-solid fa-thumbs-up"></i> Likes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="{% url 'myprofile' %}"><i class="fa-solid fa-user" ></i> Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link login-button btn btn-lg" href="{% url 'account_logout' %}"><i class="fa-solid fa-right-from-bracket" ></i> Logout</a>
               </li>
               {% else %}
               <li class="nav-item">
