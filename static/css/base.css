@@ -288,13 +288,15 @@ option.title {
     text-overflow: ellipsis;
 }
 
-a.card-link.btn {
-    width: 45%;
+.card-link.btn {
+    width: 48%;
     color: black;
     background: #ff7c0a;
     margin-top: 10px;
+    text-align: center;
+    margin: 0;
 }
-a.card-link.btn:hover {
+.card-link.btn:hover {
     background: black;
     color: #ff7c0a;
 }
