@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'myprofile',
     'viewuser',
     'usergrid',
+    'likes',
 ]
 
 MIDDLEWARE = [
