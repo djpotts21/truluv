@@ -18,7 +18,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.likes, name='likes'),
-    path('like_user/', views.like_user, name='like_user'),
-    path('unlike_user/', views.unlike_user, name='unlike_user'),
+    path('', views.view_likes, name='view_likes'),
 ]
