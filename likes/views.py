@@ -27,11 +27,13 @@ def unlike_user(request):
 
 
 def view_likes(request):
-    user_id = 1
-    user = User.objects.get(id=user_id)
-    likes = Like.objects.filter(user=user)
+    user = request.user
+    likes = Like.objects.get(user=user).likes.all()
+    print(likes.all())
     wholikesme = Like.objects.filter(likes=user)
     return render(request,
-                  'likes/likes.html',
-                  {'likes': likes},
-                  {'wholikesme': wholikesme})
+                  'likes/likes.html', 
+                  context = {
+                      'likes': likes,
+                      'wholikesme': wholikesme
+                      })
