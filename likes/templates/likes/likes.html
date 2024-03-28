@@ -10,8 +10,8 @@ Likes
 <div class="container-fluid">
     <div class="row">
         <h1>Who you liked</h1>
-        {{ likes.all }}
-        {% for value in likes.all %}
+        {{ likes }}
+        {% for value in likes %}
             <div class="col-lg-3 col-md-6">
                 <a href="{% url 'viewuser' 1 %}" class="rem-hyp">
                     <div class="card" >
