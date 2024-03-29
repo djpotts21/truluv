@@ -19,4 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.view_likes, name='view_likes'),
+    path('add_like/<int:user_id>/', views.add_like, name='add_like'),
+    path('remove_like/<int:object_id>/', views.remove_like, name='remove_like'),
 ]
