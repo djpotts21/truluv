@@ -8,16 +8,16 @@ Likes
 {% endblock title %}
 {% block content %}
 <div class="container-fluid">
+    {{ likes }}
     <div class="row">
         <h1>Who you liked</h1>
-        {{ likes }}
         {% for value in likes %}
             <div class="col-lg-3 col-md-6">
-                <a href="{% url 'viewuser' 1 %}" class="rem-hyp">
+                <a href="{% url 'viewuser' value.liked_user_id %}" class="rem-hyp">
                     <div class="card" >
                         <img class="card-img-top" src="{{ value.image1 }}" width="100px" height="180px" alt="Card image cap" style="object-fit:cover;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ value.first_name }}</h5>
+                            <h5 class="card-title">{{ value.name }}</h5>
                             <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{value.distance}} miles</p>
                             <a href="#1" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
                             <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
@@ -28,14 +28,15 @@ Likes
         {% endfor %}
     </div>
     <div class="row">
+        {{ wholikesme }}
         <h1>Who liked you</h1>
-        {% for key, value in who_likes_me_profiles.items %}
+        {% for value in wholikesme %}
             <div class="col-lg-3 col-md-6">
-                <a href="{% url 'viewuser' 1 %}" class="rem-hyp">
+                <a href="{% url 'viewuser' value.liked_user_id %}" class="rem-hyp">
                     <div class="card" >
                         <img class="card-img-top" src="{{ value.image1 }}" width="100px" height="180px" alt="Card image cap" style="object-fit:cover;">
                         <div class="card-body">
-                            <h5 class="card-title">{{ value.first_name }}</h5>
+                            <h5 class="card-title">{{ value.name }}</h5>
                             <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{value.distance}} miles</p>
                             <a href="#1" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
                             <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
