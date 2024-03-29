@@ -21,6 +21,9 @@
     color:unset;
     text-decoration:none
 }
+.no-mouse {
+    cursor: default;
+}
 
 
 /* Home Hero */

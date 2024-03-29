@@ -6,10 +6,14 @@ import geopy.distance
 
 # Add user to likes
 def add_like(request, user_id):
-    liked_user = User.objects.get(id=user_id)
-    user = request.user
-    UserLike.objects.create(user=user, liked_user=liked_user)
-    return redirect('view_likes')
+    # check if user is already liked
+    if UserLike.objects.filter(user=request.user, liked_user=User.objects.get(id=user_id)).exists():
+        return redirect('view_likes')
+    else:
+        liked_user = User.objects.get(id=user_id)
+        user = request.user
+        UserLike.objects.create(user=user, liked_user=liked_user)
+        return redirect('view_likes')
 
 
 # Remove user from likes

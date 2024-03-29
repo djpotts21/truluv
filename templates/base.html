@@ -56,7 +56,7 @@
             <ul class="navbar-nav mb-2 mb-lg-0 me-4">
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link login-button btn btn-lg" aria-current="page" href="#"><i class="fa-solid fa-grip"></i> User Grid</a>
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="{% url 'usergrid' %}"><i class="fa-solid fa-grip"></i> User Grid</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link login-button btn btn-lg" aria-current="page" href="#"><i class="fa-solid fa-thumbs-up"></i> <i class="fa-solid fa-thumbs-down"></i> Like Match</a>
@@ -65,7 +65,7 @@
                 <a class="nav-link login-button btn btn-lg" aria-current="page" href="#"><i class="fa-solid fa-user" ></i> Messages</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link login-button btn btn-lg" aria-current="page" href="#"><i class="fa-solid fa-thumbs-up"></i> Likes</a>
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="{% url 'view_likes' %}"><i class="fa-solid fa-thumbs-up"></i> Likes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link login-button btn btn-lg" aria-current="page" href="{% url 'myprofile' %}"><i class="fa-solid fa-user" ></i> Profile</a>

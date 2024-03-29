@@ -25,6 +25,7 @@ User Grid
               </div>
             </div>
         </div>  
+        
         {% for i in user_prof.values %}
         <div class="col-lg-3 col-md-6">
             <a href="{% url 'viewuser' i.profileid  %}" class="rem-hyp">
@@ -33,7 +34,11 @@ User Grid
                     <div class="card-body">
                     <h5 class="card-title">{{ i.first_name }}</h5>
                     <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{ i.distance }} miles</p>
-                    <a href="#1" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
+                    {% if i.profileid in liked_users %}
+                    <a class="card-link btn bg-success text-light no-mouse"><i class="fa-solid fa-user-check"></i></a>
+                    {% else %}
+                    <a href="{% url 'add_like' i.profileid %}" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
+                    {% endif %}
                     <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
                     </div>
                 </div>

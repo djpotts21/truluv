@@ -9,7 +9,6 @@ Likes
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        {{liked_users}}
         <h1>Who you've liked</h1>
         {% for value in liked_users %}
             <div class="col-lg-3 col-md-6">
@@ -19,7 +18,7 @@ Likes
                         <div class="card-body">
                             <h5 class="card-title">{{ value.name }} - {{ value.age }}</h5> 
                             <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{value.distance}} miles</p>
-                            <a href="{% url 'remove_like' value.object_id%}" class="card-link btn">
+                            <a href="{% url 'remove_like' value.object_id%}" class="card-link btn bg-danger text-light">
                                 <i class="fa-solid fa-heart-circle-xmark"></i>
                             </a>
                             <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
