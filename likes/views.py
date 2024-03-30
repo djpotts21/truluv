@@ -60,6 +60,7 @@ def view_likes(request):
         }
         liked_users_list.append(liked_user_dict)
 
+    liked_by_users_list = []
     for liked_by_user in liked_by_users:
         liked_by_user_profile = Profile.objects.get(user=liked_by_user.user)
         liked_by_user_location = (liked_by_user_profile.location)
@@ -67,4 +68,25 @@ def view_likes(request):
         liked_by_user.distance = distance
         liked_by_user.age = liked_by_user_profile.age
         liked_by_user.first_name = liked_by_user_profile.user.first_name
-    return render(request, 'likes/likes.html', {'liked_users': liked_users_list, 'liked_by_users': liked_by_users})
+        liked_by_user_dict = {
+            'object_id': liked_by_user.id,
+            'liker_user_id': liked_by_user.user.id,
+            'distance': distance,
+            'age': liked_by_user_profile.age,
+            'name': liked_by_user_profile.user.first_name,
+            'image1': liked_by_user_profile.image1.url if liked_by_user_profile.image1 else 'https://i.ibb.co/ssFD4BX/no-image.png'
+        }
+        liked_by_users_list.append(liked_by_user_dict)
+    
+    liked_user_query_list = []
+    
+    for liked_user in liked_users:
+        liked_user_query_list.append(liked_user.liked_user.id)
+
+    
+
+
+    return render(request, 'likes/likes.html', {
+        'liked_users': liked_users_list,
+        'liked_by_users': liked_by_users_list,
+        'liked_users_query_list': liked_user_query_list})

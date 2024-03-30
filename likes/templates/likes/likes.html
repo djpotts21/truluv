@@ -9,6 +9,29 @@ Likes
 {% block content %}
 <div class="container-fluid">
     <div class="row">
+        <h1>Who liked you</h1>
+        {% for value in liked_by_users %}
+            <div class="col-lg-3 col-md-6">
+                <a href="{% url 'viewuser' value.liker_user_id %}" class="rem-hyp">
+                    <div class="card" >
+                        <img class="card-img-top" src="{{ value.image1 }}" width="100px" height="180px" alt="Card image cap" style="object-fit:cover;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ value.name }}</h5>
+                            <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{value.distance}} miles</p>
+                            {% if value.liker_user_id in liked_users_query_list %}
+                            <a class="card-link btn bg-success text-light no-mouse"><i class="fa-solid fa-user-check"></i></a>
+                            {% else %}
+                            <a href="{% url 'add_like' value.liker_user_id %}" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
+                            {% endif %}
+                            <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                        </div>
+                    </div>
+                </a>
+            </div> 
+        {% endfor %}
+    </div>
+
+    <div class="row">
         <h1>Who you've liked</h1>
         {% for value in liked_users %}
             <div class="col-lg-3 col-md-6">
@@ -29,24 +52,6 @@ Likes
         {% endfor %}
     </div>
     <hr>
-    <div class="row">
-        <h1>Who liked you</h1>
-        {% for value in wholikesme %}
-            <div class="col-lg-3 col-md-6">
-                <a href="{% url 'viewuser' value.liked_user_id %}" class="rem-hyp">
-                    <div class="card" >
-                        <img class="card-img-top" src="{{ value.image1 }}" width="100px" height="180px" alt="Card image cap" style="object-fit:cover;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ value.name }}</h5>
-                            <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{value.distance}} miles</p>
-                            <a href="#1" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
-                            <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
-                        </div>
-                    </div>
-                </a>
-            </div> 
-        {% endfor %}
-    </div>
 </div>
 {% endblock content %}
 
