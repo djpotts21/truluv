@@ -161,6 +161,7 @@ def updatesocials(request):
         user.profile.save()
         return redirect('myprofile')
 
+
 # Attributes to update
 def updateattributes(request):
     if request.POST:

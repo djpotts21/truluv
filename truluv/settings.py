@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     'viewuser',
     'usergrid',
     'likes',
+    'chat',
 ]
 
 MIDDLEWARE = [
