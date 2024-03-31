@@ -6,31 +6,69 @@
 Messages
 {% endblock title %}
 {% block content %}
+Selected User (Should be nothing on /chats) {{ selected_user}} <br>
+Mathched Users {{ matched_users }}<br>
+Messages: (Should be nothing on /chats) {{ pmessages }}<br>
+Current User: {{ current_user }}<br>
+All users: {{ users }}<br>
 <div class="container-fluid">
-    <div class="container-fluid">
-        {{message_data}}
-        {% for message in message_data %}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h4>{{message.sender}}</h4>
+    <div class="row">
+        <h1>Messages</h1>
+        <p>Select a user from the Users list below to view messages. You can only message users that have liked you back and matched with you.</p>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Users</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        {% for user in matched_users %}
+                        <li class="list-group">
+                            <a href="{% url 'get_chate_user' user.id %}">
+                                <img src="{{ user.image1 }}" alt="profile image" class="rounded-circle" width="40" height="40">
+                                {{ user.first_name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>  
+            </div>
+        </div>
+        <div class="col-md-9">
+            {% if pmessages %}
+            <div class="card">
+                <div class="card-header">
+                    <h4>Messages</h4>
+                </div>
+                <div class="card-body">
+                    <div class="pmessages">
+                        {% for message in pmessages %}
+                            {% if message.sender_id == current_user_id %}
+                            <div class="pmessage sender">
+                                <p>{{ message.message }}</p>
+                                <small>{{ message.sender_name }} sent at {{ message.timestamp }}</small> 
                             </div>
-                            <div class="col-md-6">
-                                <h4>{{message.timestamp}}</h4>
+                            {% else %}
+                            <div class="pmessage receiver">
+                                <p>{{ message.message }}</p>
+                                <small>{{ message.sender_name }} sent at {{ message.timestamp }}</small>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>{{message.message}}</p>
+                            {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>
+            {% else %}
+            <div class="card">
+                <div class="card-header">
+                    <h4>Messages</h4>
+                </div>
+                <div class="card-body">
+                    <p>No messages yet</p>
+                </div>
+            {% endif %}
         </div>
-        {% endfor %}
-    </div>
+    </div>           
 </div>
 
             {% endblock content %}

@@ -11,6 +11,8 @@ class Message(models.Model):
     read = models.BooleanField(default=False)
     read_at = models.DateTimeField(null=True, blank=True)
     flaged = models.BooleanField(default=False)
+    sender_name = models.CharField(max_length=100, default='')
+    receiver_name = models.CharField(max_length=100, default='')
 
     def __str__(self):
         return self.message
