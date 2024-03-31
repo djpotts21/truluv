@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect 
+from django.shortcuts import render
 from chat.models import Message
 from myprofile.models import Profile
 from likes.models import UserLike
@@ -19,7 +19,7 @@ def get_chate_user(request, selected_user):
     for like in likes:
         if UserLike.objects.filter(user=like.liked_user,
                                    liked_user=current_user):
-            
+
             if Profile.objects.get(id=like.liked_user.id).image1:
                 image1 = Profile.objects.get(id=like.liked_user.id).image1
                 image1 = image1.url
@@ -32,7 +32,7 @@ def get_chate_user(request, selected_user):
                 'first_name': first_name,
                 'image1': image1,
                 'age': age
-            } 
+            }
             matched_users.append(matched_user_dict)
     # Get the user they are chatting with from the url argument if
     # selected_user exists
@@ -40,7 +40,7 @@ def get_chate_user(request, selected_user):
         selected_user = selected_user
     else:
         selected_user = None
-    
+
     # get pmessages to detect new pmessages for session user
     message_alert = list(Message.objects.filter(
         receiver=current_user, read=False))
@@ -70,7 +70,6 @@ def get_chate_user(request, selected_user):
         'users': users,
         'matched_users': matched_users})
 
-    
 
 def render_chat_no_user(request):
     ''' Get pmessages from current user and the user they are chatting with '''
@@ -84,7 +83,7 @@ def render_chat_no_user(request):
     for like in likes:
         if UserLike.objects.filter(user=like.liked_user,
                                    liked_user=current_user):
-            
+
             if Profile.objects.get(id=like.liked_user.id).image1:
                 image1 = Profile.objects.get(id=like.liked_user.id).image1
                 image1 = image1.url
@@ -97,13 +96,12 @@ def render_chat_no_user(request):
                 'first_name': first_name,
                 'image1': image1,
                 'age': age
-            } 
+            }
             matched_users.append(matched_user_dict)
-    
+
     return render(request, 'chat/chat.html',
                   {'likes':  likes,
                    'current_user': current_user,
                    'matched_users': matched_users,
-                   'current_user_id': current_user_id,})
-
-
+                   'current_user_id': current_user_id,
+                   })

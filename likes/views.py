@@ -8,8 +8,9 @@ import geopy.distance
 # Add user to likes
 def add_like(request, user_id):
     # check if user is already liked
-    if UserLike.objects.filter(user=request.user, liked_user=User.objects.get(
-        id=user_id)).exists():
+    if UserLike.objects.filter(
+        user=request.user, liked_user=User.objects.get(
+            id=user_id)).exists():
         return redirect('view_likes')
     else:
         liked_user = User.objects.get(id=user_id)
@@ -37,7 +38,7 @@ def get_user_liked_by_users(user):
     return liked_by_users
 
 
-# render the template with the liked users and the liked by users with the 
+# render the template with the liked users and the liked by users with the
 # distance, age from user profile and user first name
 def view_likes(request):
     user = request.user
@@ -54,7 +55,7 @@ def view_likes(request):
         liked_user.distance = distance
         liked_user.age = liked_user_profile.age
         liked_user.first_name = liked_user_profile.user.first_name
-        if liked_user_profile.image1: 
+        if liked_user_profile.image1:
             image1 = liked_user_profile.image1.url
         else:
             image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
@@ -72,27 +73,29 @@ def view_likes(request):
     for liked_by_user in liked_by_users:
         liked_by_user_profile = Profile.objects.get(user=liked_by_user.user)
         liked_by_user_location = (liked_by_user_profile.location)
-        distance = geopy.distance.distance(user_location, liked_by_user_location).km
+        distance = geopy.distance.distance(
+            user_location, liked_by_user_location).km
         liked_by_user.distance = distance
         liked_by_user.age = liked_by_user_profile.age
         liked_by_user.first_name = liked_by_user_profile.user.first_name
+        if liked_user_profile.image1:
+            image1 = liked_user_profile.image1.url
+        else:
+            image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
         liked_by_user_dict = {
             'object_id': liked_by_user.id,
             'liker_user_id': liked_by_user.user.id,
             'distance': distance,
             'age': liked_by_user_profile.age,
             'name': liked_by_user_profile.user.first_name,
-            'image1': liked_by_user_profile.image1.url if liked_by_user_profile.image1 else 'https://i.ibb.co/ssFD4BX/no-image.png'
+            'image1': image1
         }
         liked_by_users_list.append(liked_by_user_dict)
-    
+
     liked_user_query_list = []
-    
+
     for liked_user in liked_users:
         liked_user_query_list.append(liked_user.liked_user.id)
-
-    
-
 
     return render(request, 'likes/likes.html', {
         'liked_users': liked_users_list,
