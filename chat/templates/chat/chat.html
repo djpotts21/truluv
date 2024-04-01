@@ -14,8 +14,10 @@ Messages
                 <div class="card-header">
                     <h4>Users</h4>
                 </div>
+                
                 <div class="card-body">
                     <ul class="list-group">
+                        {% if premium_user == False %}
                         {% for user in matched_users %}
                         <li class="list-group">
                             <a href="{% url 'get_chate_user' user.id %}" class="matched-user-li {% if selected_user == user.id %} active-user {% endif %}">
@@ -24,6 +26,18 @@ Messages
                             </a>
                         </li>
                         {% endfor %}
+                        {% else %}
+                        {% for key, value in premium_message_dict.items %}
+                        <li class="list-group">
+                            <a href="{% url 'get_chate_user' key %}" class="matched-user-li {% if selected_user == key %} active-user {% endif %}">
+                                <img src="{{ value.user_image }}" alt="profile image" class="rounded-circle" width="40" height="40">
+                                {{ value.receiver_name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% endif %}
+                        
+
                     </ul>
                 </div>  
             </div>
@@ -101,6 +115,7 @@ Messages
                         <li>No love bombing please!</li>
                         <li>NEVER give your mobile number out to a stranger, consider using alternate platforms such as Snapchat where you mobile number is masked</li>
                         <li>Take as long as you like to get to know one another, there is no rush</li>
+                        <li>Even if a premium user sends you a message, you must also send them one to be able to see what they sent, this avoids spamming! It is advisable to also like the user when sending a premium message to show intentions.</li>
                     </ul>
 
                     <h5 class="">And above all, find your TruLuve xx </h5>

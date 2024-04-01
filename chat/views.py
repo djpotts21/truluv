@@ -24,10 +24,12 @@ def send_message(request, selected_user):
         # Create the message
         Message.objects.create(
             sender=current_user, receiver=selected_user,
-            message=message, sender_name=sender_name, receiver_name=receiver_name)
+            message=message, sender_name=sender_name,
+            receiver_name=receiver_name)
         # Redirect to the chat page
 
     return redirect('get_chate_user', selected_user=selected_user_id)
+
 
 @login_required
 def flag_message(request, message_id):
@@ -45,6 +47,7 @@ def flag_message(request, message_id):
 
     print("Redirecting")
     return redirect('get_chate_user', selected_user=message.sender.id)
+
 
 @login_required
 def get_chate_user(request, selected_user):
@@ -111,6 +114,26 @@ def get_chate_user(request, selected_user):
     flagged_messages = flagged_messages_to_current_user + \
         flagged_messages_from_current_user
     
+    # is current user a premium user?
+    current_user = request.user
+    current_user_profile = Profile.objects.get(user=current_user)
+    premium_status = current_user_profile.premium_user_account
+
+    # get all messages for selected user and create dictioary for each unique receiver containing the message, timestamp, sender, receiver
+    messages = Message.objects.filter(sender=current_user)
+    premium_message_dict = {}
+    for message in messages:
+        if message.receiver.id not in premium_message_dict:
+            premium_message_dict[message.receiver.id] = {
+                'receiver': message.receiver.id,
+                'message': message.message,
+                'timestamp': message.timestamp,
+                'sender': message.sender.id,
+                'sender_name': message.sender_name,
+                'receiver_name': message.receiver_name,
+                'user_image': Profile.objects.get(user=message.receiver).image1.url
+            }
+
     # render chat template
     return render(request, 'chat/chat.html', {
         'selected_user': selected_user,
@@ -121,7 +144,10 @@ def get_chate_user(request, selected_user):
         'current_user_id': current_user_id,
         'users': users,
         'matched_users': matched_users,
-        'flagged_messages': flagged_messages})
+        'flagged_messages': flagged_messages,
+        'premium_status': premium_status,
+        'premium_message_dict': premium_message_dict})
+
 
 @login_required
 def render_chat_no_user(request):
@@ -152,9 +178,30 @@ def render_chat_no_user(request):
             }
             matched_users.append(matched_user_dict)
 
+    # is current user a premium user?
+    current_user = request.user
+    current_user_profile = Profile.objects.get(user=current_user)
+    premium_status = current_user_profile.premium_user_account
+
+    # get all messages for selected user and create dictioary for each unique receiver containing the message, timestamp, sender, receiver
+    messages = Message.objects.filter(sender=current_user)
+    premium_message_dict = {}
+    for message in messages:
+        if message.receiver.id not in premium_message_dict:
+            premium_message_dict[message.receiver.id] = {
+                'receiver': message.receiver.id,
+                'message': message.message,
+                'timestamp': message.timestamp,
+                'sender': message.sender.id,
+                'sender_name': message.sender_name,
+                'receiver_name': message.receiver_name,
+                'user_image': Profile.objects.get(user=message.receiver).image1.url
+            }
+    
     return render(request, 'chat/chat.html',
                   {'likes':  likes,
                    'current_user': current_user,
                    'matched_users': matched_users,
                    'current_user_id': current_user_id,
-                   })
+                   'premium_status': premium_status,
+                   'premium_message_dict': premium_message_dict})
