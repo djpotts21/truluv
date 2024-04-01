@@ -55,13 +55,15 @@ def view_likes(request):
         liked_user.distance = distance
         liked_user.age = liked_user_profile.age
         liked_user.first_name = liked_user_profile.user.first_name
+        liked_user.user_id = liked_user_profile.user.id
+        liked_user.object_id = liked_user.id
         if liked_user_profile.image1:
             image1 = liked_user_profile.image1.url
         else:
             image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
         liked_user_dict = {
             'object_id': liked_user.id,
-            'user_id': liked_user.user.id,
+            'user_id': liked_user.user_id,
             'distance': distance,
             'age': liked_user_profile.age,
             'name': liked_user_profile.user.first_name,
