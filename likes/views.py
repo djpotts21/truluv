@@ -71,6 +71,7 @@ def view_likes(request):
         }
         liked_users_list.append(liked_user_dict)
 
+# Liked By Users
     liked_by_users_list = []
     for liked_by_user in liked_by_users:
         liked_by_user_profile = Profile.objects.get(user=liked_by_user.user)
@@ -80,8 +81,8 @@ def view_likes(request):
         liked_by_user.distance = distance
         liked_by_user.age = liked_by_user_profile.age
         liked_by_user.first_name = liked_by_user_profile.user.first_name
-        if liked_user_profile.image1:
-            image1 = liked_user_profile.image1.url
+        if liked_by_user_profile.image1:
+            image1 = liked_by_user_profile.image1.url
         else:
             image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
         liked_by_user_dict = {
@@ -95,6 +96,12 @@ def view_likes(request):
         liked_by_users_list.append(liked_by_user_dict)
 
     liked_user_query_list = []
+
+    # is current user a premium user?
+    current_user = request.user
+    current_user_profile = Profile.objects.get(user=current_user)
+    premium_status = current_user_profile.premium_user_account
+
 
     # get matched users
     matched_users = []
@@ -113,4 +120,5 @@ def view_likes(request):
         'liked_users': liked_users_list,
         'liked_by_users': liked_by_users_list,
         'liked_users_query_list': liked_user_query_list,
-        'matched_users': matched_users})
+        'matched_users': matched_users,
+        'premium_status': premium_status})

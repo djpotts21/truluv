@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
-from chat.models import Message
-from myprofile.models import Profile
-from likes.models import UserLike
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+from myprofile.models import Profile
+from likes.models import UserLike
+from chat.models import Message
 
+
+@login_required
 def send_message(request, selected_user):
     if request.method == 'POST':
         ''' Send a message from the current user to the selected user '''
@@ -26,7 +29,7 @@ def send_message(request, selected_user):
 
     return redirect('get_chate_user', selected_user=selected_user_id)
 
-
+@login_required
 def flag_message(request, message_id):
 
     # Get the message
@@ -43,7 +46,7 @@ def flag_message(request, message_id):
     print("Redirecting")
     return redirect('get_chate_user', selected_user=message.sender.id)
 
-
+@login_required
 def get_chate_user(request, selected_user):
     ''' Get pmessages from current user and the user they are chatting with '''
     # Get all users
@@ -120,7 +123,7 @@ def get_chate_user(request, selected_user):
         'matched_users': matched_users,
         'flagged_messages': flagged_messages})
 
-
+@login_required
 def render_chat_no_user(request):
     ''' Get pmessages from current user and the user they are chatting with '''
     # Get the current user

@@ -5,7 +5,8 @@ from .models import Profile
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ('user',
                     'email',
-                    'phone'
+                    'phone',
+                    'premium_user_account'
                     )
     search_fields = ['user', 'email', 'phone']
     list_filter = ['created_at', 'updated_at']

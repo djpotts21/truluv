@@ -10,7 +10,6 @@ User Grid
 <div class="container-fluid">
     <div class="row">
         <h1>User Grid</h1>
-        {{ matched_users }}
         <p>Search through other users to find your TruLuv</p>
         <div class="accordion mb-2" id="accordionExample">
             <div class="accordion-item">
@@ -40,8 +39,9 @@ User Grid
                     <a href="{% url 'add_like' i.profileid %}" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
                     {% endif %}
                     {% if i.profileid in matched_users %}
-                    <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
-                    {% else %}
+                    <a href="{% url 'get_chate_user' i.profileid %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                    {% elif premium_status == True %}
+                    <a href="{% url 'get_chate_user' i.profileid %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
                     {% endif %}
                   </div>
                 </div>

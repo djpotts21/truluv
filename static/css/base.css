@@ -369,6 +369,14 @@ input[type=number] {
     background: #34e000;
     cursor: default;
 }
+.form-group.inline-chat-message {
+    display: flex;
+    flex-direction: row;
+}
+.fixed-height-messages {
+    height: 70vh;
+    overflow-y: scroll;
+}
 /* Mobile Breakpoint */
 @media (max-width: 767px) {
     /* Add your mobile-specific styles here */

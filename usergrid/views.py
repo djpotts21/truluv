@@ -32,6 +32,7 @@ def usergrid(request):
             image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
         location = profile_data.location
         id = profile_data.id
+        premium_status = Profile.objects.get(user=user).premium_user_account
 
         distance = geopy.distance.distance(requestor_location, location).miles
         distance = round(distance, 2)
@@ -56,11 +57,18 @@ def usergrid(request):
                 if liked_user_like.liked_user == current_user:
                     matched_users.append(liked_user.id)  
 
+    # is current user a premium user?
+    current_user = request.user
+    current_user_profile = Profile.objects.get(user=current_user)
+    premium_status = current_user_profile.premium_user_account
+
+
     # Create a context dictionary to pass to the template
     context = {
         'user_prof': user_prof,
         'liked_users': liked_user_list,
         'matched_users': matched_users,
+        'premium_status': premium_status,
     }
 
     return render(request, 'usergrid/usergrid.html', context)

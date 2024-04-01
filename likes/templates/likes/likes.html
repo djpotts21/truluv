@@ -10,6 +10,7 @@ Likes
 <div class="container-fluid">
     <div class="row">
         <h1>Who liked you</h1>
+        {% if liked_by_users %}
         {% for value in liked_by_users %}
             <div class="col-lg-3 col-md-6">
                 <a href="{% url 'viewuser' value.liker_user_id %}" class="rem-hyp">
@@ -21,9 +22,11 @@ Likes
                             {% if value.liker_user_id in liked_users_query_list %}
                             <a class="card-link btn bg-success text-light no-mouse"><i class="fa-solid fa-user-check"></i></a>
                             {% else %}
-                            <a href="{% url 'add_like' value.liker_user_id %}" class="card-link btn w-100"><i class="fa-solid fa-face-grin-hearts"></i></a>
+                            <a href="{% url 'add_like' value.liker_user_id %}" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
                             {% endif %}
                             {% if value.liker_user_id in matched_users %}
+                            <a href="{% url 'get_chate_user' value.liker_user_id %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                            {% elif premium_status == True %}
                             <a href="{% url 'get_chate_user' value.liker_user_id %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
                             {% else %}
                             {% endif %}                        
@@ -32,10 +35,20 @@ Likes
                 </a>
             </div> 
         {% endfor %}
+        {% else %}
+        <div class="col-lg-3 col-md-6">
+            <div class="card" >
+                <div class="card-body">
+                    <h5 class="card-title">No likes yet</h5>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
-
+    <hr>
     <div class="row">
         <h1>Who you've liked</h1>
+        {% if liked_users %}
         {% for value in liked_users %}
             <div class="col-lg-3 col-md-6">
                 <a href="{% url 'viewuser' value.user_id%}" class="rem-hyp">
@@ -45,6 +58,11 @@ Likes
                             <h5 class="card-title">{{ value.name }} - {{ value.age }}</h5> 
                             <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{value.distance}} miles</p>
                             {% if value.user_id in matched_users %}
+                            <a href="{% url 'remove_like' value.object_id%}" class="card-link btn bg-danger text-light">
+                                <i class="fa-solid fa-heart-circle-xmark"></i>
+                            </a>
+                            <a href="{% url 'get_chate_user' value.user_id %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                            {% elif premium_status == True %}
                             <a href="{% url 'remove_like' value.object_id%}" class="card-link btn bg-danger text-light">
                                 <i class="fa-solid fa-heart-circle-xmark"></i>
                             </a>
@@ -59,8 +77,16 @@ Likes
                 </a>
             </div>
         {% endfor %}
+        {% else %}
+        <div class="col-lg-3 col-md-6">
+            <div class="card" >
+                <div class="card-body">
+                    <h5 class="card-title">No likes yet</h5>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
-    <hr>
 </div>
 {% endblock content %}
 

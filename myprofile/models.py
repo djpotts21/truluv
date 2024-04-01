@@ -3,8 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(
-        'auth.User', on_delete=models.CASCADE, default=0)
+    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, default=0)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
     address = models.TextField()
@@ -21,16 +20,12 @@ class Profile(models.Model):
     age = models.IntegerField(null=True, blank=True)
     gender = models.CharField(max_length=10, null=True, blank=True)
     pronouns = models.CharField(max_length=10, null=True, blank=True)
-    location = models.CharField(
-        max_length=100, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
     job_title = models.CharField(max_length=100, null=True, blank=True)
     education = models.CharField(max_length=100, null=True, blank=True)
-    relationship_status = models.CharField(
-        max_length=100, null=True, blank=True)
-    looking_for = models.CharField(
-        max_length=100, null=True, blank=True)
-    sexuality = models.CharField(
-        max_length=50, null=True, blank=True)
+    relationship_status = models.CharField(max_length=100, null=True, blank=True)
+    looking_for = models.CharField(max_length=100, null=True, blank=True)
+    sexuality = models.CharField(max_length=50, null=True, blank=True)
     height = models.CharField(max_length=10, null=True, blank=True)
     body_type = models.CharField(max_length=50, null=True, blank=True)
     children = models.CharField(max_length=50, null=True, blank=True)
@@ -66,6 +61,7 @@ class Profile(models.Model):
     tiktok = models.CharField(max_length=100, null=True, blank=True)
     linkedin = models.CharField(max_length=100, null=True, blank=True)
     website = models.CharField(max_length=100, null=True, blank=True)
+    premium_user_account = models.BooleanField(default=False)
 
     def __str__(self):
         return self.email
