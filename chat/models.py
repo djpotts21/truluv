@@ -10,7 +10,7 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)
     read_at = models.DateTimeField(null=True, blank=True)
-    flaged = models.BooleanField(default=False)
+    flagged = models.BooleanField(default=False)
     sender_name = models.CharField(max_length=100, default='')
     receiver_name = models.CharField(max_length=100, default='')
 

@@ -23,7 +23,10 @@ Likes
                             {% else %}
                             <a href="{% url 'add_like' value.liker_user_id %}" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
                             {% endif %}
+                            {% if value.liker_user_id in matched_users %}
                             <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                            {% else %}
+                            {% endif %}                        
                         </div>
                     </div>
                 </a>
@@ -44,7 +47,10 @@ Likes
                             <a href="{% url 'remove_like' value.object_id%}" class="card-link btn bg-danger text-light">
                                 <i class="fa-solid fa-heart-circle-xmark"></i>
                             </a>
+                            {% if value.user_id in matched_users %}
                             <a href="#2" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                            {% else %}
+                            {% endif %}                        
                         </div>   
                     </div>
                 </a>

@@ -1,8 +1,47 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from chat.models import Message
 from myprofile.models import Profile
 from likes.models import UserLike
 from django.contrib.auth.models import User
+
+
+def send_message(request, selected_user):
+    if request.method == 'POST':
+        ''' Send a message from the current user to the selected user '''
+        # Get the current user
+        current_user = request.user
+        # Get the selected user
+        selected_user = User.objects.get(id=selected_user)
+        selected_user_id = selected_user.id
+        # Assign Names
+        sender_name = current_user.first_name
+        receiver_name = selected_user.first_name
+        # Get the message
+        message = request.POST.get('message')
+        # Create the message
+        Message.objects.create(
+            sender=current_user, receiver=selected_user,
+            message=message, sender_name=sender_name, receiver_name=receiver_name)
+        # Redirect to the chat page
+
+    return redirect('get_chate_user', selected_user=selected_user_id)
+
+
+def flag_message(request, message_id):
+
+    # Get the message
+    message = Message.objects.get(id=message_id)
+
+    if request.method == 'POST':
+        ''' Flag a message as inappropriate '''
+        message_id = int(message_id)
+        # Flag the message
+        message.flagged = True
+        message.save()
+        # Redirect to the chat page
+
+    print("Redirecting")
+    return redirect('get_chate_user', selected_user=message.sender.id)
 
 
 def get_chate_user(request, selected_user):
@@ -59,6 +98,16 @@ def get_chate_user(request, selected_user):
         sent_pmessages.update(read=True)
     else:
         pmessages = "None"
+
+    # count number of flagged messages from selected user to current user
+    # or current user to selected user
+    flagged_messages_to_current_user = Message.objects.filter(
+        sender=selected_user, receiver=current_user, flagged=True).count()
+    flagged_messages_from_current_user = Message.objects.filter(
+        sender=current_user, receiver=selected_user, flagged=True).count()
+    flagged_messages = flagged_messages_to_current_user + \
+        flagged_messages_from_current_user
+    
     # render chat template
     return render(request, 'chat/chat.html', {
         'selected_user': selected_user,
@@ -68,7 +117,8 @@ def get_chate_user(request, selected_user):
         'current_user': current_user,
         'current_user_id': current_user_id,
         'users': users,
-        'matched_users': matched_users})
+        'matched_users': matched_users,
+        'flagged_messages': flagged_messages})
 
 
 def render_chat_no_user(request):

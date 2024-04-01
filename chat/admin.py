@@ -9,10 +9,10 @@ class MessageAdmin(admin.ModelAdmin):
                     'timestamp',
                     'read',
                     'read_at',
-                    'flaged'
+                    'flagged'
                     )
     search_fields = ['sender', 'receiver', 'message']
-    list_filter = ['timestamp', 'read', 'read_at', 'flaged']
+    list_filter = ['timestamp', 'read', 'read_at', 'flagged']
     ordering = ['timestamp']
 
 

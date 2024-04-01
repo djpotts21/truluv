@@ -94,10 +94,21 @@ def view_likes(request):
 
     liked_user_query_list = []
 
+    # get matched users
+    matched_users = []
+    likes = UserLike.objects.filter(user=user)
+    for like in likes:
+        liked_user = like.liked_user
+        liked_user_likes = UserLike.objects.filter(user=liked_user)
+        for liked_user_like in liked_user_likes:
+            if liked_user_like.liked_user == user:
+                matched_users.append(liked_user.id)
+
     for liked_user in liked_users:
         liked_user_query_list.append(liked_user.liked_user.id)
 
     return render(request, 'likes/likes.html', {
         'liked_users': liked_users_list,
         'liked_by_users': liked_by_users_list,
-        'liked_users_query_list': liked_user_query_list})
+        'liked_users_query_list': liked_user_query_list,
+        'matched_users': matched_users})

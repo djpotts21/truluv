@@ -6,15 +6,9 @@
 Messages
 {% endblock title %}
 {% block content %}
-Selected User (Should be nothing on /chats) {{ selected_user}} <br>
-Mathched Users {{ matched_users }}<br>
-Messages: (Should be nothing on /chats) {{ pmessages }}<br>
-Current User: {{ current_user }}<br>
-All users: {{ users }}<br>
 <div class="container-fluid">
     <div class="row">
         <h1>Messages</h1>
-        <p>Select a user from the Users list below to view messages. You can only message users that have liked you back and matched with you.</p>
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
@@ -24,7 +18,7 @@ All users: {{ users }}<br>
                     <ul class="list-group">
                         {% for user in matched_users %}
                         <li class="list-group">
-                            <a href="{% url 'get_chate_user' user.id %}">
+                            <a href="{% url 'get_chate_user' user.id %}" class="matched-user-li {% if selected_user == user.id %} active-user {% endif %}">
                                 <img src="{{ user.image1 }}" alt="profile image" class="rounded-circle" width="40" height="40">
                                 {{ user.first_name }}
                             </a>
@@ -38,23 +32,54 @@ All users: {{ users }}<br>
             {% if pmessages %}
             <div class="card">
                 <div class="card-header">
-                    <h4>Messages</h4>
+                    <h4>Messages</h4>       
                 </div>
                 <div class="card-body">
+                    {% if flagged_messages > 0 %}
+                    <div class="alert alert-danger">
+                        <p>There are {{ flagged_messages }} flagged messages in this conversation. 
+                            Please be considerate when messaging to avoid the conversion being ended. Please read the message rules <a href="{% url 'render_chat_no_user' %}">here</a></p>
+                    </div>
+                    {% endif %}
                     <div class="pmessages">
+                        
                         {% for message in pmessages %}
                             {% if message.sender_id == current_user_id %}
-                            <div class="pmessage sender">
-                                <p>{{ message.message }}</p>
-                                <small>{{ message.sender_name }} sent at {{ message.timestamp }}</small> 
+                            <div class="messsage-row">
+                                <div class="pmessage sender">
+                                    {% if message.flagged == True %}
+                                    <small>This message has been flagged as inappropriate by our systems and therefore has been hidden to the other user.</small>
+                                    <hr>
+                                    {% else %}
+                                    {% endif %}
+                                    <p>{{ message.message }}</p>
+                                    <small>{{ message.sender_name }} sent at {{ message.timestamp }}</small> 
+                                    
+                                </div>
                             </div>
                             {% else %}
-                            <div class="pmessage receiver">
-                                <p>{{ message.message }}</p>
-                                <small>{{ message.sender_name }} sent at {{ message.timestamp }}</small>
+                            <div class="messsage-row alt-receiver">
+                                <div class="pmessage receiver">
+                                    {% if message.flagged == True %}
+                                    <p>This message has been flagged as inappropriate and therefore has been hidden</p>
+                                    {% else %}
+                                    <p>{{ message.message }}</p>
+                                    <small>{{ message.sender_name }} sent at {{ message.timestamp }}</small>
+                                    <form action="{% url 'flag_message' message.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="submit" value="Report" class="text-btn"></input>
+                                    </form>
+                                    {% endif %}
+                                </div>
                             </div>
                             {% endif %}
                         {% endfor %}
+                        <form action="{% url 'send_message' selected_user %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="message" class="form-control" placeholder="Type a message">
+                            <input type="hidden" name="receiver_id" value="{{ selected_user }}">
+                            <input type="submit" value="Send" class="btn btn-primary">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -64,7 +89,20 @@ All users: {{ users }}<br>
                     <h4>Messages</h4>
                 </div>
                 <div class="card-body">
-                    <p>No messages yet</p>
+                    <p>Select a user from the Users list below to view messages. You can only message users that have liked you back and matched with you.</p>
+                    <h4>Messaging Rules</h4>
+                    <ul>
+                        <li>Be respectful and polite</li>
+                        <li>Do not send inappropriate messages</li>
+                        <li>Do not send spam messages</li>
+                        <li>Do not send messages that are not related to dating</li>
+                        <li>No love bombing please!</li>
+                        <li>NEVER give your mobile number out to a stranger, consider using alternate platforms such as Snapchat where you mobile number is masked</li>
+                        <li>Take as long as you like to get to know one another, there is no rush</li>
+                    </ul>
+
+                    <h5 class="">And above all, find your TruLuve xx </h5>
+                    
                 </div>
             {% endif %}
         </div>

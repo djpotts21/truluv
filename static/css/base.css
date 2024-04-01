@@ -317,6 +317,7 @@ input[type=number] {
     border-radius: 10px;
     padding: 5px;
     width: 40%;
+    margin:10px;
 }
 .pmessage.sender {
     background: #ff7c0a;
@@ -325,7 +326,48 @@ input[type=number] {
     background: #34e000;
     right: 0;
     text-align: right;
-    float: right;
+}
+.message-row {
+    text-align: right;
+
+}
+.messsage-row.alt-receiver {
+    display: flex;
+    justify-content: flex-end;
+}
+.text-btn{
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    margin-top: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+.matched-user-li {
+    text-decoration: none;
+    color: unset;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.matched-user-li:hover {
+    background: #ff7c0a;
+    text-decoration: none;
+    color: unset;
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 5px;
+}
+.active-user {
+    background: #34e000;
+    cursor: default;
+}
+.active-user:hover {
+    background: #34e000;
+    cursor: default;
 }
 /* Mobile Breakpoint */
 @media (max-width: 767px) {
