@@ -3,9 +3,11 @@ from django.contrib.auth.models import User
 from .models import UserLike
 from myprofile.models import Profile
 import geopy.distance
+from django.contrib.auth.decorators import login_required
 
 
 # Add user to likes
+@login_required
 def add_like(request, user_id):
     # check if user is already liked
     if UserLike.objects.filter(
@@ -20,6 +22,7 @@ def add_like(request, user_id):
 
 
 # Remove user from likes
+@login_required
 def remove_like(request, object_id):
     liked_user = UserLike.objects.get(id=object_id)
     liked_user.delete()
@@ -63,7 +66,7 @@ def view_likes(request):
             image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
         liked_user_dict = {
             'object_id': liked_user.id,
-            'user_id': liked_user.user_id,
+            'user_id': liked_user_profile.user.id,
             'distance': distance,
             'age': liked_user_profile.age,
             'name': liked_user_profile.user.first_name,
@@ -71,10 +74,10 @@ def view_likes(request):
         }
         liked_users_list.append(liked_user_dict)
 
-# Liked By Users
+    # Liked By Users
     liked_by_users_list = []
     for liked_by_user in liked_by_users:
-        liked_by_user_profile = Profile.objects.get(user=liked_by_user.user)
+        liked_by_user_profile = Profile.objects.get(user=liked_by_user.liked_user)
         liked_by_user_location = (liked_by_user_profile.location)
         distance = geopy.distance.distance(
             user_location, liked_by_user_location).km
@@ -87,7 +90,7 @@ def view_likes(request):
             image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
         liked_by_user_dict = {
             'object_id': liked_by_user.id,
-            'liker_user_id': liked_by_user.user.id,
+            'liker_user_id': liked_by_user_profile.user.id,
             'distance': distance,
             'age': liked_by_user_profile.age,
             'name': liked_by_user_profile.user.first_name,
@@ -101,7 +104,6 @@ def view_likes(request):
     current_user = request.user
     current_user_profile = Profile.objects.get(user=current_user)
     premium_status = current_user_profile.premium_user_account
-
 
     # get matched users
     matched_users = []

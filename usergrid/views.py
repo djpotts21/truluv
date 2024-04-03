@@ -4,10 +4,11 @@ from myprofile.models import Profile
 from likes.views import get_user_liked_users
 from likes.models import UserLike
 import geopy.distance
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-
+@login_required
 def usergrid(request):
     # Get current user from the request and pull profile data
     request_user_profile = Profile.objects.get(user=request.user)
