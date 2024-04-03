@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 import os
 from . models import Profile
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+@login_required
 def myprofile(request):
     # Google API Key for Maps on Profile
     gmapsapikey = os.environ.get('GOOGLE_MAPS_API_KEY')
@@ -14,7 +15,6 @@ def myprofile(request):
         profile = Profile(user=request.user)
         profile.save()
 
-
     if request.user.is_authenticated:
         return render(request, 'myprofile/myprofile.html', {
             'gmapsapikey': gmapsapikey
@@ -22,7 +22,7 @@ def myprofile(request):
     else:
         return redirect('account_login')
 
-
+@login_required
 def updatename(request):
     if request.POST:
         user = request.user
@@ -31,7 +31,7 @@ def updatename(request):
         user.save()
         return redirect('myprofile')
 
-
+@login_required
 def updateusername(request):
     if request.POST:
         user = request.user
@@ -40,7 +40,7 @@ def updateusername(request):
         user.save()
         return redirect('myprofile')
 
-
+@login_required
 def updateaddress(request):
     if request.POST:
         user = request.user
@@ -48,7 +48,7 @@ def updateaddress(request):
         user.profile.save()
         return redirect('myprofile')
 
-
+@login_required
 def updatephone(request):
     if request.POST:
         user = request.user
@@ -56,7 +56,7 @@ def updatephone(request):
         user.profile.save()
         return redirect('myprofile')
 
-
+@login_required
 def updateage(request):
     if request.POST:
         user = request.user
@@ -64,7 +64,7 @@ def updateage(request):
         user.profile.save()
         return redirect('myprofile')
 
-
+@login_required
 def uploadphotos(request):
     if request.POST:
         user = request.user
@@ -85,7 +85,7 @@ def uploadphotos(request):
         user.profile.save()
         return redirect('myprofile')
 
-
+@login_required
 def removeimage(request):
     image_id = int(request.GET.get('image_id'))
     print(image_id)
@@ -114,7 +114,7 @@ def removeimage(request):
     user.profile.save()
     return redirect('myprofile')
 
-
+@login_required
 def updatelocation(request):
     if request.POST:
         user = request.user
@@ -122,14 +122,14 @@ def updatelocation(request):
         user.profile.save()
         return redirect('myprofile')
 
-
+@login_required
 def resetlocation(request):
     user = request.user
     user.profile.location = None
     user.profile.save()
     return redirect('myprofile')
 
-
+@login_required
 def updatebio(request):
     if request.POST:
         user = request.user
@@ -137,7 +137,7 @@ def updatebio(request):
         user.profile.save()
         return redirect('myprofile')
 
-
+@login_required
 def updatesocials(request):
     if request.POST:
         user = request.user
@@ -163,6 +163,7 @@ def updatesocials(request):
 
 
 # Attributes to update
+@login_required
 def updateattributes(request):
     if request.POST:
         user = request.user
