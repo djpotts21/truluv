@@ -106,7 +106,11 @@ Messages
                 </div>
                 <div class="card-body">
                     {% if 'user' in request.path %}
-                    <h3>This is a new chat with user: {{ selected_user_fname }}</h3>
+                        {% if premium_status == False %}
+                            <h3>You must be a premium user to message without a match. Upgrade Today</h3>
+                        {% else %}
+                            <h3>This is a new chat with user: {{ selected_user_fname }}</h3>
+                        {% endif %}
                     {% else  %}
                     <p>Select a user from the Users list below to view messages. You can only message users that have liked you back and matched with you.</p>
                     {% endif %}
@@ -125,15 +129,19 @@ Messages
                     <h5 class="">And above all, find your TruLuve xx </h5>
                     <hr>
                     {% if 'user' in request.path %}
-                    <h4>Send the first message now!</h4>
-                    <form action="{% url 'send_message' selected_user %}" method="POST" class="form-inline">
-                        {% csrf_token %}
-                        <div class="form-group inline-chat-message">
-                            <input type="text" name="message" class="form-control" placeholder="Type a message">
-                            <input type="hidden" name="receiver_id" value="{{ selected_user }}">
-                            <input type="submit" value="Send" class="btn btn-primary">
-                        </div>
-                    </form>
+                        {% if premium_status == False %}
+                        <p>You must be a premium user to message without a match. Upgrade Today</p>
+                        {% else %}
+                        <h4>Send the first message now!</h4>
+                        <form action="{% url 'send_message' selected_user %}" method="POST" class="form-inline">
+                            {% csrf_token %}
+                            <div class="form-group inline-chat-message">
+                                <input type="text" name="message" class="form-control" placeholder="Type a message">
+                                <input type="hidden" name="receiver_id" value="{{ selected_user }}">
+                                <input type="submit" value="Send" class="btn btn-primary">
+                            </div>
+                        </form>
+                        {% endif %}
                     {% endif %}
                     
                 </div>
