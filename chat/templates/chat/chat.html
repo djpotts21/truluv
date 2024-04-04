@@ -17,7 +17,7 @@ Messages
                 
                 <div class="card-body">
                     <ul class="list-group">
-                        {% if premium_user == False %}
+                        {% if premium_status == False %}
                         {% for user in matched_users %}
                         <li class="list-group">
                             <a href="{% url 'get_chate_user' user.id %}" class="matched-user-li {% if selected_user == user.id %} active-user {% endif %}">
@@ -105,7 +105,11 @@ Messages
                     <h4>Messages</h4>
                 </div>
                 <div class="card-body">
+                    {% if 'user' in request.path %}
+                    <h3>This is a new chat with user: {{ selected_user_fname }}</h3>
+                    {% else  %}
                     <p>Select a user from the Users list below to view messages. You can only message users that have liked you back and matched with you.</p>
+                    {% endif %}
                     <h4>Messaging Rules</h4>
                     <ul>
                         <li>Be respectful and polite</li>
@@ -119,6 +123,18 @@ Messages
                     </ul>
 
                     <h5 class="">And above all, find your TruLuve xx </h5>
+                    <hr>
+                    {% if 'user' in request.path %}
+                    <h4>Send the first message now!</h4>
+                    <form action="{% url 'send_message' selected_user %}" method="POST" class="form-inline">
+                        {% csrf_token %}
+                        <div class="form-group inline-chat-message">
+                            <input type="text" name="message" class="form-control" placeholder="Type a message">
+                            <input type="hidden" name="receiver_id" value="{{ selected_user }}">
+                            <input type="submit" value="Send" class="btn btn-primary">
+                        </div>
+                    </form>
+                    {% endif %}
                     
                 </div>
             {% endif %}

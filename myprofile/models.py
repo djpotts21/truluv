@@ -3,7 +3,8 @@ from django.db import models
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField('auth.User', on_delete=models.CASCADE, default=0)
+    user = models.OneToOneField('auth.User', 
+                                on_delete=models.CASCADE, default=0)
     email = models.EmailField()
     phone = models.CharField(max_length=15)
     address = models.TextField()

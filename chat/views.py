@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -124,6 +124,11 @@ def get_chate_user(request, selected_user):
     premium_message_dict = {}
     for message in messages:
         if message.receiver.id not in premium_message_dict:
+            profile_data = get_object_or_404(Profile, user=message.sender)
+            if profile_data.image1:
+                image1 = profile_data.image1.url
+            else:
+                image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
             premium_message_dict[message.receiver.id] = {
                 'receiver': message.receiver.id,
                 'message': message.message,
@@ -131,14 +136,40 @@ def get_chate_user(request, selected_user):
                 'sender': message.sender.id,
                 'sender_name': message.sender_name,
                 'receiver_name': message.receiver_name,
-                'user_image': Profile.objects.get(user=message.receiver).image1.url
+                'user_image': image1
             }
+
+    # matched users
+    matched_users = []
+    likes = UserLike.objects.filter(user=current_user)
+    for like in likes:
+        if UserLike.objects.filter(user=like.liked_user,
+                                   liked_user=current_user):
+
+            if Profile.objects.get(id=like.liked_user.id).image1:
+                image1 = Profile.objects.get(id=like.liked_user.id).image1
+                image1 = image1.url
+            else:
+                image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
+            age = Profile.objects.get(user=like.liked_user).age
+            first_name = User.objects.get(id=like.liked_user.id).first_name
+            matched_user_dict = {
+                'id': like.liked_user.id,
+                'first_name': first_name,
+                'image1': image1,
+                'age': age
+            }
+            matched_users.append(matched_user_dict)
+    
+    # Get Selected User First Name
+    selected_user_fname = User.objects.get(id=selected_user)
+    selected_user_fname = selected_user_fname.first_name
 
     # render chat template
     return render(request, 'chat/chat.html', {
+        'selected_user_fname': selected_user_fname,
         'selected_user': selected_user,
         'pmessages': pmessages,
-        'selected_user': selected_user,
         'message_alert': message_alert,
         'current_user': current_user,
         'current_user_id': current_user_id,
@@ -162,7 +193,6 @@ def render_chat_no_user(request):
     for like in likes:
         if UserLike.objects.filter(user=like.liked_user,
                                    liked_user=current_user):
-
             if Profile.objects.get(id=like.liked_user.id).image1:
                 image1 = Profile.objects.get(id=like.liked_user.id).image1
                 image1 = image1.url
@@ -195,7 +225,7 @@ def render_chat_no_user(request):
                 'sender': message.sender.id,
                 'sender_name': message.sender_name,
                 'receiver_name': message.receiver_name,
-                'user_image': Profile.objects.get(user=message.receiver).image1.url
+                'user_image': image1
             }
     
     return render(request, 'chat/chat.html',

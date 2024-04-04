@@ -25,7 +25,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('myprofile/', include('myprofile.urls')),
     path('viewuser/', include('viewuser.urls')),
-    path('usergrid/', include('usergrid.urls')),
     path('likes/', include('likes.urls')),
     path('chat/', include('chat.urls')),
+    path('usergrid/', include('usergrid.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

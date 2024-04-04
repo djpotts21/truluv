@@ -20,3 +20,4 @@ from . import views
 urlpatterns = [
     path('', views.usergrid, name='usergrid'),
 ]
+
