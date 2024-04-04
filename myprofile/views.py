@@ -177,3 +177,12 @@ def updateattributes(request):
 
         user.profile.save()
         return redirect('myprofile')
+
+
+# Delete Account and purge data
+@login_required
+def deleteaccount(request):
+    user = request.user
+    user.delete()
+    return redirect('account_login')
+    
