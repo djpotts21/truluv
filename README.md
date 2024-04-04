@@ -18,7 +18,6 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 - [Messages](/GitMedia/WireFrames/Desktop%20Wireframes/Messages.png)
 - [Profile Editor](/GitMedia/WireFrames/Desktop%20Wireframes/Profile%20Editor.png)
 - [Settings](/GitMedia/WireFrames/Desktop%20Wireframes/Settings.png)
-- [Stummble Swipe](/GitMedia/WireFrames/Desktop%20Wireframes/Stumble%20Swipe.png)
 - [User Grid](/GitMedia/WireFrames/Desktop%20Wireframes/User%20Grid.png)
 - [Profile](/GitMedia/WireFrames/Desktop%20Wireframes/Profile.png)
 
@@ -29,7 +28,6 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 - [Messages](/GitMedia/WireFrames/Tablet%20View/Messages.png)
 - [Profile Editor](/GitMedia/WireFrames/Tablet%20View/Profile%20Editor.png)
 - [Settings](/GitMedia/WireFrames/Tablet%20View/Settings.png)
-- [Stummble Swipe](/GitMedia/WireFrames/Tablet%20View/Stumble%20Swipe.png)
 - [User Grid](/GitMedia/WireFrames/Tablet%20View/User%20Grid.png)
 - [Profile](/GitMedia/WireFrames/Tablet%20View/Profile.png)
 ### Mobile Views
@@ -39,7 +37,6 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 - [Messages](/GitMedia/WireFrames/Mobile%20View/Messages.png)
 - [Profile Editor](/GitMedia/WireFrames/Mobile%20View/Profile%20Editor.png)
 - [Settings](/GitMedia/WireFrames/Mobile%20View/Settings.png)
-- [Stummble Swipe](/GitMedia/WireFrames/Mobile%20View/Stumble%20Swipe.png)
 - [User Grid](/GitMedia/WireFrames/Mobile%20View/User%20Grid.png)
 - [Profile](/GitMedia/WireFrames/Mobile%20View/Profile.png)
 
