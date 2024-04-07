@@ -34,7 +34,8 @@ ALLOWED_HOSTS = ['8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io',
                  'localhost',
                  ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io']
 
 # Trailing Slash
 APPEND_SLASH = True
@@ -68,6 +69,8 @@ INSTALLED_APPS = [
     'usergrid',
     'likes',
     'chat',
+    'upgradeaccount',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -204,3 +207,12 @@ SOCIALACCOUNT_PROVIDERS = {
         'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
     }
 }
+
+# Stripe Settings
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET')
+
+# Upgrade Plan Settings
+UPGRADE_COST = 0.99
+UPGRADE_TIME_DAYS = 7
