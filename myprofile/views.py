@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 import os
 from . models import Profile
 from django.contrib.auth.decorators import login_required
+from checkuserpremium.models import check_user_premium
 
-# Create your views here.
 
 @login_required
 def myprofile(request):
+    # Run premium user check
+    check_user_premium(request)
+
     # Google API Key for Maps on Profile
     gmapsapikey = os.environ.get('GOOGLE_MAPS_API_KEY')
 
@@ -22,6 +25,7 @@ def myprofile(request):
     else:
         return redirect('account_login')
 
+
 @login_required
 def updatename(request):
     if request.POST:
@@ -30,6 +34,7 @@ def updatename(request):
         user.last_name = request.POST['last_name']
         user.save()
         return redirect('myprofile')
+
 
 @login_required
 def updateusername(request):
@@ -40,6 +45,7 @@ def updateusername(request):
         user.save()
         return redirect('myprofile')
 
+
 @login_required
 def updateaddress(request):
     if request.POST:
@@ -47,6 +53,7 @@ def updateaddress(request):
         user.profile.address = request.POST['address']
         user.profile.save()
         return redirect('myprofile')
+
 
 @login_required
 def updatephone(request):
@@ -56,6 +63,7 @@ def updatephone(request):
         user.profile.save()
         return redirect('myprofile')
 
+
 @login_required
 def updateage(request):
     if request.POST:
@@ -63,6 +71,7 @@ def updateage(request):
         user.profile.age = request.POST['age']
         user.profile.save()
         return redirect('myprofile')
+
 
 @login_required
 def uploadphotos(request):
@@ -84,6 +93,7 @@ def uploadphotos(request):
             user.profile.image7 = request.FILES['image7']
         user.profile.save()
         return redirect('myprofile')
+
 
 @login_required
 def removeimage(request):
@@ -114,6 +124,7 @@ def removeimage(request):
     user.profile.save()
     return redirect('myprofile')
 
+
 @login_required
 def updatelocation(request):
     if request.POST:
@@ -122,12 +133,14 @@ def updatelocation(request):
         user.profile.save()
         return redirect('myprofile')
 
+
 @login_required
 def resetlocation(request):
     user = request.user
     user.profile.location = None
     user.profile.save()
     return redirect('myprofile')
+
 
 @login_required
 def updatebio(request):
@@ -136,6 +149,7 @@ def updatebio(request):
         user.profile.bio = request.POST['bio']
         user.profile.save()
         return redirect('myprofile')
+
 
 @login_required
 def updatesocials(request):
@@ -157,7 +171,7 @@ def updatesocials(request):
             user.profile.linkedin = request.POST['linkedin']
         if 'website' in request.POST:
             user.profile.website = request.POST['website']
-        
+
         user.profile.save()
         return redirect('myprofile')
 
@@ -185,4 +199,3 @@ def deleteaccount(request):
     user = request.user
     user.delete()
     return redirect('account_login')
-    

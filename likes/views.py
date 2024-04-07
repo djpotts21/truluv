@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from .models import UserLike
-from myprofile.models import Profile
+
 import geopy.distance
 from django.contrib.auth.decorators import login_required
+from .models import UserLike
+from myprofile.models import Profile
+from checkuserpremium.models import check_user_premium
 
 
 # Add user to likes
@@ -44,6 +46,9 @@ def get_user_liked_by_users(user):
 # render the template with the liked users and the liked by users with the
 # distance, age from user profile and user first name
 def view_likes(request):
+    # Run premium user check
+    check_user_premium(request)
+
     user = request.user
     liked_users = get_user_liked_users(user)
     liked_by_users = get_user_liked_by_users(user)
@@ -77,7 +82,8 @@ def view_likes(request):
     # Liked By Users
     liked_by_users_list = []
     for liked_by_user in liked_by_users:
-        liked_by_user_profile = Profile.objects.get(user=liked_by_user.liked_user)
+        liked_by_user_profile = Profile.objects.get(
+            user=liked_by_user.liked_user)
         liked_by_user_location = (liked_by_user_profile.location)
         distance = geopy.distance.distance(
             user_location, liked_by_user_location).km

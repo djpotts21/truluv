@@ -5,10 +5,14 @@ from django.contrib.auth.models import User
 from myprofile.models import Profile
 from likes.models import UserLike
 from chat.models import Message
+from checkuserpremium.models import check_user_premium
 
 
 @login_required
 def send_message(request, selected_user):
+    # Run premium user check
+    check_user_premium(request)
+
     if request.method == 'POST':
         ''' Send a message from the current user to the selected user '''
         # Get the current user
@@ -113,13 +117,15 @@ def get_chate_user(request, selected_user):
         sender=current_user, receiver=selected_user, flagged=True).count()
     flagged_messages = flagged_messages_to_current_user + \
         flagged_messages_from_current_user
-    
+
     # is current user a premium user?
     current_user = request.user
     current_user_profile = Profile.objects.get(user=current_user)
     premium_status = current_user_profile.premium_user_account
 
-    # get all messages for selected user and create dictioary for each unique receiver containing the message, timestamp, sender, receiver
+    # get all messages for selected user and create
+    # dictioary for each unique receiver containing the message,
+    # timestamp, sender, receiver
     messages = Message.objects.filter(sender=current_user)
     premium_message_dict = {}
     for message in messages:
@@ -160,7 +166,7 @@ def get_chate_user(request, selected_user):
                 'age': age
             }
             matched_users.append(matched_user_dict)
-    
+
     # Get Selected User First Name
     selected_user_fname = User.objects.get(id=selected_user)
     selected_user_fname = selected_user_fname.first_name
@@ -182,6 +188,9 @@ def get_chate_user(request, selected_user):
 
 @login_required
 def render_chat_no_user(request):
+    # Run premium user check
+    check_user_premium(request)
+
     ''' Get pmessages from current user and the user they are chatting with '''
     # Get the current user
     current_user = request.user
@@ -213,7 +222,9 @@ def render_chat_no_user(request):
     current_user_profile = Profile.objects.get(user=current_user)
     premium_status = current_user_profile.premium_user_account
 
-    # get all messages for selected user and create dictioary for each unique receiver containing the message, timestamp, sender, receiver
+    # get all messages for selected user and create dictioary
+    # for each unique receiver containing the message, timestamp,
+    # sender, receiver
     messages = Message.objects.filter(sender=current_user)
     premium_message_dict = {}
     for message in messages:
@@ -227,7 +238,7 @@ def render_chat_no_user(request):
                 'receiver_name': message.receiver_name,
                 'user_image': image1
             }
-    
+
     return render(request, 'chat/chat.html',
                   {'likes':  likes,
                    'current_user': current_user,

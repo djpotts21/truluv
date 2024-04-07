@@ -1,14 +1,18 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from myprofile.models import Profile
 from django.contrib.auth.models import User
 import os
 import requests
 import geopy.distance
+from checkuserpremium.models import check_user_premium
 
 
 @login_required
 def viewuser(request, user_id):
+    # Run premium user check
+    check_user_premium(request)
+
     # Get current user from the request and pull profile data
     request_user_profile = Profile.objects.get(user=request.user)
     requestor_location = request_user_profile.location
@@ -27,10 +31,11 @@ def viewuser(request, user_id):
     gmapsapikey = os.environ.get('GOOGLE_MAPS_API_KEY_GEOCODE')
 
     # Make a request to Google's Reverse Geocoding API
-    url = f'https://maps.googleapis.com/maps/api/geocode/json?latlng={location}&key={gmapsapikey}'
+    url = f'https://maps.googleapis.com/maps/api/geocode/\
+        json?latlng={location}&key={gmapsapikey}'
     response = requests.get(url)
     data = response.json()
-    print(data) # This is the response from the API for debugging
+    print(data)  # This is the response from the API for debugging
 
     # Extract the town from the response
     for component in data['results'][0]['address_components']:
