@@ -1,10 +1,10 @@
 from django import forms
-from .models import Order
+from .models import UpgradeOrder
 
 
 class UpgradeAccountForm(forms.ModelForm):
     class Meta:
-        model = Order
+        model = UpgradeOrder
         fields = ('full_name', 'email', 'phone_number')
 
     def __init__(self, *args, **kwargs):

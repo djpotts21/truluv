@@ -14,19 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', include('home.urls')),
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),
-    path('myprofile/', include('myprofile.urls')),
-    path('viewuser/', include('viewuser.urls')),
-    path('likes/', include('likes.urls')),
-    path('chat/', include('chat.urls')),
-    path('usergrid/', include('usergrid.urls')),
-    path('upgradeaccount/', include('upgradeaccount.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', views.upgrade_account, name='upgrade_account'),
+    path('cache_upgrade_data/', views.cache_upgrade_data, name='cache_upgrade_data'),
+    path('upgrade_success/<order_number>/', views.upgrade_success, name='upgrade_success'),
+]

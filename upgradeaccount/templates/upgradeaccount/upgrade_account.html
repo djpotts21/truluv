@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+Upgrade Account
+{% endblock title %}
+{% block content %}
+<div class="container-fluid">
+    <div class="container-fluid">
+        <!-- Title and Intro -->
+        <div class="row h-100 ">
+            <div class="col-12">
+                <h1 class="display-4 text-black">
+                    Hi, {{ user.username|title }}! 
+                </h1>
+                <h2>Let's upgrade your account.</h2>
+                {% if user.profile.premium_expiry %}
+                <p>
+                    Your plan expires on <strong>{{ user.profile.premium_expiry }}</strong> . To add additional time to your plan, select one of the options below.
+                </p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">7 Days</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">£0.99</h5>
+                            <p class="card-text">Add premium for 7 days at only £0.99. {% if user.profile.premium_expiry %}<br>As you already have premium, we'll add another 7 days on to your premium expiry date. {% endif %}</p>
+                        </div>
+                        <div class="card-footer">
+                            <form action="{% url 'upgrade_account' %}" method="POST">
+                                {% csrf_token %}
+                                <script
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="{{ stripe_public_key }}"
+                                    data-amount=99
+                                    data-name="TruLuv Premium"
+                                    data-email = "{{ user.email }}"
+                                    data-description="Premium for 7 days"
+                                    data-image="{% static 'images/stripetruluvlogo.png' %}"
+                                    data-locale="auto"
+                                    data-currency="gbp">
+                                </script>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card-deck">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">14 Days</h5>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">£1.50</h5>
+                            <p class="card-text">Add premium for 14 days at only £1.50 {% if user.profile.premium_expiry %}<br>As you already have premium, we'll add another 7 days on to your premium expiry date. {% endif %}</p>
+                        </div>
+                        <div class="card-footer">
+                            <form action="{% url 'upgrade_account' %}" method="POST">
+                                {% csrf_token %}
+                                <script
+                                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="{{ stripe_public_key }}"
+                                    data-amount=150
+                                    data-email = "{{ user.email }}"
+                                    data-name="TruLuv Premium"
+                                    data-description="Premium for 14 days"
+                                    data-image="{% static 'images/stripetruluvlogo.png' %}"
+                                    data-locale="auto"
+                                    data-currency="gbp">
+                                </script>
+                            </form>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+            {% endblock content %}
+

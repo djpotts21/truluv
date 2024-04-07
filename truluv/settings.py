@@ -70,7 +70,6 @@ INSTALLED_APPS = [
     'likes',
     'chat',
     'upgradeaccount',
-    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -212,6 +211,7 @@ SOCIALACCOUNT_PROVIDERS = {
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET')
+STRIPE_CURRENCY = 'gbp'
 
 # Upgrade Plan Settings
 UPGRADE_COST = 0.99
