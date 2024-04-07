@@ -19,6 +19,5 @@ from . import views
 
 urlpatterns = [
     path('', views.upgrade_account, name='upgrade_account'),
-    path('cache_upgrade_data/', views.cache_upgrade_data, name='cache_upgrade_data'),
-    path('upgrade_success/<order_number>/', views.upgrade_success, name='upgrade_success'),
+    path('upgrade_success/', views.upgrade_success, name='upgrade_success'),
 ]

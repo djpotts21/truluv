@@ -4,10 +4,14 @@ from myprofile.models import Profile
 from likes.views import get_user_liked_users
 from likes.models import UserLike
 import geopy.distance
+from checkuserpremium.models import check_user_premium
 
 
 # Create your views here.
 def usergrid(request):
+    # Run premium user check
+    check_user_premium(request)
+
     # Get current user from the request and pull profile data
     request_user_profile = Profile.objects.get(user=request.user)
     requestor_location = request_user_profile.location
@@ -44,7 +48,7 @@ def usergrid(request):
         }
         user_prof_sorted = sorted(user_prof.items(),
                                   key=lambda x: x[1]['distance'])
-        user_prof = dict(user_prof_sorted)   
+        user_prof = dict(user_prof_sorted)
 
         matched_users = []
         current_user = request.user
@@ -54,7 +58,7 @@ def usergrid(request):
             liked_user_likes = UserLike.objects.filter(user=liked_user)
             for liked_user_like in liked_user_likes:
                 if liked_user_like.liked_user == current_user:
-                    matched_users.append(liked_user.id)  
+                    matched_users.append(liked_user.id)
 
     # is current user a premium user?
     current_user = request.user

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+Upgrade Account
+{% endblock title %}
+{% block content %}
+<div class="container-fluid">
+    <div class="container-fluid">
+        <!-- Title and Intro -->
+        <div class="row h-100 ">
+            <div class="col-12">
+                <h1 class="display-4 text-black">
+                    Great work, {{ user.username|title }}! 
+                </h1>
+                <h2>You're upgraded to premium, your order details are below</h2>
+                <p>
+                    Your premium status now expires <strong>{{ user.profile.premium_expiry }}</strong> . To add additional time to your plan, select one of the options below.
+                </p>
+                <h3>Order Details:</h3>
+                <p>
+                    Order ID: <strong>{{ order.order_number }}</strong><br>
+                    Order Email: <strong>{{ order.email }}</strong><br>
+                    Order Phone: <strong>{{ order.phone }}</strong><br>
+                    Order Total: <strong>{{ order.total }}</strong><br>
+                    Order Date: <strong>{{ order.date }}</strong><br>
+                    Order PID: <strong>{{ order.stripe_pid }}</strong><br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            {% endblock content %}
+

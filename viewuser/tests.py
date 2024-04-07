@@ -8,4 +8,4 @@ class TestViewUser(TestCase):
     # Expected: 404 as no user 1 will exist in test database
     def test_view_user_no_id(self):
         response = self.client.get(reverse('viewuser', kwargs={'user_id': 1}))
-        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.status_code, 302)

@@ -16,6 +16,10 @@ class MyProfileTestCase(TestCase):
         request.method = 'GET'
         request.user = User.objects.create_user(username='testuser', password='testpassword')
 
+        # create a profile for the user
+        profile = models.Profile(user=request.user)
+        profile.save()
+        
         # Call the view function
         response = views.myprofile(request)
 

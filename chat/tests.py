@@ -1,11 +1,8 @@
 from django.test import TestCase
-from . import views
-from django.test import TestCase
 from django.http import HttpRequest
-from . import views
 from django.contrib.auth.models import User
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
+from myprofile.models import Profile
+from . import views
 
 
 class SendChatTest(TestCase):
@@ -14,6 +11,10 @@ class SendChatTest(TestCase):
         request = HttpRequest()
         request.method = 'POST'
         request.user = User.objects.create_user(username='testuser', password='testpassword')
+        # Create user profile
+        profile = Profile(user=request.user)
+        profile.save()
+
         selected_user_id = 1
         request.POST = {'message': 'Hello'}
 
