@@ -12,7 +12,6 @@ def myprofile(request):
         profile = Profile(user=request.user)
         profile.save()
 
-
     # Run premium user check
     check_user_premium(request)
 
