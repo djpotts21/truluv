@@ -3,11 +3,14 @@ from django.contrib.auth.decorators import login_required
 from myprofile.models import Profile
 from django.contrib.auth.models import User
 
-import os
-import requests
+import os, requests
 import geopy.distance
 from checkuserpremium.models import check_user_premium
 
+proxyDict = {
+              "http"  : os.environ.get('FIXIE_URL', ''),
+              "https" : os.environ.get('FIXIE_URL', '')
+            }
 
 @login_required
 def viewuser(request, user_id):
@@ -38,7 +41,7 @@ def viewuser(request, user_id):
         req_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
         url = f'{req_url}{location}&key={gmapsapikey}'
         print(url)
-        response = requests.get(url)
+        response = requests.get(url, proxies=proxyDict)
 
         data = response.json()
         print(data)  # This is the response from the API for debugging
