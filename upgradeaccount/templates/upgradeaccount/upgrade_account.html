@@ -36,7 +36,7 @@ Upgrade Account
                         <div class="card-footer">
                             <form action="{% url 'upgrade_success' %}" method="POST">
                                 {% csrf_token %}
-                                <input type="text" hidden id="order_total" name="order_total" value=0.99>
+                                <input type="text" hidden id="order_total" name="order_total" value="0.99">
                                 <script
                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                     data-key="{{ stripe_public_key }}"
@@ -64,9 +64,9 @@ Upgrade Account
                             <p class="card-text">Add premium for 14 days at only £1.50 {% if user.profile.premium_expiry %}<br>As you already have premium, we'll add another 7 days on to your premium expiry date. {% endif %}</p>
                         </div>
                         <div class="card-footer">
-                            <form action="{% url 'upgrade_account' %}" method="POST">
+                            <form action="{% url 'upgrade_success' %}" method="POST">
                                 {% csrf_token %}
-                                <input type="text" hidden id="order_total" name="order_total" value=1.50>
+                                <input type="text" hidden id="order_total" name="order_total" value="1.50">
                                 <script
                                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                     data-key="{{ stripe_public_key }}"

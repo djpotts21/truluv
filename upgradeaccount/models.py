@@ -13,4 +13,4 @@ class UpgradeOrder(models.Model):
     stripe_pid = models.CharField(max_length=254, null=False, default='')
 
     def __str__(self):
-        return self.order_number
+        return self.full_name

@@ -64,9 +64,9 @@ def upgrade_success(request):
     profile.save()
 
     # Determin the plan type
-    if order_total == '0.99':
+    if order_total == "0.99":
         upgradedays = settings.PLAN1_DAYS
-    elif order_total == '1.50':
+    elif order_total == "1.50":
         upgradedays = settings.PLAN2_DAYS
     else:
         upgradedays = 0
@@ -78,11 +78,16 @@ def upgrade_success(request):
     print(profile.premium_expiry)
 
     if profile.premium_expiry is None:
-        profile.premium_expiry = order.date + timedelta(days=upgradedays)
-    elif profile.premium_expiry < order.date:
+        newdate = order.date + timedelta(days=upgradedays)
+        profile.premium_expiry = newdate
+        print("Step 1")
+    elif profile.premium_expiry > order.date:
         profile.premium_expiry += timedelta(days=upgradedays)
+        print("Step 2")
     else:
-        profile.premium_expiry = order.date + timedelta(days=upgradedays)
+        newdate = order.date + timedelta(days=upgradedays)
+        profile.premium_expiry = newdate
+        print("Step 3")
     profile.save()
 
     messages.success(request, f'Order successfully processed! \

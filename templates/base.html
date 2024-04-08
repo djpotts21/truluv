@@ -55,6 +55,15 @@
           <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mb-2 mb-lg-0 me-4">
               {% if request.user.is_authenticated %}
+              {% if request.user.profile.premium_user_account %}
+              <li class="nav-item">
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="{% url 'upgrade_account' %}"><i class="fa-solid fa-crown"></i> Extend Premium</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link login-button btn btn-lg" aria-current="page" href="{% url 'upgrade_account' %}"><i class="fa-solid fa-crown"></i> Upgrade Account</a>
+              </li>
+              {% endif %}
               <li class="nav-item">
                 <a class="nav-link login-button btn btn-lg" aria-current="page" href="{% url 'usergrid' %}"><i class="fa-solid fa-grip"></i> User Grid</a>
               </li>
