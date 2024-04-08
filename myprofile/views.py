@@ -7,17 +7,19 @@ from checkuserpremium.models import check_user_premium
 
 @login_required
 def myprofile(request):
+    # check if user has a profile created in profile table. if not create one
+    if not hasattr(request.user, 'profile'):
+    profile = Profile(user=request.user)
+    profile.save()
+
+
     # Run premium user check
     check_user_premium(request)
 
     # Google API Key for Maps on Profile
     gmapsapikey = os.environ.get('GOOGLE_MAPS_API_KEY')
 
-    # check if user has a profile created in profile table. if not create one
-    if not hasattr(request.user, 'profile'):
-        profile = Profile(user=request.user)
-        profile.save()
-
+    
     if request.user.is_authenticated:
         return render(request, 'myprofile/myprofile.html', {
             'gmapsapikey': gmapsapikey
