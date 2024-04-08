@@ -70,7 +70,10 @@ INSTALLED_APPS = [
     'likes',
     'chat',
     'upgradeaccount',
-]
+
+    # Other
+    'storages'
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -240,13 +243,14 @@ PLAN2_DAYS = 14
 
 # AWS
 
-if 'AWS_ACCESS_KEY_ID' in os.environ:
+if 'USE_AWS' in os.environ:
     # Bucket Config
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+
     # Static and Media Files
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
     STATICFILES_LOCATION = 'static'
