@@ -9,8 +9,8 @@ from checkuserpremium.models import check_user_premium
 def myprofile(request):
     # check if user has a profile created in profile table. if not create one
     if not hasattr(request.user, 'profile'):
-    profile = Profile(user=request.user)
-    profile.save()
+        profile = Profile(user=request.user)
+        profile.save()
 
 
     # Run premium user check
