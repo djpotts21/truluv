@@ -106,6 +106,8 @@ TEMPLATES = [
     },
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 WSGI_APPLICATION = 'truluv.wsgi.application'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -113,24 +115,27 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+if 'TL_DB_NAME'  in os.environ:
+    # Postgres
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('TL_DB_NAME'),
+            'USER': os.getenv('TL_DB_USER'),
+            'PASSWORD': os.getenv('TL_DB_PASS'),
+            'HOST': os.getenv('TL_DB_HOST'),
+            'PORT': os.getenv('TL_DB_PORT'),
+        }
+    }
+else:
+    # SQLite
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+    }
 
-# Postgres
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': os.getenv('TL_DB_NAME'),
-         'USER': os.getenv('TL_DB_USER'),
-         'PASSWORD': os.getenv('TL_DB_PASS'),
-         'HOST': os.getenv('TL_DB_HOST'),
-         'PORT': os.getenv('TL_DB_PORT'),
-     }
-}
 
 
 # Password validation
@@ -231,3 +236,29 @@ PLAN1_DAYS = 7
 
 PLAN2_COST = 1.50
 PLAN2_DAYS = 14
+
+
+# AWS
+
+if 'AWS_ACCESS_KEY_ID' in os.environ:
+    # Bucket Config
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    # Static and Media Files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+    # Override Static and Media URLS
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    
+    # Cache Control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=86400',
+    }
+                                      
