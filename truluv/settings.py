@@ -30,12 +30,12 @@ SECRET_KEY = 'django-insecure-7&a)xhha$\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io',
+ALLOWED_HOSTS = ['truluv-23cf9458fd34.herokuapp.com',
                  'localhost',
                  ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-djpotts21-truluv-7hdlvlrd0gl.ws-eu110.gitpod.io']
+    'https://truluv-23cf9458fd34.herokuapp.com']
 
 # Trailing Slash
 APPEND_SLASH = True
