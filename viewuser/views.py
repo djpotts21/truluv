@@ -67,10 +67,14 @@ def viewuser(request, user_id):
         # Get list of liked users id from the requestor, from the likes table
         liked_users = UserLike.objects.filter(user=request.user)
         liked_users = liked_users.values_list('liked_user', flat=True)
+        if liked_users == None:
+            liked_users = []
 
         # Who has liked the requestor
         liked_by_user = UserLike.objects.filter(liked_user=request.user)
         liked_by_user = liked_by_user.values_list('user', flat=True)
+        if liked_by_user == None:
+            liked_by_user = []
         
         # Create Match List
         matched_users = set(liked_users).intersection(liked_by_user)
