@@ -65,26 +65,31 @@ def viewuser(request, user_id):
         user_data['distance'] = distance
 
         # Get list of liked users id from the requestor, from the likes table
+        liked_users_list = []
         liked_users = UserLike.objects.filter(user=request.user)
         liked_users = liked_users.values_list('liked_user', flat=True)
-        if liked_users == None:
-            liked_users = []
+        for liked_user in liked_users:
+            liked_users_list.append(liked_user)
+        
 
         # Who has liked the requestor
+        liked_by_user_list = []
         liked_by_user = UserLike.objects.filter(liked_user=request.user)
         liked_by_user = liked_by_user.values_list('user', flat=True)
-        if liked_by_user == None:
-            liked_by_user = []
+        for liked_user in liked_by_user:
+            liked_by_user_list.append(liked_user)
+    
+            
         
         # Create Match List
-        matched_users = set(liked_users).intersection(liked_by_user)
+        matched_users = set(liked_users_list).intersection(liked_by_user_list)
 
         # Is user premium>
         premium_status = request_user_profile.premium_user_account
 
     context = {
         'user': user_data,
-        'liked_users': liked_users,
+        'liked_users': liked_users_list,
         'matched_users': matched_users,
         'premium_status': premium_status
     }
