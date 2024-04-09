@@ -8,8 +8,8 @@ import geopy.distance
 from checkuserpremium.models import check_user_premium
 
 proxyDict = {
-              "http"  : os.environ.get('FIXIE_URL', ''),
-              "https" : os.environ.get('FIXIE_URL', '')
+              "http": os.environ.get('FIXIE_URL', ''),
+              "https": os.environ.get('FIXIE_URL', '')
             }
 
 @login_required

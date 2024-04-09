@@ -53,13 +53,14 @@ def view_likes(request):
     liked_users = get_user_liked_users(user)
     liked_by_users = get_user_liked_by_users(user)
     profile = Profile.objects.get(user=user)
-    user_location = (profile.location)
+    user_location = profile.location
     liked_users_list = []
     for liked_user in liked_users:
         liked_user_profile = Profile.objects.get(user=liked_user.liked_user)
         liked_user_location = (liked_user_profile.location)
         distance = geopy.distance.distance(
-            user_location, liked_user_location).km
+            user_location, liked_user_location).miles
+        distance = round(distance, 2)
         liked_user.distance = distance
         liked_user.age = liked_user_profile.age
         liked_user.first_name = liked_user_profile.user.first_name
@@ -83,10 +84,11 @@ def view_likes(request):
     liked_by_users_list = []
     for liked_by_user in liked_by_users:
         liked_by_user_profile = Profile.objects.get(
-            user=liked_by_user.liked_user)
+            user=liked_by_user.user)
         liked_by_user_location = (liked_by_user_profile.location)
         distance = geopy.distance.distance(
-            user_location, liked_by_user_location).km
+            user_location, liked_by_user_location).miles
+        distance = round(distance, 2)
         liked_by_user.distance = distance
         liked_by_user.age = liked_by_user_profile.age
         liked_by_user.first_name = liked_by_user_profile.user.first_name

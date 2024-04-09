@@ -26,27 +26,29 @@ User Grid
             </div>
         </div>  
         {% for i in user_prof.values %}
-        <div class="col-lg-3 col-md-6">
-            <a href="{% url 'viewuser' i.profileid  %}" class="rem-hyp">
-                <div class="card" >
-                    <img class="card-img-top" src="{{ i.image1 }}" width="100px" height="180px" alt="Card image cap" style="object-fit:cover;">
-                    <div class="card-body">
-                    <h5 class="card-title">{{ i.first_name }}</h5>
-                    <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{ i.distance }} miles</p>
-                    {% if i.profileid in liked_users %}
-                    <a class="card-link btn bg-success text-light no-mouse"><i class="fa-solid fa-user-check"></i></a>
-                    {% else %}
-                    <a href="{% url 'add_like' i.profileid %}" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
-                    {% endif %}
-                    {% if i.profileid in matched_users %}
-                    <a href="{% url 'get_chate_user' i.profileid %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
-                    {% elif premium_status == True %}
-                    <a href="{% url 'get_chate_user' i.profileid %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
-                    {% endif %}
+          {% if i.profileid != request.user.id %}
+          <div class="col-lg-3 col-md-6">
+              <a href="{% url 'viewuser' i.profileid  %}" class="rem-hyp">
+                  <div class="card" >
+                      <img class="card-img-top" src="{{ i.image1 }}" width="100px" height="180px" alt="Card image cap" style="object-fit:cover;">
+                      <div class="card-body">
+                      <h5 class="card-title">{{ i.first_name }}</h5>
+                      <p class="card-text"><i class="fa-solid fa-location-arrow"></i> {{ i.distance }} miles</p>
+                      {% if i.profileid in liked_users %}
+                      <a class="card-link btn bg-success text-light no-mouse"><i class="fa-solid fa-user-check"></i></a>
+                      {% else %}
+                      <a href="{% url 'add_like' i.profileid %}" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
+                      {% endif %}
+                      {% if i.profileid in matched_users %}
+                      <a href="{% url 'get_chate_user' i.profileid %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                      {% elif premium_status == True %}
+                      <a href="{% url 'get_chate_user' i.profileid %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+                      {% endif %}
+                    </div>
                   </div>
-                </div>
-            </a>
-        </div>                    
+              </a>
+          </div>  
+          {% endif %}                  
         {% endfor %}
 
     </div>
