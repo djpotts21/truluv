@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     # All Auth Social Connectors
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.twitter_oauth2',
 
     # Site Apps
     'home',
@@ -234,16 +233,6 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         },
         'OAUTH_PKCE_ENABLED': True,
-    },
-    'twitter': {
-        'SCOPE': [
-            'email',
-            'public_profile',
-        ],
-        'AUTH_PARAMS': {
-            'include_email': 'true',
-        },
-        'VERIFIED_EMAIL': False,
     },
 }
 
