@@ -232,6 +232,15 @@ option.title {
     flex-direction: column;
     justify-content: space-between;
 }
+.view-user-buttons {
+    display: flex;
+    align-content: stretch;
+    align-items: center;
+}
+.view-user-buttons .card-link.btn {
+    margin: 10px;
+    border-radius: 0px;
+}
 .view-prof-photos {
     object-fit: cover;
     height: 100%;

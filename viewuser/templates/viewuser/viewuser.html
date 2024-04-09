@@ -10,15 +10,28 @@ Profile for user {{ userid.user.username }}
 <div class="container-fluid">
     <div class="row mt-5">
         <!-- Title and Intro -->
-        <div class="col-12">
+        <div class="col-sm-6">
             <h2 class="display-4 text-black sentance-case">
                 {{ user.first_name }} {{ user.last_name }}
             </h2>
             <h3><i class="fa-solid fa-location-dot"></i> {{ user.location_clean }} | {{ user.distance }} miles away</h3>
             <p class="small">Joined: {{ user.created_at }} | Last Update: {{ user.updated_at }}</p>
         </div>
+        <div class="col-sm-6 view-user-buttons">
+            {% if user.id in liked_users %}
+            <a class="card-link btn bg-success text-light no-mouse"><i class="fa-solid fa-user-check"></i></a>
+            {% else %}
+            <a href="{% url 'add_like' user.id %}" class="card-link btn"><i class="fa-solid fa-face-grin-hearts"></i></a>
+            {% endif %}
+            {% if user.id in matched_users %}
+            <a href="{% url 'get_chate_user' user.id %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+            {% elif premium_status == True %}
+            <a href="{% url 'get_chate_user' user.id %}" class="card-link btn"><i class="fa-solid fa-comments"></i></a>
+            {% endif %}
+
+        </div>
         <!-- Column One 50% Width of MD+. 100% Width on Small -->
-        <div class="col-12 col-sm-6 col-vert-align-cont">
+        <div class="col-12 col-sm-6">
             <!-- Profile Photo and Additional Photos -->
             <div class="row">
                 {% if user.image1 %}

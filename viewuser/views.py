@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from myprofile.models import Profile
+from likes.models import UserLike
 from django.contrib.auth.models import User
 
-import os, requests
+import os
+import requests
 import geopy.distance
 from checkuserpremium.models import check_user_premium
 
@@ -11,6 +13,7 @@ proxyDict = {
               "http": os.environ.get('FIXIE_URL', ''),
               "https": os.environ.get('FIXIE_URL', '')
             }
+
 
 @login_required
 def viewuser(request, user_id):
@@ -40,11 +43,10 @@ def viewuser(request, user_id):
         # Make a request to Google's Reverse Geocoding API
         req_url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
         url = f'{req_url}{location}&key={gmapsapikey}'
-        print(url)
         response = requests.get(url, proxies=proxyDict)
 
         data = response.json()
-        print(data)  # This is the response from the API for debugging
+         # This is the response from the API for debugging
 
         # Extract the town from the response
         for component in data['results'][0]['address_components']:
@@ -62,8 +64,25 @@ def viewuser(request, user_id):
         distance = round(distance, 2)
         user_data['distance'] = distance
 
+        # Get list of liked users id from the requestor, from the likes table
+        liked_users = UserLike.objects.filter(user=request.user)
+        liked_users = liked_users.values_list('liked_user', flat=True)
+
+        # Who has liked the requestor
+        liked_by_user = UserLike.objects.filter(liked_user=request.user)
+        liked_by_user = liked_by_user.values_list('user', flat=True)
+        
+        # Create Match List
+        matched_users = set(liked_users).intersection(liked_by_user)
+
+        # Is user premium>
+        premium_status = request_user_profile.premium_user_account
+
     context = {
         'user': user_data,
+        'liked_users': liked_users,
+        'matched_users': matched_users,
+        'premium_status': premium_status
     }
     return render(request,
                   'viewuser/viewuser.html',
