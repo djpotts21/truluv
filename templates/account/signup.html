@@ -40,10 +40,10 @@ Sign Up
                     {% endelement %}
                     {% if SOCIALACCOUNT_ENABLED %}
                     <div class="social-login-buttons">
-                        <a class="btn btn-primary rounded-0 fb-login-button equal-width" href="{% provider_login_url 'facebook' %}"><i class="fa-brands fa-facebook-f"></i> Signup with Facebook</a>
-                        <a class="btn btn-danger rounded-0 go-login-button equal-width" href="#"><i class="fa-brands fa-google"></i> Signup with Google<a>
-                        <a class="btn btn-info rounded-0 x-login-button equal-width" href="#"><i class="fa-brands fa-x-twitter"></i> Signup with Twitter<a>
-                    </div>
+                        <a class="btn btn-primary rounded-0 fb-login-button" href="{% provider_login_url 'facebook' %}"><i class="fa-brands fa-facebook-f"></i> Login with Facebook</a>
+                        <a class="btn btn-danger rounded-0 go-login-button" href="{% provider_login_url 'google' %}"><i class="fa-brands fa-google"></i> Login with Google</a>
+                        <a class="btn btn-info rounded-0 x-login-button" href="{% provider_login_url 'twitter_oauth2' %}"><i class="fa-brands fa-x-twitter"></i> Login with Twitter</a>
+                </div>
                     {% endif %}
                 </div>
             </div>

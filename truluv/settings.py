@@ -224,7 +224,27 @@ SOCIALACCOUNT_PROVIDERS = {
         'VERIFIED_EMAIL': False,
         'VERSION': 'v13.0',
         'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
-    }
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    },
+    'twitter': {
+        'SCOPE': [
+            'email',
+            'public_profile',
+        ],
+        'AUTH_PARAMS': {
+            'include_email': 'true',
+        },
+        'VERIFIED_EMAIL': False,
+    },
 }
 
 # Stripe Settings
