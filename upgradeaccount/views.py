@@ -90,9 +90,9 @@ def upgrade_success(request):
         print("Step 3")
     profile.save()
 
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+    messages.success(request, f'Payment successfully processed! \
+        We have upgraded you to premium! \
+                     Your premium will expire on {profile.premium_expiry}')
 
     if 'upgrade_order' in request.session:
         del request.session['upgrade_order']
