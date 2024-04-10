@@ -33,6 +33,7 @@ def viewuser(request, user_id):
 
     liked_users_list = []
     liked_by_user_list = []
+    matched_users_list = []
 
     if user_data['location'] is None:
         user_data['location'] = '0,0'
@@ -79,7 +80,9 @@ def viewuser(request, user_id):
             liked_by_user_list.append(liked_user)
 
         # Create Match List
-        matched_users = set(liked_users_list).intersection(liked_by_user_list)
+        matched_users = UserLike.objects.filter(user=request.user, liked_user=user.user_id) 
+        for match in matched_users:
+            matched_users_list.append(match)
 
         # Is user premium>
         premium_status = request_user_profile.premium_user_account
@@ -87,7 +90,7 @@ def viewuser(request, user_id):
     context = {
         'user': user_data,
         'liked_users': liked_users_list,
-        'matched_users': matched_users,
+        'matched_users': matched_users_list,
         'premium_status': premium_status
     }
     return render(request,
