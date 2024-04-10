@@ -48,7 +48,7 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 ## Scope of Work
 [Link to Scope of Work PDF](/GitMedia/Project%20Scope%20of%20Work%20-%20TruLuv.pdf)
 ## Live Link
-[Visit the site live on Heroku](http://truluv-23cf9458fd34.herokuapp.com/)
+[Visit the site live on Heroku](https://truluv-23cf9458fd34.herokuapp.com/)
 
 
 ## Final Screenshots

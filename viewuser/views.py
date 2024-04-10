@@ -31,6 +31,9 @@ def viewuser(request, user_id):
     user_data['first_name'] = profile_user.username
     user_data['last_name'] = profile_user.last_name
 
+    liked_users_list = []
+    liked_by_user_list = []
+
     if user_data['location'] is None:
         user_data['location'] = '0,0'
     else:
@@ -46,7 +49,6 @@ def viewuser(request, user_id):
         response = requests.get(url, proxies=proxyDict)
 
         data = response.json()
-         # This is the response from the API for debugging
 
         # Extract the town from the response
         for component in data['results'][0]['address_components']:
@@ -65,22 +67,17 @@ def viewuser(request, user_id):
         user_data['distance'] = distance
 
         # Get list of liked users id from the requestor, from the likes table
-        liked_users_list = []
         liked_users = UserLike.objects.filter(user=request.user)
         liked_users = liked_users.values_list('liked_user', flat=True)
         for liked_user in liked_users:
             liked_users_list.append(liked_user)
-        
 
         # Who has liked the requestor
-        liked_by_user_list = []
         liked_by_user = UserLike.objects.filter(liked_user=request.user)
         liked_by_user = liked_by_user.values_list('user', flat=True)
         for liked_user in liked_by_user:
             liked_by_user_list.append(liked_user)
-    
-            
-        
+
         # Create Match List
         matched_users = set(liked_users_list).intersection(liked_by_user_list)
 
