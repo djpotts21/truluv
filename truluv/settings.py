@@ -117,7 +117,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if 'TL_DB_NAME'  in os.environ:
+if 'USE_RDS' in os.environ:
     # Postgres
     DATABASES = {
         'default': {
@@ -137,8 +137,6 @@ else:
                 'NAME': BASE_DIR / 'db.sqlite3',
             }
     }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -268,10 +266,9 @@ if 'USE_AWS' in os.environ:
     # Override Static and Media URLS
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-    
+
     # Cache Control
     AWS_S3_OBJECT_PARAMETERS = {
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=86400',
     }
-                                      

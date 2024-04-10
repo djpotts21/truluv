@@ -1,3 +1,4 @@
+![TruLuv Logo](/static/images/truluvlogo.png)
 # TruLuv Dating
 ## Purpose:
 At TruLove, we're all about bringing people together, no matter who they are or who they love. Our goal is simple: to create a dating app where everyone feels welcome and accepted. We want to give you a place to explore connections without worrying about being judged for who you are. TruLove is here to help you find your perfect match, whatever that looks like for you. So whether you're straight, gay, bi, trans, or anywhere in between, we've got your back. Let's make finding love easy and fun for everyone.
@@ -41,12 +42,13 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 - [Profile](/GitMedia/WireFrames/Mobile%20View/Profile.png)
 
 ## User Stories
-[Link to User Stories PDF](/GitMedia/TruLuv%20User%20Stories.pdf)
+- [Link to User Stories PDF](/GitMedia/TruLuv%20User%20Stories.pdf)
+- [Link to User Stories - Complete PDF](/GitMedia/TruLuv%20User%20Stories%20-%20Complete.pdf)
 
 ## Scope of Work
 [Link to Scope of Work PDF](/GitMedia/Project%20Scope%20of%20Work%20-%20TruLuv.pdf)
 ## Live Link
-[#](link here for live site on heroku)
+[Visit the site live on Heroku](http://truluv-23cf9458fd34.herokuapp.com/)
 
 
 ## Final Screenshots
@@ -61,8 +63,8 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 - Vliew list
 
 ## User Goals:
-- Browse and shop for clothing items.
-- View order history and track purchases.
+- Setup a dating profile
+- View users based on distance from location
 - Make secure payments using Stripe.
 
 ## Features:
@@ -75,10 +77,16 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 ## Getting Started:
 - Clone the repository to your local machine.
 - Install dependencies with pip install -r requirements.txt.
-- Configure PostgreSQL database settings in settings.py.
-- Run migrations with python manage.py migrate.
 - Set up a Stripe account and configure API keys.
+- Setup AWS S3 Bucket
+- Setup AWS RDS 
+- Setup Fixie Proxy (https://usefixie.com/)
+- Configure the Environment Variables as detailed in [Environment Variables.txt](/Environment%20Variables.txt)
+### For Development
+- Run migrations with python manage.py migrate.
 - Start the Django development server with python manage.py runserver.
+### For Production
+- Start the Heroku server/dyno and the site will boot automatically.
 
 ## Acknowledgments / Attributes:
 

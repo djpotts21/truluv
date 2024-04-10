@@ -1,0 +1,34 @@
+Environment Variables
+
+You must set the following Environment Variables. 
+
+# AWS S3 Bucket
+AWS_ACCESS_KEY_ID - Your AWS Access Key for the S3 Bucket
+AWS_SECRET_ACCESS_KEY - Your AWS Secret Key for the S3 Bucket
+AWS_S3_REGION_NAME - Region Name in which your S3 Bucket is located
+AWS_STORAGE_BUCKET_NAME - The name of the S3 Bucket
+
+# Fixie 
+FIXIE_URL - The URL of your fixie proxy.
+
+#Google
+GOOGLE_MAPS_API_KEY - Google Maps API Key 
+GOOGLE_MAPS_API_KEY_GEOCODE
+
+#Stripe
+STRIPE_PUBLIC_KEY - Stripe Public Key (Swap for Production/Live key when in live mode)
+STRIPE_SECRET_KEY - Stripe Secret Key (Swap for Production/Live key when in live mode)
+
+# AWS RDS
+TL_DB_HOST - The hostname of the RDS Database
+TL_DB_NAME - The name of the database
+TL_DB_PASS - The password of the master user
+TL_DB_USER - The username of the master user
+TL_DB_PORT - The port set for access to the RDS DB
+
+#Production
+USE_AWS = True
+USE_RDS = True
+
+
+
