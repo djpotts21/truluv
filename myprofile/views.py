@@ -11,12 +11,14 @@ from chat.views import check_unread_messages
 
 @login_required
 def myprofile(request):
-    # Check for unread messages
-    check_unread_messages(request)
+    # MUST BE FIRST
     # check if user has a profile created in profile table. if not create one
     if not hasattr(request.user, 'profile'):
         profile = Profile(user=request.user)
         profile.save()
+
+    # Check for unread messages
+    check_unread_messages(request)
 
     # Run premium user check
     check_user_premium(request)
