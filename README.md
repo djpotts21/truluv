@@ -21,7 +21,6 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 - [Settings](/GitMedia/WireFrames/Desktop%20Wireframes/Settings.png)
 - [User Grid](/GitMedia/WireFrames/Desktop%20Wireframes/User%20Grid.png)
 - [Profile](/GitMedia/WireFrames/Desktop%20Wireframes/Profile.png)
-
 ### Tablet Views
 - [Home](/GitMedia/WireFrames/Tablet%20View/Home.png)
 - [Liked You](/GitMedia/WireFrames/Tablet%20View/Liked%20You.png)
@@ -47,21 +46,45 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 
 ## Scope of Work
 [Link to Scope of Work PDF](/GitMedia/Project%20Scope%20of%20Work%20-%20TruLuv.pdf)
+
 ## Live Link
 [Visit the site live on Heroku](https://truluv-23cf9458fd34.herokuapp.com/)
 
 
 ## Final Screenshots
 ### Desktop Views
-- View list
-- Vliew list
+- [Home](/GitMedia/Live%20Screenshots/Desktop/home.png)
+- [Login](/GitMedia/Live%20Screenshots/Desktop/accounts-login.png)
+- [Log Out](/GitMedia/Live%20Screenshots/Desktop/accounts-logout.png)
+- [Sign Up](/GitMedia/Live%20Screenshots/Desktop/accounts-signup.png)
+- [Chats / Messages](/GitMedia/Live%20Screenshots/Desktop/chat.png)
+- [Chats / Messages User to User](/GitMedia/Live%20Screenshots/Desktop/chat-user-2.png)
+- [Likes](/GitMedia/Live%20Screenshots/Desktop/likes.png)
+- [My Profile](/GitMedia/Live%20Screenshots/Desktop/myprofile.png)
+- [Upgrade Account](/GitMedia/Live%20Screenshots/Desktop/upgradeaccount.png)
+- [User Grid](/GitMedia/Live%20Screenshots/Desktop/usergrid.png)
+- [View User Profile](/GitMedia/Live%20Screenshots/Desktop/viewuser-2.png)
 ### Tablet Views
-- View list
-- Vliew list
+- [Home](/GitMedia/Live%20Screenshots/Tablet/home.png)
+- [Login](/GitMedia/Live%20Screenshots/Tablet/accounts-login.png)
+- [Sign Up](/GitMedia/Live%20Screenshots/Tablet/accounts-signup.png)
+- [Chats / Messages](/GitMedia/Live%20Screenshots/Tablet/chat.png)
+- [Likes](/GitMedia/Live%20Screenshots/Tablet/likes.png)
+- [My Profile](/GitMedia/Live%20Screenshots/Tablet/myprofile.png)
+- [Upgrade Account](/GitMedia/Live%20Screenshots/Tablet/upgradeaccount.png)
+- [User Grid](/GitMedia/Live%20Screenshots/Tablet/usergrid.png)
+- [View User Profile](/GitMedia/Live%20Screenshots/Tablet/viewuser-3.png)
 ### Mobile Views
-- View list
-- Vliew list
-
+- [Home](/GitMedia/Live%20Screenshots/Mobile/home.png)
+- [Login](/GitMedia/Live%20Screenshots/Mobile/accounts-login.png)
+- [Sign Up](/GitMedia/Live%20Screenshots/Mobile/accounts-signup.png)
+- [Chats / Messages](/GitMedia/Live%20Screenshots/Mobile/chat.png)
+- [Likes](/GitMedia/Live%20Screenshots/Mobile/likes.png)
+- [My Profile](/GitMedia/Live%20Screenshots/Mobile/myprofile.png)
+- [Upgrade Account](/GitMedia/Live%20Screenshots/Mobile/upgradeaccount.png)
+- [User Grid](/GitMedia/Live%20Screenshots/Mobile/usergrid.png)
+- [View User Profile](/GitMedia/Live%20Screenshots/Mobile/viewuser-3.png)
+- [Menu Mobile](/GitMedia/Live%20Screenshots/Mobile/menu.png)
 ## User Goals:
 - Setup a dating profile
 - View users based on distance from location
@@ -87,6 +110,20 @@ TruLove uses Bootstrap as its core on the front end, a leading front-end framewo
 - Start the Django development server with python manage.py runserver.
 ### For Production
 - Start the Heroku server/dyno and the site will boot automatically.
+
+## Automated Testing
+There is a series of built-in testing in all major apps, please follow the guide below to run the tests. Note: This will fail if you do not disable RDS and AWS.
+
+- Clone the repository to your local machine.
+- Install dependencies with pip install -r requirements.txt.
+- Set up a Stripe account and configure API keys.
+- Setup AWS S3 Bucket
+- Setup AWS RDS 
+- Setup Fixie Proxy (https://usefixie.com/)
+- Configure the Environment Variables as detailed in [Environment Variables.txt](/Environment%20Variables.txt)
+- Remove USE_RDS and USE_AWS from the Environment Variables
+- Run migrations with python manage.py migrate.
+- Run Run migrations with python manage.py test.
 
 ## Acknowledgments / Attributes:
 
