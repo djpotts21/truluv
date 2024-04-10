@@ -212,6 +212,7 @@ def render_chat_no_user(request):
     # if user likes other user and other user likes them
     # add to match list
     matched_users = []
+    image1 = 'https://i.ibb.co/ssFD4BX/no-image.png'
     likes = UserLike.objects.filter(user=current_user)
     for like in likes:
         if UserLike.objects.filter(user=like.liked_user,
