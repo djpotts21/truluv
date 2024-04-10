@@ -14,7 +14,9 @@ Profile for user {{ userid.user.username }}
             <h2 class="display-4 text-black sentance-case">
                 {{ user.first_name }} {{ user.last_name }}
             </h2>
+            {% if user.location_clean %}
             <h3><i class="fa-solid fa-location-dot"></i> {{ user.location_clean }} | {{ user.distance }} miles away</h3>
+            {% endif %}
             <p class="small">Joined: {{ user.created_at }} | Last Update: {{ user.updated_at }}</p>
         </div>
         <div class="col-sm-6 view-user-buttons">
