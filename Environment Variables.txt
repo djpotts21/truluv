@@ -30,5 +30,12 @@ TL_DB_PORT - The port set for access to the RDS DB
 USE_AWS = True
 USE_RDS = True
 
+#Email
+EMAIL_HOST = Host address of smtp server
+EMAIL_PORT = Port for SMTP Mail
+EMAIL_TLS = True or False if needs TLS
+EMAIL_USER = Username for SMTP
+EMAIL_PASS = Password for SMTP
+EMAIL_SSL  = True or False if needs SSL
 
 
