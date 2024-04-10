@@ -9,6 +9,7 @@ Messages
 <div class="container-fluid">
     <div class="row">
         <h1>Messages</h1>
+
         <div class="col-md-3 fixed-height-messages">
             <div class="card">
                 <div class="card-header">
@@ -17,12 +18,27 @@ Messages
                 
                 <div class="card-body">
                     <ul class="list-group">
-                        {% if premium_status == False %}
+                        {% if premium_status is False %}
+                        <h3>Matched Users</h3>
+                        {% if matched_users %}
                         {% for user in matched_users %}
                         <li class="list-group">
                             <a href="{% url 'get_chate_user' user.id %}" class="matched-user-li {% if selected_user == user.id %} active-user {% endif %}">
                                 <img src="{{ user.image1 }}" alt="profile image" class="rounded-circle" width="40" height="40">
                                 {{ user.first_name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                        {% else %}
+                        <p>You have no matched users yet, keep swiping!</p>
+                        {% endif %}
+                        <hr>
+                        <h3>All Messages</h3>
+                        <p class="alert alert-danger">Take care as you may not have liked the user!</p>
+                        {% for message in amessages %}
+                        <li class="list-group"> 
+                            <a href="{% url 'get_chate_user' message.sender_id %}" class="matched-user-li {% if selected_user == message.sender_id %} active-user {% endif %}">
+                                {{ message.sender_name }}
                             </a>
                         </li>
                         {% endfor %}

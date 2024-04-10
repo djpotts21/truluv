@@ -111,4 +111,12 @@ function initMap() {
   }
 }
 
+// Timeout for Messages
+$(document).ready(function () {
+  if ($('.messages').length) {
+    setTimeout(function () {
+      $('.messages').hide( "slow");
+    }, 5000);
+  }
+});
 

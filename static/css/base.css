@@ -98,13 +98,16 @@
     font-weight: bold;
     height: 100%;
 }
-
-
-
 /* Navbar  */
 .navbar-nav {
     right: 0;
     position: absolute;
+}
+/* Messages */
+ul.messages {
+    background: #ff7c0a;
+    padding: 10px;
+    font-weight: 500;
 }
 
 /* Sign In */

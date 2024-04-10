@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .models import UserLike
 from myprofile.models import Profile
 from checkuserpremium.models import check_user_premium
+from django.contrib import messages
 
 
 # Add user to likes
@@ -15,11 +16,13 @@ def add_like(request, user_id):
     if UserLike.objects.filter(
         user=request.user, liked_user=User.objects.get(
             id=user_id)).exists():
+        messages.error(request, 'User already liked')
         return redirect('view_likes')
     else:
         liked_user = User.objects.get(id=user_id)
         user = request.user
         UserLike.objects.create(user=user, liked_user=liked_user)
+        messages.success(request, 'User added to likes')
         return redirect('view_likes')
 
 
@@ -28,6 +31,7 @@ def add_like(request, user_id):
 def remove_like(request, object_id):
     liked_user = UserLike.objects.get(id=object_id)
     liked_user.delete()
+    messages.success(request, 'User removed from likes')
     return redirect('view_likes')
 
 

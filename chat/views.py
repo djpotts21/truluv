@@ -6,6 +6,8 @@ from myprofile.models import Profile
 from likes.models import UserLike
 from chat.models import Message
 from checkuserpremium.models import check_user_premium
+from django.contrib import messages
+
 
 
 @login_required
@@ -31,7 +33,10 @@ def send_message(request, selected_user):
             message=message, sender_name=sender_name,
             receiver_name=receiver_name)
         # Redirect to the chat page
-
+    messages.add_message(
+        request,
+        messages.INFO,
+        'Message has been sent.')
     return redirect('get_chate_user', selected_user=selected_user_id)
 
 
@@ -50,6 +55,10 @@ def flag_message(request, message_id):
         # Redirect to the chat page
 
     print("Redirecting")
+    messages.add_message(
+        request,
+        messages.INFO,
+        'Message has been flagged as inappropriate.')
     return redirect('get_chate_user', selected_user=message.sender.id)
 
 
@@ -69,7 +78,7 @@ def get_chate_user(request, selected_user):
         if UserLike.objects.filter(user=like.liked_user,
                                    liked_user=current_user):
 
-            if Profile.objects.get(id=like.liked_user.id).image1:
+            if Profile.objects.get(user=like.liked_user).image1:
                 image1 = Profile.objects.get(id=like.liked_user.id).image1
                 image1 = image1.url
             else:
@@ -152,7 +161,7 @@ def get_chate_user(request, selected_user):
         if UserLike.objects.filter(user=like.liked_user,
                                    liked_user=current_user):
 
-            if Profile.objects.get(id=like.liked_user.id).image1:
+            if Profile.objects.get(user=like.liked_user).image1:
                 image1 = Profile.objects.get(id=like.liked_user.id).image1
                 image1 = image1.url
             else:
@@ -171,6 +180,10 @@ def get_chate_user(request, selected_user):
     selected_user_fname = User.objects.get(id=selected_user)
     selected_user_fname = selected_user_fname.first_name
 
+    # Get all Messages for request user
+    amessages = Message.objects.filter(receiver=request.user)
+
+
     # render chat template
     return render(request, 'chat/chat.html', {
         'selected_user_fname': selected_user_fname,
@@ -183,7 +196,8 @@ def get_chate_user(request, selected_user):
         'matched_users': matched_users,
         'flagged_messages': flagged_messages,
         'premium_status': premium_status,
-        'premium_message_dict': premium_message_dict})
+        'premium_message_dict': premium_message_dict,
+        'amessages': amessages, })
 
 
 @login_required
@@ -202,7 +216,7 @@ def render_chat_no_user(request):
     for like in likes:
         if UserLike.objects.filter(user=like.liked_user,
                                    liked_user=current_user):
-            if Profile.objects.get(id=like.liked_user.id).image1:
+            if Profile.objects.get(user=like.liked_user).image1:
                 image1 = Profile.objects.get(id=like.liked_user.id).image1
                 image1 = image1.url
             else:
@@ -239,10 +253,32 @@ def render_chat_no_user(request):
                 'user_image': image1
             }
 
+    # Get all Messages for request user
+    amessages = Message.objects.filter(receiver=request.user)
+
     return render(request, 'chat/chat.html',
                   {'likes':  likes,
                    'current_user': current_user,
                    'matched_users': matched_users,
                    'current_user_id': current_user_id,
                    'premium_status': premium_status,
-                   'premium_message_dict': premium_message_dict})
+                   'premium_message_dict': premium_message_dict,
+                   'amessages': amessages, })
+
+
+# Check for unread chats
+def check_unread_messages(request):
+    unread_messages = Message.objects.filter(receiver=request.user, read=False)
+    user_profile = Profile.objects.get(user=request.user)
+    if len(unread_messages) > 0: 
+        if user_profile.premium_user_account is False:
+            messages.add_message(
+                request,
+                messages.INFO,
+                'You are not a premium user. Upgrade now to view messages from non-matched users.')
+        else:
+            messages.add_message(
+                request,
+                messages.INFO,
+                'You have unread messages. Click on the Messeages Icon to view.')
+
